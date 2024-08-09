@@ -1,0 +1,8 @@
+.navBtns {
+    transition: all 0.3s ease-in-out;
+}
+
+.navBtns:hover {
+    background-color: #00215E;
+    color: white;
+}
