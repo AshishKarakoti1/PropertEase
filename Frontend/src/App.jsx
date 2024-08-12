@@ -10,17 +10,16 @@ const App = () => {
   const location = useLocation();
 
   const getBackgroundClass = () => {
-    // if (location.pathname === '/login') {
-    //   return 'bg-blue-300';
-    // }
+    if (location.pathname === '/login' || location.pathname === '/signup') {
+      return 'bg-[url("loginsignUp.jpg")] bg-cover bg-center bg-no-repeat';
+    }
     return 'bg-[url("bg-image.webp")] bg-cover bg-center bg-no-repeat';
   };
 
   return (
     <div className={`min-h-screen w-full flex flex-col ${getBackgroundClass()}`}>
-      <NavBar />
       <Routes>
-        <Route path='/' element={<MiddleSection />} />
+        <Route path='/' element={<><NavBar /><MiddleSection /></>} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
       </Routes>

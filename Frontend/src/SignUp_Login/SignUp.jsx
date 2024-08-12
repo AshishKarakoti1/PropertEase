@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const SignUp = () => {
     return (
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 bg-white rounded-lg">
+        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 bg-white rounded-lg mt-12">
             <div className="mx-auto max-w-lg">
                 <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">Get started today</h1>
 
