@@ -1,5 +1,6 @@
 # PropertEase
 Ashish
-avikam,m   devesh
+avikam
+devesh
 bhatia
 daksh
