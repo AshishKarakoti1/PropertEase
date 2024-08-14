@@ -28,6 +28,9 @@ const PostList = () => {
     if (loading) {
         return <div> please wait while we get the best deals for you </div>
     }
+    if (error) {
+        return <div> error fetching data </div>
+    }
     return (
         <div className={styles.postlist}>
             {data.map((listing) => {
