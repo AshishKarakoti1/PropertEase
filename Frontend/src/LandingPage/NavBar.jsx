@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = ({ location }) => {
 
+    const navigate = useNavigate();
 
     const backgroundClass = location.pathname === '/buy' ? 'bg-blue-400' : '';
 
@@ -17,6 +19,7 @@ const NavBar = ({ location }) => {
                         src="SmallSquareLogoJpg-removebg-preview.png"
                         alt="Logo"
                         className='h-15'
+                        onClick={() => navigate('/')}
                     />
                 </div>
 
