@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
 
 const NavBar = ({ location }) => {
-    const [activeItem, setActiveItem] = useState('/'); // Default active item
 
-    const handleItemClick = (path) => {
-        setActiveItem(path);
-    };
 
     const backgroundClass = location.pathname === '/buy' ? 'bg-blue-400' : '';
 
@@ -26,22 +22,13 @@ const NavBar = ({ location }) => {
 
                 {/* List container */}
                 <ul className='flex space-x-9'>
-                    <li
-                        className={`flex items-center ${activeItem === '/buy' ? 'border-b-2 border-white' : ''}`}
-                        onClick={() => handleItemClick('/buy')}
-                    >
+                    <li className={`flex items-center `}>
                         <Link to='/buy' className='no-underline font-bold text-white text-2xl'>Buy</Link>
                     </li>
-                    <li
-                        className={`flex items-center ${activeItem === '/sell' ? 'border-b-2 border-white pb-2' : ''}`}
-                        onClick={() => handleItemClick('/sell')}
-                    >
+                    <li className={`flex items-center `}>
                         <Link to='/' className='no-underline font-bold text-white text-2xl'>Sell</Link>
                     </li>
-                    <li
-                        className={`flex items-center ${activeItem === '/calculate-mortgage' ? 'border-b-2 border-white' : ''}`}
-                        onClick={() => handleItemClick('/calculate-mortgage')}
-                    >
+                    <li className={`flex items-center `}>
                         <Link to='/' className='no-underline font-bold text-white text-2xl'>Calculate Mortgage</Link>
                     </li>
                 </ul>
