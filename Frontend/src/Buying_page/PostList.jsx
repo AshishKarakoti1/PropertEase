@@ -2,6 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Post from './Post';
+import Loading from './Loading';
+import Error from './Error';
 import styles from './postlist.module.css';
 
 const PostList = () => {
@@ -26,10 +28,10 @@ const PostList = () => {
 
 
     if (loading) {
-        return <div> please wait while we get the best deals for you </div>
+        return <div className=' flex items-center justify-center'><Loading /></div>
     }
     if (error) {
-        return <div> error fetching data </div>
+        return <Error />
     }
     return (
         <div className={styles.postlist}>
