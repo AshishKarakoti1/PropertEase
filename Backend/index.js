@@ -11,6 +11,25 @@ app.get('/buy', (req, res) => {
     res.json(data);
 })
 
+app.post('/buy', (req, res) => {
+    const { price, location, area } = req.body;
+
+    let filteredListings = data;
+
+    if (price) {
+        filteredListings = filteredListings.filter(listing => listing.price <= price);
+    }
+    if (location) {
+        filteredListings = filteredListings.filter(listing => listing.location == location);
+    }
+    if (area) {
+        filteredListings = filteredListings.filter(listing => listing.area <= area);
+    }
+
+    return res.json(filteredListings);
+
+});
+
 app.listen(5555, (err) => {
     if (err) {
         console.log("error connecting to server");
