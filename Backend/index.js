@@ -1,34 +1,16 @@
 const express = require('express');
-const data = require('./data');
 const cors = require('cors');
+
+// *** importing routes *** //
+const buyRoute = require('./Routes/buy_route');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json())
 
-app.get('/buy', (req, res) => {
-    res.json(data);
-})
+app.use('/buy',buyRoute);
 
-app.post('/buy', (req, res) => {
-    const { price, location, area } = req.body;
-
-    let filteredListings = data;
-
-    if (price) {
-        filteredListings = filteredListings.filter(listing => listing.price <= price);
-    }
-    if (location) {
-        filteredListings = filteredListings.filter(listing => listing.location == location);
-    }
-    if (area) {
-        filteredListings = filteredListings.filter(listing => listing.area <= area);
-    }
-
-    return res.json(filteredListings);
-
-});
 
 app.listen(5555, (err) => {
     if (err) {
