@@ -1,7 +1,7 @@
 let data = [
     {
         "id": 1,
-        "url": "Erin",
+        "url": "https://images.unsplash.com/photo-1600585153490-76fb20a32601?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "location": "Toghill",
         "bedrooms": 3,
         "bathrooms": 2,
@@ -10,7 +10,7 @@ let data = [
     },
     {
         "id": 2,
-        "url": "Shirlene",
+        "url": "https://images.unsplash.com/photo-1598228723793-52759bba239c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "location": "Henriques",
         "bedrooms": 4,
         "bathrooms": 3,
@@ -19,7 +19,7 @@ let data = [
     },
     {
         "id": 3,
-        "url": "Shep",
+        "url": "https://cdn.pixabay.com/photo/2017/06/16/12/37/home-2409009_1280.jpg",
         "location": "Ilyuchyov",
         "bedrooms": 2,
         "bathrooms": 1,
@@ -28,7 +28,7 @@ let data = [
     },
     {
         "id": 4,
-        "url": "Willis",
+        "url": "https://cdn.pixabay.com/photo/2016/07/25/17/05/new-home-1540875_1280.jpg",
         "location": "O'Cullinane",
         "bedrooms": 3,
         "bathrooms": 2,
@@ -37,7 +37,7 @@ let data = [
     },
     {
         "id": 5,
-        "url": "Noel",
+        "url": "https://cdn.pixabay.com/photo/2016/09/20/11/26/home-1682316_1280.jpg",
         "location": "Lambotin",
         "bedrooms": 5,
         "bathrooms": 3,
@@ -46,7 +46,7 @@ let data = [
     },
     {
         "id": 6,
-        "url": "Alverta",
+        "url": "https://cdn.pixabay.com/photo/2016/11/18/17/46/house-1836070_1280.jpg",
         "location": "Hardage",
         "bedrooms": 2,
         "bathrooms": 1,
@@ -55,7 +55,7 @@ let data = [
     },
     {
         "id": 7,
-        "url": "Shandy",
+        "url": "https://cdn.pixabay.com/photo/2017/06/16/12/37/home-2409009_1280.jpg",
         "location": "Shorie",
         "bedrooms": 4,
         "bathrooms": 2,
@@ -64,7 +64,7 @@ let data = [
     },
     {
         "id": 8,
-        "url": "Lisbeth",
+        "url": "https://cdn.pixabay.com/photo/2017/06/16/12/29/home-2408978_1280.jpg",
         "location": "Schulkins",
         "bedrooms": 3,
         "bathrooms": 2,
@@ -73,22 +73,13 @@ let data = [
     },
     {
         "id": 9,
-        "url": "Kanya",
+        "url": "https://cdn.pixabay.com/photo/2017/06/19/04/06/house-2418106_1280.jpg",
         "location": "Kimmins",
         "bedrooms": 2,
         "bathrooms": 1,
         "area": 100,
         "price": 190000
     },
-    {
-        "id": 10,
-        "url": "Tiertza",
-        "location": "Adelberg",
-        "bedrooms": 4,
-        "bathrooms": 3,
-        "area": 160,
-        "price": 270000
-    }
 ];
 
 module.exports = data;
