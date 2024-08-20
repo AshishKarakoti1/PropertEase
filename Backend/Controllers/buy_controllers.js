@@ -11,7 +11,7 @@ async function handleFilters(req,res) {
                 filteredListings = filteredListings.filter(listing => listing.price <= price);
             }
             if (location) {
-                filteredListings = filteredListings.filter(listing => listing.location == location);
+                filteredListings = filteredListings.filter(listing => listing.location.toLowerCase() == location.toLowerCase());
             }
             if (area) {
                 filteredListings = filteredListings.filter(listing => listing.area <= area);
