@@ -1,0 +1,63 @@
+import React, { useContext } from 'react';
+import { StoreContext } from '../context/StoreContext';
+
+const Filters = () => {
+    const { filters, setFilters, applyFilters, clearFilters } = useContext(StoreContext);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFilters({
+            ...filters,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        applyFilters();
+    };
+
+    return (
+        <form onSubmit={handleSubmit} className="bg-white h-14 w-full flex gap-7 items-center justify-center rounded-xl mb-14 p-6">
+            <label htmlFor="price">Price</label>
+            <input
+                type="number"
+                name="price"
+                value={filters.price}
+                onChange={handleChange}
+                className="border-2 border-red-500"
+            />
+            <label htmlFor="location">Location</label>
+            <input
+                type="text"
+                name="location"
+                value={filters.location}
+                onChange={handleChange}
+                className="border-2 border-red-500"
+            />
+            <label htmlFor="area">Area</label>
+            <input
+                type="number"
+                name="area"
+                value={filters.area}
+                onChange={handleChange}
+                className="border-2 border-red-500"
+            />
+            <button
+                type="submit"
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+                Filter
+            </button>
+            <button
+                type="button"
+                onClick={clearFilters}
+                className="bg-gray-500 text-white px-4 py-2 rounded"
+            >
+                Clear Filters
+            </button>
+        </form>
+    );
+};
+
+export default Filters;
