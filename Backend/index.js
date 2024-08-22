@@ -3,6 +3,7 @@ const cors = require('cors');
 
 // *** importing routes *** //
 const buyRoute = require('./Routes/buy_route');
+const sellRoute = require('./Routes/sell_route');
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(cors());
 app.use(express.json())
 
 app.use('/buy',buyRoute);
+app.use('/sell',sellRoute);
 
 
 app.listen(5555, (err) => {
