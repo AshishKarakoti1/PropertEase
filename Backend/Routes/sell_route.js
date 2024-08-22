@@ -5,7 +5,7 @@ const Router = express.Router();
 const upload = require('./multerConfig');
 
 // Import controller
-const { createListing } = require('./listingController');
+const { createListing } = require('../Controllers/sellControllers');
 
 // Define routes
 Router.route('/')
