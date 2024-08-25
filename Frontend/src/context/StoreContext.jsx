@@ -17,7 +17,7 @@ const StoreContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5555/buy');
+                const response = await axios.get('http://localhost:9090/buy');
                 setData(response.data);
             } catch (err) {
                 setError('Failed to fetch data.');
@@ -31,7 +31,7 @@ const StoreContextProvider = ({ children }) => {
     const applyFilters = async () => {
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:5555/buy', filters);
+            const response = await axios.post('http://localhost:9090/buy', filters);
             setData(response.data);
             console.log('Filtered Data:', response.data);
         } catch (err) {
