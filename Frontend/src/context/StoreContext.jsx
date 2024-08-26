@@ -50,7 +50,7 @@ const StoreContextProvider = ({ children }) => {
         });
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5555/buy');
+            const response = await axios.get('http://localhost:9090/buy');
             setData(response.data);
             console.log('All Listings:', response.data);
         } catch (err) {
