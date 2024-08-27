@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 
+const PORT = 9090;
+
 // *** importing routes *** //
 const buyRoute = require('./Routes/buy_route');
 const sellRoute = require('./Routes/sell_route');
@@ -14,10 +16,10 @@ app.use('/buy',buyRoute);
 app.use('/sell',sellRoute);
 
 
-app.listen(5555, (err) => {
+app.listen(PORT, (err) => {
     if (err) {
         console.log("error connecting to server");
     } else {
-        console.log("connected to server at port 5555");
+        console.log(`connected to server at port ${PORT}`);
     }
 })
