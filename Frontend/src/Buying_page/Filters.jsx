@@ -41,7 +41,7 @@ const Filters = () => {
                 name="area"
                 value={filters.area}
                 onChange={handleChange}
-               className="rounded-lg p-1"
+                className="rounded-lg p-1"
             />
             <button
                 type="submit"

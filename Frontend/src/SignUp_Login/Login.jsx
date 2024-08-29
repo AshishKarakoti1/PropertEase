@@ -1,7 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import {handleError , handleSuccess} from '../utils';
+import { ToastContainer } from 'react-toastify';
 
 const Login = () => {
+
+    const navigate = useNavigate();
+
+    const [loginDetails , setLoginDetails] = useState({
+        email:'',password:''
+    });
+
+    const handleChange =(e) => {
+        const {name,value} = e.target;
+        setLoginDetails({...loginDetails,[name]:value});
+    }
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        
+        // Ensure these are correctly destructured
+        const { email, password } = loginDetails;
+    
+        if (!email || !password) return handleError('All fields are required');    
+        try {
+            const url = "http://localhost:9090/auth/login";
+            const response = await axios.post(url, { email, password }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const result = response.data;
+            console.log(result);
+            const { success, message, jwtToken, name } = result;
+            if (success) {
+                handleSuccess("Login successful");
+                localStorage.setItem('token', jwtToken);
+                localStorage.setItem('loggedInUser', name);
+                setTimeout(() => {
+                    navigate('/home');
+                }, 1000);
+            } else {
+                handleError(message);
+            }
+        } catch (err) {
+            console.error("Login error:", err); // Detailed error logging
+            handleError(err.response?.data?.message || "Login failed");
+        }
+    };
+
     return (
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 mt-12 mb-0">
             <div className="relative max-w-lg mx-auto bg-white bg-opacity-80 rounded-lg">
@@ -13,7 +62,7 @@ const Login = () => {
                         Discover your dream home or sell your property with ease.
                     </p>
 
-                    <form action="#" className="mb-0 mt-4 space-y-4 rounded-lg shadow-lg sm:p-4 lg:p-6">
+                    <form onSubmit={handleLogin} className="mb-0 mt-4 space-y-4 rounded-lg shadow-lg sm:p-4 lg:p-6">
                         <p className="text-center text-lg font-medium">Sign in to your account</p>
 
                         <div>
@@ -24,6 +73,8 @@ const Login = () => {
                                     type="email"
                                     className="w-full rounded-lg border-2 border-gray-200 p-3 pe-12 text-sm shadow-md"
                                     placeholder="Enter email"
+                                    name='email'
+                                    onChange={handleChange}
                                 />
                             </div>
                         </div>
@@ -36,6 +87,8 @@ const Login = () => {
                                     type="password"
                                     className="w-full rounded-lg border-2 border-gray-200 p-3 pe-12 text-sm shadow-md"
                                     placeholder="Enter password"
+                                    name='password'
+                                    onChange={handleChange}
                                 />
                             </div>
                         </div>
@@ -52,6 +105,7 @@ const Login = () => {
                             <Link to={'/signup'} className='no-underline'> Sign up</Link>
                         </p>
                     </form>
+                    <ToastContainer /> 
                 </div>
             </div>
         </div>

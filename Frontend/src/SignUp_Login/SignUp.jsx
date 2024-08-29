@@ -1,7 +1,60 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import {handleSuccess , handleError} from '../utils';
+import axios from 'axios';
 
 const SignUp = () => {
+
+    const navigate = useNavigate();
+
+    const [signUpDetails , setSignUpDetails] = useState({
+        first_name:'',
+        last_name:'',
+        email:'',
+        password:''
+    })
+
+    const handleChange =(e) => {
+        const {name,value} = e.target;
+        setSignUpDetails({...signUpDetails,[name]:value});
+    }
+
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+        const {first_name,last_name,email,password} = signUpDetails;
+        if(!first_name || !last_name || !email || !password) return handleError('All fields are required');
+
+
+        try{
+            const url = "http://localhost:9090/auth/signup";
+            const response = await axios.post(url, {
+                first_name,
+                last_name,
+                email,
+                password
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const result = await response.data;
+            console.log(result);
+            const{message,success} = result;
+            if(success) {
+                // handleSuccess("Sign Up successFull");
+                setTimeout(() => {
+                    navigate('/login');
+                },1000)
+            }
+            else{
+                handleError("Sign Up failed");
+            }
+        } catch(err) {
+            handleError("Sign Up failed");
+        }
+
+    }
+
     return (
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 bg-white rounded-lg mt-12">
             <div className="mx-auto max-w-lg">
@@ -11,7 +64,7 @@ const SignUp = () => {
                     Discover your dream home or sell your property with ease.
                 </p>
 
-                <form action="#" className="mb-0 mt-4 space-y-4 rounded-lg p-4 shadow-lg sm:p-4 lg:p-6">
+                <form onSubmit={handleSignUp} className="mb-0 mt-4 space-y-4 rounded-lg p-4 shadow-lg sm:p-4 lg:p-6">
                     <p className="text-center text-lg font-medium">Create a new account</p>
 
                     <div className="flex space-x-4">
@@ -22,6 +75,8 @@ const SignUp = () => {
                                 id="first-name"
                                 className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md"
                                 placeholder="First Name"
+                                name='first_name'
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="w-1/2">
@@ -31,6 +86,8 @@ const SignUp = () => {
                                 id="last-name"
                                 className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md"
                                 placeholder="Last Name"
+                                name='last_name'
+                                onChange={handleChange}
                             />
                         </div>
                     </div>
@@ -42,6 +99,8 @@ const SignUp = () => {
                             id="email"
                             className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md"
                             placeholder="Enter email"
+                            name='email'
+                            onChange={handleChange}
                         />
                     </div>
 
@@ -52,6 +111,8 @@ const SignUp = () => {
                             id="password"
                             className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md"
                             placeholder="Enter password"
+                            name='password'
+                            onChange={handleChange}
                         />
                     </div>
 

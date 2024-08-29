@@ -7,10 +7,10 @@ import styles from './Landing.module.css'
 const Landing = () => {
   return (
     <div className={styles.container}> 
-       <div className={styles.hero_section}>
-       <NavBar />
-       <MiddleSection />
-       </div>
+        <div className={styles.hero_section}>
+        <NavBar />
+        <MiddleSection />
+        </div>
         <Services/>
     </div>
   )

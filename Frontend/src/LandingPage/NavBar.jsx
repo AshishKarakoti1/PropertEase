@@ -18,7 +18,7 @@ const NavBar = () => {
                 {/* Image container */}
                 <div className={styles.logo_container}>
                     <div className={styles.logo}>
-                        <img src='logo.png' onClick={() => navigate('/')}></img>
+                        <img src='logo.png' onClick={() => navigate('/home')}></img>
                     </div>
                 </div>
 
