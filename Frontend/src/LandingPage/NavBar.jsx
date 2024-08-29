@@ -1,47 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import { useNavigate } from 'react-router-dom';
+import { FaHome } from "react-icons/fa";
+import { useLocation } from 'react-router-dom';
 
-const NavBar = ({ location }) => {
+const NavBar = () => {
 
     const navigate = useNavigate();
 
-    const backgroundClass = location.pathname === '/buy' ? 'bg-blue-400' : '';
+    const backgroundClass = location.pathname === '/buy' ? styles.bgBlue : '';
 
     return (
-        <div className={`h-24 flex items-center justify-center pl-9 pr-9 mb-16 ${backgroundClass}`}>
+        <div className={`${styles.navbar} ${backgroundClass}`}>
             {/* Container for image and list */}
-            <div className='flex items-center justify-between w-3/5'>
+            <div className={styles.container}>
                 {/* Image container */}
-                <div className='flex-shrink-0'>
-                    <img
-                        src="SmallSquareLogoJpg-removebg-preview.png"
-                        alt="Logo"
-                        className='h-15'
-                        onClick={() => navigate('/')}
-                    />
+                <div className={styles.logo_container}>
+                    <div className={styles.logo}>
+                        <img src='logo.png' onClick={() => navigate('/')}></img>
+                    </div>
                 </div>
 
                 {/* List container */}
-                <ul className='flex space-x-9'>
-                    <li className={`flex items-center `}>
-                        <Link to='/buy' className='no-underline font-bold text-white text-2xl'>Buy</Link>
+                <ul className={styles.navList}>
+                    <li className={styles.navItem}>
+                        <Link to='/buy' className={styles.navLink}>Buy</Link>
                     </li>
-                    <li className={`flex items-center `}>
-                        <Link to='/' className='no-underline font-bold text-white text-2xl'>Sell</Link>
+                    <li className={styles.navItem}>
+                        <Link to='/' className={styles.navLink}>Sell</Link>
                     </li>
-                    <li className={`flex items-center `}>
-                        <Link to='/' className='no-underline font-bold text-white text-2xl'>Calculate Mortgage</Link>
+                    <li className={styles.navItem}>
+                        <Link to='/' className={styles.navLink}>Calculate Mortgage</Link>
                     </li>
                 </ul>
             </div>
 
             {/* Second inner div with About Us and button */}
-            <div className='flex items-center ml-auto space-x-7'>
-                <span className='font-bold text-white text-lg'>About Us</span>
-                <button type="button" className={`border-2 p-2 w-22 rounded-lg border-white text-white ${styles.navBtns}`}>
-                    <Link to='/login' className='no-underline text-white'>Sign in</Link>
+            <div className={styles.rightContainer}>
+                <span className={styles.aboutUs}>About Us</span>
+                <button type="button" className={styles.signInBtn}>
+                    <Link to='/login' className={styles.signInLink}>Sign in</Link>
                 </button>
             </div>
         </div>
