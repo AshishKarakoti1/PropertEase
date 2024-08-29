@@ -7,6 +7,8 @@ const PORT = 9090;
 const buyRoute = require('./Routes/buy_route');
 const sellRoute = require('./Routes/sell_route');
 
+const data = require('./data');
+
 const app = express();
 
 app.use(cors());
