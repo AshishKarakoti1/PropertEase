@@ -18,14 +18,14 @@ const Filters = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white h-14 w-full flex gap-7 items-center justify-center rounded-xl mb-14 p-6">
+        <form onSubmit={handleSubmit} className="bg-gray-200 h-20 w-full flex gap-7 items-center justify-center rounded-xl mb-14 p-6">
             <label htmlFor="price">Price</label>
             <input
                 type="number"
                 name="price"
                 value={filters.price}
                 onChange={handleChange}
-                className="border-2 border-red-500"
+                className="rounded-lg p-1"
             />
             <label htmlFor="location">Location</label>
             <input
@@ -33,7 +33,7 @@ const Filters = () => {
                 name="location"
                 value={filters.location}
                 onChange={handleChange}
-                className="border-2 border-red-500"
+                className="rounded-lg p-1"
             />
             <label htmlFor="area">Area</label>
             <input
@@ -41,7 +41,7 @@ const Filters = () => {
                 name="area"
                 value={filters.area}
                 onChange={handleChange}
-                className="border-2 border-red-500"
+               className="rounded-lg p-1"
             />
             <button
                 type="submit"
@@ -52,7 +52,7 @@ const Filters = () => {
             <button
                 type="button"
                 onClick={clearFilters}
-                className="bg-gray-500 text-white px-4 py-2 rounded"
+                className="bg-gray-500 text-white px-2 py-2 rounded"
             >
                 Clear Filters
             </button>

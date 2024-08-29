@@ -1,8 +1,66 @@
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    gap: 1.25rem;
+    align-items: start;
+}
+
+.textContainer {
+    flex: 1;
+    max-width: 48rem;
+}
+
+.heading {
+    font-size: 3.75rem;
+    font-weight: bold;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.subText {
+    margin-top: 0.5rem;
+    color: white;
+    font-size: 1.25rem;
+}
+
+.actionContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    height: 22rem;
+    background-color: white;
+    border-radius: 0.75rem;
+    width: 22rem;
+}
+
+.helpText {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .navBtns {
-    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    border: 2px solid #3b82f6; /* Blue-400 */
+    color: #3b82f6; /* Blue-400 */
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 18rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
 }
 
 .navBtns:hover {
-    background-color: #6084fa;
+    background-color: #3b82f6; /* Blue-400 */
     color: white;
 }

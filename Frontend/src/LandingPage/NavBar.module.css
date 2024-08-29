@@ -1,8 +1,79 @@
-.navBtns {
-    transition: all 0.3s ease-in-out;
+.navbar {
+    height: 6rem; /* 24 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 2.25rem; /* 9 */
+    padding-right: 2.25rem; /* 9 */
+    margin-bottom: 4rem; /* 16 */
 }
 
-.navBtns:hover {
-    background-color: #00215E;
+.bgBlue {
+    background-color: #3b82f6; /* Blue-400 */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.logoContainer {
+    flex-shrink: 0;
+}
+
+.logo {
+    cursor: pointer;
+}
+
+.logo img {
+    height: 70px;
+}
+
+.navList {
+    display: flex;
+    gap: 2.25rem; /* 9 */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+}
+
+.navLink {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    font-size: 1.5rem; /* 2xl */
+}
+
+.rightContainer {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 1.75rem; /* 7 */
+}
+
+.aboutUs {
+    font-weight: bold;
+    color: white;
+    font-size: 1.125rem; /* lg */
+}
+
+.signInBtn {
+    border: 2px solid white;
+    padding: 0.5rem;
+    width: 5.5rem; /* 22 */
+    border-radius: 0.5rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.signInLink {
+    text-decoration: none;
     color: white;
 }
