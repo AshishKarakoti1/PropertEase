@@ -6,7 +6,7 @@ import styles from './Buy.module.css';
 
 const Buy = () => {
     return (
-        <div>
+        <div className={styles.background}>
             <NavBar />
             <div className={styles.container}>
                 <Filters />
