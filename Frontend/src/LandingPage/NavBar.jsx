@@ -31,7 +31,7 @@ const NavBar = () => {
                         <Link to='/' className={styles.navLink}>Sell</Link>
                     </li>
                     <li className={styles.navItem}>
-                        <Link to='/' className={styles.navLink}>Calculate Mortgage</Link>
+                        <Link to='/' className={styles.navLink}>Calculate Mortage</Link>
                     </li>
                 </ul>
             </div>
@@ -39,8 +39,8 @@ const NavBar = () => {
             {/* Second inner div with About Us and button */}
             <div className={styles.rightContainer}>
                 <span className={styles.aboutUs}>About Us</span>
-                <button type="button" className={styles.signInBtn}>
-                    <Link to='/login' className={styles.signInLink}>Sign in</Link>
+                <button type="button" className={styles.LogOutBtn}>
+                    <Link to='/login' className={styles.LogOutLink}>Log out</Link>
                 </button>
             </div>
         </div>

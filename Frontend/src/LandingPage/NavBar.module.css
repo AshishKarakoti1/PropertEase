@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+
+*{
+    font-family: 'SUSE';
+}
+
 .navbar {
-    height: 6rem; /* 24 */
+    height: 5rem; /* 24 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,7 +15,7 @@
 }
 
 .bgBlue {
-    background-color: #3b82f6; /* Blue-400 */
+    background-color: #26282B; /* Blue-400 */
 }
 
 .container {
@@ -28,7 +34,7 @@
 }
 
 .logo img {
-    height: 70px;
+    height: 25px;
 }
 
 .navList {
@@ -51,6 +57,11 @@
     font-size: 1.5rem; /* 2xl */
 }
 
+.navItem :hover{
+    color: rgba(245, 245, 245, 0.707);
+    transition: .3s ease-in-out;
+}
+
 .rightContainer {
     display: flex;
     align-items: center;
@@ -59,12 +70,13 @@
 }
 
 .aboutUs {
+    cursor: pointer;
     font-weight: bold;
     color: white;
-    font-size: 1.125rem; /* lg */
+    font-size: 1.3  rem; /* lg */
 }
 
-.signInBtn {
+.LogOutBtn {
     border: 2px solid white;
     padding: 0.5rem;
     width: 5.5rem; /* 22 */
@@ -73,7 +85,11 @@
     cursor: pointer;
 }
 
-.signInLink {
+.LogOutBtn:hover{
+    background-color: rgb(214, 5, 5);
+}
+
+.LogOutLink {
     text-decoration: none;
     color: white;
 }

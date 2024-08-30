@@ -18,7 +18,7 @@ const Filters = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-gray-200 h-20 w-full flex gap-7 items-center justify-center rounded-xl mb-14 p-6">
+        <form onSubmit={handleSubmit} className="bg-gray-700 h-20 w-full flex gap-7 text-white items-center justify-center rounded-xl mb-14 p-6">
             <label htmlFor="price">Price</label>
             <input
                 type="number"
