@@ -11,6 +11,6 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    padding: 2rem; /* Optional: Adds some padding around the content */
+    padding-bottom: 5rem; /* Optional: Adds some padding around the content */
     max-width: 1200px; /* Optional: Limits the width of the container */
 }

@@ -58,7 +58,7 @@ const MiddleSection = () => {
                         type="button"
                         className={`${styles.navBtns}`}
                     >
-                        Calculate Mortgage
+                        Calculate Mortage
                     </button>
                 </div>
             </div>
