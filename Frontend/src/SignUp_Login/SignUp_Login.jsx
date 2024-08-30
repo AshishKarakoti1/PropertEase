@@ -9,7 +9,7 @@ const SignUp_Login = () => {
     
     return (
         <div className={styles.container}>
-            {location.pathname === '/login' && <Login />}
+            {(location.pathname === '/' || location.pathname === '/login') && <Login />}
             {location.pathname === '/signup' && <SignUp />}
         </div>
     );
