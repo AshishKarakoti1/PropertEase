@@ -2,10 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import { useNavigate } from 'react-router-dom';
-import { FaHome } from "react-icons/fa";
-import { useLocation } from 'react-router-dom';
+
 
 const NavBar = () => {
+
+    const handleLogout = () => {
+        console.log(`User ${localStorage.getItem('loggedInUser')} successfully logged out `);
+        localStorage.clear();
+        navigate('/login');
+    }
 
     const navigate = useNavigate();
 
@@ -28,10 +33,10 @@ const NavBar = () => {
                         <Link to='/buy' className={styles.navLink}>Buy</Link>
                     </li>
                     <li className={styles.navItem}>
-                        <Link to='/' className={styles.navLink}>Sell</Link>
+                        <Link to='/home' className={styles.navLink}>Sell</Link>
                     </li>
                     <li className={styles.navItem}>
-                        <Link to='/' className={styles.navLink}>Calculate Mortage</Link>
+                        <Link to='/home' className={styles.navLink}>Calculate Mortage</Link>
                     </li>
                 </ul>
             </div>
@@ -39,7 +44,7 @@ const NavBar = () => {
             {/* Second inner div with About Us and button */}
             <div className={styles.rightContainer}>
                 <span className={styles.aboutUs}>About Us</span>
-                <button type="button" className={styles.LogOutBtn}>
+                <button type="button" className={styles.LogOutBtn} onClick={handleLogout}>
                     <Link to='/login' className={styles.LogOutLink}>Log out</Link>
                 </button>
             </div>
