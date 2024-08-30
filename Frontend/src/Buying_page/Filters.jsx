@@ -18,8 +18,8 @@ const Filters = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-gray-700 h-20 w-full flex gap-7 text-white items-center justify-center rounded-xl mb-14 p-6">
-            <label htmlFor="price">Price</label>
+        <form onSubmit={handleSubmit} className="bg-gray-700 h-20 w-full flex gap-7 items-center justify-center rounded-xl mb-14 p-6">
+            <label className='text-white' htmlFor="price">Price</label>
             <input
                 type="number"
                 name="price"
@@ -27,7 +27,7 @@ const Filters = () => {
                 onChange={handleChange}
                 className="rounded-lg p-1"
             />
-            <label htmlFor="location">Location</label>
+            <label className='text-white' htmlFor="location">Location</label>
             <input
                 type="text"
                 name="location"
@@ -35,7 +35,7 @@ const Filters = () => {
                 onChange={handleChange}
                 className="rounded-lg p-1"
             />
-            <label htmlFor="area">Area</label>
+            <label className='text-white' htmlFor="area">Area</label>
             <input
                 type="number"
                 name="area"
