@@ -61,6 +61,27 @@ let users = [
     "last_name": "bhatia",
     "email": "chirag@gmail.com",
     "password": "chirag"
+  },
+  {
+    "id": "c57b0cd2-f6fa-475a-b2fd-f0f9be625a9d",
+    "first_name": "Avikam",
+    "last_name": "Bir",
+    "email": "biravikam@gmail.com",
+    "password": "hf vbkbf"
+  },
+  {
+    "id": "e3b91d9b-1907-44d0-a036-5cd5f9520a5f",
+    "first_name": "nckwn",
+    "last_name": "nkldw",
+    "email": "ch@gmail.com",
+    "password": "123456"
+  },
+  {
+    "id": "27b0850a-0bbf-441f-b378-de870027ffa7",
+    "first_name": "Avikam",
+    "last_name": "Bir",
+    "email": "anchit1053.be22@chitkarauniversity.edu.in",
+    "password": "123456"
   }
 ];
 
