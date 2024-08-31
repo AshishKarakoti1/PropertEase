@@ -81,7 +81,12 @@ let users = [
     "first_name": "Avikam",
     "last_name": "Bir",
     "email": "anchit1053.be22@chitkarauniversity.edu.in",
-    "password": "123456"
+    "password": "123456",
+    "id": "4c258ee4-9d9c-499f-a7df-3ca8c4006fe0",
+    "first_name": "Jim",
+    "last_name": "Helpert",
+    "email": "jim@gmail.com",
+    "password": "jim"
   }
 ];
 
