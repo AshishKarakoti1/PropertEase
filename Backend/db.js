@@ -61,6 +61,13 @@ let users = [
     "last_name": "bhatia",
     "email": "chirag@gmail.com",
     "password": "chirag"
+  },
+  {
+    "id": "4c258ee4-9d9c-499f-a7df-3ca8c4006fe0",
+    "first_name": "Jim",
+    "last_name": "Helpert",
+    "email": "jim@gmail.com",
+    "password": "jim"
   }
 ];
 

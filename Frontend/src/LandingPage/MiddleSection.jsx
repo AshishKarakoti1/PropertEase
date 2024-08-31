@@ -8,6 +8,8 @@ const MiddleSection = () => {
 
     const el = useRef(null);
 
+    const user = localStorage.getItem('loggedInUser');
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -39,7 +41,7 @@ const MiddleSection = () => {
             </div>
 
             <div className={styles.actionContainer}>
-                <h3 className={styles.helpText}>How can we help you?</h3>
+                <h3 className={styles.helpText}>How can we help you? <span className='text-blue-500'>{user}</span></h3>
                 <div className={styles.buttonGroup}>
                     <button
                         type="button"

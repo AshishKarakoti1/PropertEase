@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {handleSuccess , handleError} from '../utils';
 import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
 
 const SignUp = () => {
 
@@ -41,7 +42,7 @@ const SignUp = () => {
             console.log(result);
             const{message,success} = result;
             if(success) {
-                // handleSuccess("Sign Up successFull");
+                handleSuccess("Sign Up successFull");
                 setTimeout(() => {
                     navigate('/login');
                 },1000)
@@ -129,6 +130,7 @@ const SignUp = () => {
                     </p>
                 </form>
             </div>
+            <ToastContainer/>
         </div>
     );
 }
