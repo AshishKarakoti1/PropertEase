@@ -76,18 +76,6 @@ let users = [
     "email": "ch@gmail.com",
     "password": "123456"
   },
-  {
-    "id": "27b0850a-0bbf-441f-b378-de870027ffa7",
-    "first_name": "Avikam",
-    "last_name": "Bir",
-    "email": "anchit1053.be22@chitkarauniversity.edu.in",
-    "password": "123456",
-    "id": "4c258ee4-9d9c-499f-a7df-3ca8c4006fe0",
-    "first_name": "Jim",
-    "last_name": "Helpert",
-    "email": "jim@gmail.com",
-    "password": "jim"
-  }
 ];
 
 module.exports = users;
