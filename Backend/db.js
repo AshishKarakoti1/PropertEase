@@ -63,12 +63,19 @@ let users = [
     "password": "chirag"
   },
   {
-    "id": "4c258ee4-9d9c-499f-a7df-3ca8c4006fe0",
-    "first_name": "Jim",
-    "last_name": "Helpert",
-    "email": "jim@gmail.com",
-    "password": "jim"
-  }
+    "id": "c57b0cd2-f6fa-475a-b2fd-f0f9be625a9d",
+    "first_name": "Avikam",
+    "last_name": "Bir",
+    "email": "biravikam@gmail.com",
+    "password": "hf vbkbf"
+  },
+  {
+    "id": "e3b91d9b-1907-44d0-a036-5cd5f9520a5f",
+    "first_name": "nckwn",
+    "last_name": "nkldw",
+    "email": "ch@gmail.com",
+    "password": "123456"
+  },
 ];
 
 module.exports = users;
