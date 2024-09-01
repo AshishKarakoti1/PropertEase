@@ -9,17 +9,34 @@ async function writeFile(obj) {
         // Read the existing data.js file as text
         let data = await fs.readFile(filePath, 'utf8');
 
-        // Remove the last closing bracket and semicolon
-        data = data.replace(/];\s*module\.exports\s*=\s*data\s*;?\s*$/, '');
+        // Extract the array part from the file content
+        let arrayContentMatch = data.match(/let\s+data\s*=\s*(\[.*\]);/s);
 
-        // Add the new object as a string
-        const newObjectString = `, ${JSON.stringify(obj, null, 2)}\n];\nmodule.exports = data;`;
+        if (!arrayContentMatch) {
+            console.error("Could not find valid data array in file.");
+            return false;
+        }
 
-        // Update the file content with the new object
-        const updatedData = `${data}${newObjectString}`;
+        // Extract the array string from the match
+        let arrayContent = arrayContentMatch[1];
+
+        // Parse the extracted array content to a JavaScript array
+        let parsedData;
+        try {
+            parsedData = JSON.parse(arrayContent);
+        } catch (parseError) {
+            console.error("Error parsing data array:", parseError);
+            return false;
+        }
+
+        // Add the new object to the beginning of the array
+        parsedData.unshift(obj);
+
+        // Convert the updated array back to a string
+        const updatedDataString = `let data = ${JSON.stringify(parsedData, null, 2)};\nmodule.exports = data;`;
 
         // Write the updated data back to the file
-        await fs.writeFile(filePath, updatedData, 'utf8');
+        await fs.writeFile(filePath, updatedDataString, 'utf8');
 
         return true;
     } catch (error) {
@@ -49,7 +66,9 @@ const createListing = async (req, res) => {
     const success = await writeFile(obj);
 
     if (success) {
-        return res.json({ success: true, message: "Listing added successfully" });
+        delete require.cache[require.resolve('../data')];
+        const updatedListings = require('../data');
+        return res.json({ success: true, message: "Listing added successfully", updatedListings });
     } else {
         return res.json({ success: false, message: "Listing not added" });
     }

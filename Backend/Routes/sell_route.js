@@ -1,5 +1,6 @@
 const express = require('express');
 const Router = express.Router();
+const isValidUser = require('../Middlewares/validUser');
 
 // Import Multer configuration
 // const upload = require('../Controllers/multerConfig');
@@ -9,5 +10,5 @@ const { createListing } = require('../Controllers/sellControllers');
 
 // Define routes
 Router.route('/')
-    .post(createListing);
+    .post(isValidUser,createListing);
 module.exports = Router;
