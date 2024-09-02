@@ -9,8 +9,11 @@
 
 .bg {
   background-image: url('sell_bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
   font-family: 'Poppins', sans-serif;
-  background-color: var(--background-color);
   margin: 0;
   padding: 0;
   display: flex;
@@ -21,27 +24,31 @@
 }
 
 .container {
-  max-width: 500px; /* Reduced overall size */
+  max-width: 500px;
+  /* Reduced overall size */
   width: 100%;
-  background-color: whitesmoke;    
-  padding: 30px; /* Reduced padding */
-  border-radius: 15px; /* Adjusted border radius */
+  background-color: whitesmoke;
+  padding: 30px;
+  /* Reduced padding */
+  border-radius: 15px;
+  /* Adjusted border radius */
   box-shadow: 0 8px 25px rgba(30, 136, 229, 0.2);
   text-align: center;
-  margin: 15px; /* Adjusted margin */
+  margin: 15px;
+  /* Adjusted margin */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
 }
 
-.heading_div{
+.heading_div {
   display: flex;
 }
 
-.logo{
+.logo {
   padding-right: 70px;
 }
 
-.logo_img{
+.logo_img {
   height: 2rem;
 }
 
@@ -52,7 +59,8 @@
 
 .heading {
   color: var(--primary-color);
-  font-size: 28px; /* Reduced font size */
+  font-size: 28px;
+  /* Reduced font size */
   font-weight: 600;
   margin-bottom: 20px;
   text-transform: uppercase;
@@ -68,15 +76,18 @@
 .form-group {
   margin-bottom: 15px;
 }
+
 .inputRow {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px; /* Reduced margin */
+  margin-bottom: 15px;
+  /* Reduced margin */
 }
 
 .inputGroup {
   flex: 1;
-  margin-right: 10px; /* Adjusted margin */
+  margin-right: 10px;
+  /* Adjusted margin */
 }
 
 .inputGroup:last-child {
@@ -84,10 +95,13 @@
 }
 
 .input {
-  padding: 10px 12px; /* Reduced padding */
-  font-size: 13px; /* Reduced font size */
+  padding: 10px 12px;
+  /* Reduced padding */
+  font-size: 13px;
+  /* Reduced font size */
   border: 2px solid var(--primary-light);
-  border-radius: 8px; /* Adjusted border radius */
+  border-radius: 8px;
+  /* Adjusted border radius */
   background-color: var(--secondary-color);
   color: var(--text-color);
   transition: all 0.3s ease;
@@ -95,9 +109,11 @@
 }
 
 .label {
-  font-size: 13px; /* Reduced font size */
+  font-size: 13px;
+  /* Reduced font size */
   color: var(--primary-color);
-  margin-bottom: 5px; /* Adjusted margin */
+  margin-bottom: 5px;
+  /* Adjusted margin */
   font-weight: 500;
   display: block;
   text-align: left;
@@ -132,16 +148,20 @@
   width: 100%;
   background-color: var(--primary-color);
   color: white;
-  padding: 12px; /* Reduced padding */
-  font-size: 16px; /* Reduced font size */
+  padding: 12px;
+  /* Reduced padding */
+  font-size: 16px;
+  /* Reduced font size */
   border: none;
-  border-radius: 8px; /* Adjusted border radius */
+  border-radius: 8px;
+  /* Adjusted border radius */
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 600;
-  margin-top: 15px; /* Adjusted margin */
+  margin-top: 15px;
+  /* Adjusted margin */
 }
 
 .button:hover {
@@ -153,13 +173,17 @@
 @media (max-width: 768px) {
   .container {
     width: 90%;
-    padding: 25px; /* Adjusted padding */
-    margin: 10px; /* Adjusted margin */
+    padding: 25px;
+    /* Adjusted padding */
+    margin: 10px;
+    /* Adjusted margin */
   }
 
   .heading {
-    font-size: 22px; /* Adjusted font size */
-    margin-bottom: 15px; /* Adjusted margin */
+    font-size: 22px;
+    /* Adjusted font size */
+    margin-bottom: 15px;
+    /* Adjusted margin */
   }
 
   .input-row {
@@ -168,16 +192,19 @@
 
   .input-group {
     margin-right: 0;
-    margin-bottom: 10px; /* Adjusted margin */
+    margin-bottom: 10px;
+    /* Adjusted margin */
   }
 
   .label {
-    font-size: 12px; /* Adjusted font size */
+    font-size: 12px;
+    /* Adjusted font size */
   }
 
   .input {
     font-size: 13px;
-    padding: 8px 10px; /* Adjusted padding */
+    padding: 8px 10px;
+    /* Adjusted padding */
   }
 
   .button {
@@ -189,15 +216,18 @@
 @media (max-width: 480px) {
   .container {
     width: 95%;
-    padding: 20px 15px; /* Adjusted padding */
+    padding: 20px 15px;
+    /* Adjusted padding */
   }
 
   .heading {
-    font-size: 20px; /* Adjusted font size */
+    font-size: 20px;
+    /* Adjusted font size */
   }
 
   .form-group {
-    margin-bottom: 15px; /* Adjusted margin */
+    margin-bottom: 15px;
+    /* Adjusted margin */
   }
 
   .label {
@@ -205,8 +235,10 @@
   }
 
   .input {
-    font-size: 12px; /* Adjusted font size */
-    padding: 8px 10px; /* Adjusted padding */
+    font-size: 12px;
+    /* Adjusted font size */
+    padding: 8px 10px;
+    /* Adjusted padding */
   }
 
   .button {
@@ -217,18 +249,27 @@
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .container {
   animation: fadeIn 0.5s ease-out;
 }
 
-.input, .button {
+.input,
+.button {
   transition: all 0.3s ease;
 }
 
-.input:focus, .button:hover {
+.input:focus,
+.button:hover {
   transform: scale(1.02);
 }
