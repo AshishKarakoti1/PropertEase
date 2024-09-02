@@ -46,7 +46,7 @@ async function writeFile(obj) {
 }
 
 const createListing = async (req, res) => {
-    const { url, location, bedrooms, bathrooms, area, price } = req.body;
+    const {firstName,lastName,email,phoneNumber,url,location,bedrooms,bathrooms,area,price} = req.body;
 
     if (!url || !location || !bedrooms || !bathrooms || !area || !price) {
         return res.json({ success: false, message: "Incomplete details" });
@@ -68,6 +68,7 @@ const createListing = async (req, res) => {
     if (success) {
         delete require.cache[require.resolve('../data')];
         const updatedListings = require('../data');
+        console.log({ success: true, message: "Listing added successfully", updatedListings });
         return res.json({ success: true, message: "Listing added successfully", updatedListings });
     } else {
         return res.json({ success: false, message: "Listing not added" });

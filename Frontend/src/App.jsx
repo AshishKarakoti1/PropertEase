@@ -4,6 +4,7 @@ import SignUp_Login from './SignUp_Login/SignUp_Login';
 import Landing from './LandingPage/Landing';
 import Buy from './Buying_page/Buy';
 import PrivateRoute from './PrivateRoute';
+import Selling_form from './Sell_page/Selling_form';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route element={<PrivateRoute />}>
           <Route path="/home" element={<Landing />} />
           <Route path="/buy" element={<Buy />} />
+          <Route path='/sell' element={<Selling_form/>}/>
         </Route>
       </Routes>
     </div>
