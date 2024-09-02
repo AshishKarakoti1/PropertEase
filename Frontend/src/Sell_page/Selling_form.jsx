@@ -38,7 +38,8 @@ const Selling_form = () => {
     
         try {
             const URL = "http://localhost:9090/sell";
-            const response = await axios.post(URL, { firstName, lastName, email, phoneNumber, url, location, bedrooms, bathrooms, area, price }, {
+            const user_email = localStorage.getItem('user_email');
+            const response = await axios.post(URL, { firstName, lastName, email, user_email, phoneNumber, url, location, bedrooms, bathrooms, area, price }, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

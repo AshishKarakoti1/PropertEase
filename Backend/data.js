@@ -1,14 +1,5 @@
 let data = [
   {
-    "id": "986f6611-0676-47f2-801d-f0171bd15daa",
-    "url": "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg",
-    "location": "Chandigarh",
-    "bedrooms": "4",
-    "bathrooms": "3",
-    "area": "1500",
-    "price": "10000"
-  },
-  {
     "id": 1,
     "url": "https://images.unsplash.com/photo-1600585153490-76fb20a32601?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "location": "Toghill",

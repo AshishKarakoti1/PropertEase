@@ -1,10 +1,9 @@
 const users = require('../db');
 
 async function isValidUser(req,res,next) {
-    const {email} = req.body;
-    const idx = users.findIndex(user => user.email == email);
-    if(idx == -1){
-        return res.json({success:false , message:"you are not a registered user"});
+    const {email , user_email} = req.body;
+    if(email != user_email){
+        return res.json({success:false , message:"please use a valid email id"});
     } else {
         next();
     }
