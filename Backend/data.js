@@ -1,39 +1,12 @@
 let data = [
   {
-    "id": "54728dcb-23de-4a5d-acf2-e8375c867c87",
-    "url": "https://images.unsplash.com/photo-1600585153490-76fb20a32601?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "location": "Zirakpur",
-    "bedrooms": 15,
-    "bathrooms": 15,
-    "area": 5000,
-    "price": 8888888
-  },
-  {
-    "id": "b6ef0ef6-07e5-4ead-a302-e11a348508ce",
-    "url": "https://images.unsplash.com/photo-1600585153490-76fb20a32601?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "location": "Zirakpur",
-    "bedrooms": 15,
-    "bathrooms": 15,
-    "area": 5000,
-    "price": 8888888
-  },
-  {
-    "id": "32028b02-20fb-4b86-ba94-8e99a7fb6421",
-    "url": "https://images.unsplash.com/photo-1600585153490-76fb20a32601?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "location": "Kalka",
-    "bedrooms": 15,
-    "bathrooms": 15,
-    "area": 5000,
-    "price": 8888888
-  },
-  {
-    "id": "55169150-4abc-4ffe-a73f-be609364469a",
-    "url": "https://images.unsplash.com/photo-1600585153490-76fb20a32601?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "location": "Panchkula",
-    "bedrooms": 10,
-    "bathrooms": 10,
-    "area": 500,
-    "price": 8888888
+    "id": "986f6611-0676-47f2-801d-f0171bd15daa",
+    "url": "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg",
+    "location": "Chandigarh",
+    "bedrooms": "4",
+    "bathrooms": "3",
+    "area": "1500",
+    "price": "10000"
   },
   {
     "id": 1,
