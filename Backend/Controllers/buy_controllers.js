@@ -41,4 +41,22 @@ async function removeListing(req, res) {
     }
 }
 
-module.exports = {getAllListings,handleFilters,removeListing};
+async function updateListing(req,res) {
+    const {id} = req.params;
+    const {url,location,bedrooms,bathrooms,price,area} = req.body;
+    if (!id || !url || !location || bedrooms === undefined || bathrooms === undefined || price ===          undefined || area === undefined) {
+        return res.status(400).json({ success: false, message: "All fields are required" });
+    }
+    const idx = data.findIndex((listing) => listing.id == id);
+    if(idx == -1){
+        return res.status(404).json({ success: false, message: "Please enter a valid ID" });
+    }
+    data[idx] = {...data[idx],url,location,bedrooms,bathrooms,price,area};
+    res.status(200).json({
+        success: true,
+        message: `Listing with id ${id} modified`,
+        updated_listing: data[idx],
+    });
+}
+
+module.exports = {getAllListings,handleFilters,removeListing,updateListing};
