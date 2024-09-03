@@ -23,7 +23,7 @@ const Post = ({ url, location, bedrooms, bathrooms, area, price }) => {
                     </div>
                 </div>
                 <div className="mt-2">
-                    <p className="text-2xl font-extrabold text-blue-800">{`${price} `}</p>
+                    <p className="text-2xl font-extrabold text-blue-800">{`${price} $ `}</p>
                 </div>
             </div>
         </div>
