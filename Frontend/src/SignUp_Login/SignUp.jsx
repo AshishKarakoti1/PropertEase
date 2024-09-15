@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {handleSuccess , handleError} from '../utils';
+import { handleSuccess, handleError } from '../utils';
 import axios from 'axios';
 import { ToastContainer } from 'react-toastify';
 
@@ -8,53 +8,57 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    const [signUpDetails , setSignUpDetails] = useState({
-        first_name:'',
-        last_name:'',
-        email:'',
-        password:''
-    })
+    const [signUpDetails, setSignUpDetails] = useState({
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        contactNumber: '' // Add contact number to state
+    });
 
-    const handleChange =(e) => {
-        const {name,value} = e.target;
-        setSignUpDetails({...signUpDetails,[name]:value});
-    }
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setSignUpDetails({ ...signUpDetails, [name]: value });
+    };
 
     const handleSignUp = async (e) => {
         e.preventDefault();
-        const {first_name,last_name,email,password} = signUpDetails;
-        if(!first_name || !last_name || !email || !password) return handleError('All fields are required');
+        const { first_name, last_name, email, password, contactNumber } = signUpDetails;
+        if (!first_name || !last_name || !email || !password || !contactNumber) {
+            return handleError('All fields are required');
+        }
 
+        // Generate the username by combining first and last name
+        const username = `${first_name.toLowerCase()}_${last_name.toLowerCase()}`;
 
-        try{
+        try {
             const url = "http://localhost:9090/auth/signup";
             const response = await axios.post(url, {
-                first_name,
-                last_name,
+                username, // Pass the generated username
                 email,
-                password
+                password,
+                contactNumber // Pass the contact number
             }, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
+
             const result = await response.data;
-            console.log(result);
-            const{message,success} = result;
-            if(success) {
-                handleSuccess("Sign Up successFull");
+            const { message, success } = result;
+
+            if (success) {
+                handleSuccess("Sign Up successful");
                 setTimeout(() => {
                     navigate('/login');
-                },1000)
-            }
-            else{
+                }, 1000);
+            } else {
                 handleError("Sign Up failed");
             }
-        } catch(err) {
+        } catch (err) {
             handleError("Sign Up failed");
         }
-
-    }
+    };
 
     return (
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 bg-white rounded-lg mt-12">
@@ -106,6 +110,18 @@ const SignUp = () => {
                     </div>
 
                     <div>
+                        <label htmlFor="contact-number" className="sr-only">Contact Number</label>
+                        <input
+                            type="text"
+                            id="contact-number"
+                            className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md"
+                            placeholder="Enter contact number"
+                            name='contactNumber'
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div>
                         <label htmlFor="password" className="sr-only">Password</label>
                         <input
                             type="password"
@@ -130,7 +146,7 @@ const SignUp = () => {
                     </p>
                 </form>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 }

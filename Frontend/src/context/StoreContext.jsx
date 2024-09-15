@@ -18,13 +18,15 @@ const StoreContextProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('http://localhost:9090/buy');
-                setData(response.data);
+                // Ensure the response contains an array
+                setData(response.data.listings || []);
             } catch (err) {
                 setError('Failed to fetch data.');
             } finally {
                 setLoading(false);
             }
         };
+
         fetchData();
     }, []);
 
@@ -32,8 +34,9 @@ const StoreContextProvider = ({ children }) => {
         setLoading(true);
         try {
             const response = await axios.post('http://localhost:9090/buy', filters);
-            setData(response.data);
-            console.log('Filtered Data:', response.data);
+            // Ensure the response contains an array
+            setData(response.data.filteredListings || []);
+            console.log('Filtered Data:', response.data.filteredListings);
         } catch (err) {
             setError('Error filtering data.');
             console.error('Error filtering data:', err);
@@ -51,8 +54,9 @@ const StoreContextProvider = ({ children }) => {
         setLoading(true);
         try {
             const response = await axios.get('http://localhost:9090/buy');
-            setData(response.data);
-            console.log('All Listings:', response.data);
+            // Ensure the response contains an array
+            setData(response.data.listings || []);
+            console.log('All Listings:', response.data.listings);
         } catch (err) {
             setError('Error fetching all listings.');
             console.error('Error fetching all listings:', err);

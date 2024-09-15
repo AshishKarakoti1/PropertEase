@@ -1,59 +1,83 @@
-const users = require('../db');
-const JWT_SECRET = "helloWorld";
-const { v4: uuidv4 } = require('uuid');
-const fs = require('fs/promises');
-const path = require('path');
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const userModel = require('../Models/userModel');
 
-const signUp = async (req, res) => {
+
+async function signUp(req, res) {
     try {
-        const { first_name, last_name, email, password } = req.body;
-        const existingUser = users.find(user => user.email === email);
-
-        if (existingUser) {
-            return res.status(409).json({ message: "User already exists", success: false });
-        }
-
-        const newUser = { id: uuidv4(), first_name, last_name, email, password };
-        users.push(newUser);
-        console.log(newUser);
-        const dbPath = path.join(__dirname, '../db.js');
-        const updatedContent = `let users = ${JSON.stringify(users, null, 2)};\n\nmodule.exports = users;\n`;
-        await fs.writeFile(dbPath, updatedContent);
-
-        res.status(201).json({ message: "Sign-up successful", success: true });
-    } catch (err) {
-        console.error("Error during sign-up:", err);
-        res.status(500).json({ message: "Sign-up failed", success: false });
-    }
-};
-
-const login = async (req, res) => {
-    try {   
-        const {email, password} = req.body;
-        const idx = users.findIndex(user => user.email == email);
+        const { username, email, password, contactNumber } = req.body;
         
-        if (idx === -1) {
-            return res.status(403).json({success: false, message: "Invalid email or password"});
+        if (!username || !email || !password || !contactNumber) {
+            return res.status(400).json({ success: false, message: "All fields are required" });
         }
 
-        const isPasswordEqual = users[idx].password == password;
-
-        if (!isPasswordEqual) {
-            return res.status(403).json({success: false, message: "Invalid email or password"});
+        const existingUser = await userModel.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ success: false, message: "Email already registered" });
         }
 
-        const jwtToken = jwt.sign(
-            {email: users[idx].email, _id: users[idx].id},
-            JWT_SECRET,
-            {expiresIn: '24h'}
-        );
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        return res.status(200).json({success: true, message: "Login successful", jwtToken, email, name: users[idx].first_name});
-    } catch(err) {
-        return res.status(500).json({success: false, message: "Login failed"});
+        const newUser = new userModel({
+            username,
+            email,
+            password: hashedPassword,
+            contactNumber,
+        });
+
+        await newUser.save();
+
+        res.status(201).json({
+            success: true,
+            message: "User registered successfully",
+            user: {
+                id: newUser._id,
+                username: newUser.username,
+                email: newUser.email,
+                contactNumber: newUser.contactNumber,
+            }
+        });
+    } catch (error) {
+        console.error('Error during signup:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
     }
 }
 
+async function login(req, res) {
+    try {
+        const { email, password } = req.body;
+
+        // Check if both email and password are provided
+        if (!email || !password) {
+            return res.status(400).json({ success: false, message: "Email and password are required" });
+        }
+
+        const user = await userModel.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            return res.status(401).json({ success: false, message: "Invalid credentials" });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Login successful",
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email,
+                contactNumber: user.contactNumber,
+            }
+        });
+    } catch (error) {
+        console.error('Error during login:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+}
 
 module.exports = {login,signUp};

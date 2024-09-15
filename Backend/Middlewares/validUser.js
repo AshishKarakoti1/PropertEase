@@ -1,4 +1,3 @@
-const users = require('../db');
 
 async function isValidUser(req,res,next) {
     const {email , user_email} = req.body;

@@ -34,12 +34,12 @@ const Login = () => {
             });
             const result = response.data;
             console.log(result);
-            const { success, message, jwtToken, name } = result;
+            const { success, message, jwtToken, user} = result;
             if (success) {
                 handleSuccess("Login successful");
                 localStorage.setItem('token', jwtToken);
-                localStorage.setItem('loggedInUser', name);
-                localStorage.setItem('user_email', email);
+                localStorage.setItem('loggedInUser', user.username);
+                localStorage.setItem('user_email', user.email);
                 setTimeout(() => {
                     navigate('/home');
                 }, 1000);
