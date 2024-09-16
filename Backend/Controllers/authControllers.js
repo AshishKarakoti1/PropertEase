@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const userModel = require('../Models/userModel');
-
+const generateToken = require('../utils');
 
 async function signUp(req, res) {
     try {
@@ -47,7 +47,6 @@ async function login(req, res) {
     try {
         const { email, password } = req.body;
 
-        // Check if both email and password are provided
         if (!email || !password) {
             return res.status(400).json({ success: false, message: "Email and password are required" });
         }
@@ -64,9 +63,12 @@ async function login(req, res) {
             return res.status(401).json({ success: false, message: "Invalid credentials" });
         }
 
+        const jwtToken = await generateToken(user.email,user._id);
+
         res.status(200).json({
             success: true,
             message: "Login successful",
+            jwtToken,
             user: {
                 id: user._id,
                 username: user.username,

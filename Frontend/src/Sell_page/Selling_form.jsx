@@ -30,12 +30,16 @@ const Selling_form = () => {
         e.preventDefault();
         const { url, location, bedrooms, bathrooms, area, price } = formData;
 
+        // Retrieve token from local storage
+        const token = localStorage.getItem('token');
+        const user_email = localStorage.getItem('user_email');
+
         try {
             const URL = "http://localhost:9090/sell";
-            const user_email = localStorage.getItem('user_email');
-            const response = await axios.post(URL, { url, location, bedrooms, bathrooms, area, price, user_email, email:user_email }, {
+            const response = await axios.post(URL, { url, location, bedrooms, bathrooms, area, price, token, user_email }, {
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
             });
 
