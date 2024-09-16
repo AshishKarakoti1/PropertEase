@@ -21,9 +21,8 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         
-        // Ensure these are correctly destructured
         const { email, password } = loginDetails;
-    
+
         if (!email || !password) return handleError('All fields are required');    
         try {
             const url = "http://localhost:9090/auth/login";
@@ -32,14 +31,16 @@ const Login = () => {
                     'Content-Type': 'application/json',
                 },
             });
-            const result = response.data;
-            console.log(result);
-            const { success, message, jwtToken, name } = result;
+
+            console.log(response.data); // Check the response data
+
+            const { success, message, jwtToken, user } = response.data;
+
             if (success) {
                 handleSuccess("Login successful");
-                localStorage.setItem('token', jwtToken);
-                localStorage.setItem('loggedInUser', name);
-                localStorage.setItem('user_email', email);
+                localStorage.setItem('token', jwtToken); // Check this line
+                localStorage.setItem('loggedInUser', user.username);
+                localStorage.setItem('user_email', user.email);
                 setTimeout(() => {
                     navigate('/home');
                 }, 1000);
@@ -51,6 +52,7 @@ const Login = () => {
             handleError(err.response?.data?.message || "Login failed");
         }
     };
+
 
     return (
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 mt-12 mb-0">

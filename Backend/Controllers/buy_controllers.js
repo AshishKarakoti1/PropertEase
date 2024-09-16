@@ -1,62 +1,87 @@
-const data = require('../data');
-const fs = require('fs/promises');
-const path = require('path');
-const filePath = path.join(__dirname, '../data.js');
+const userModel = require('../Models/userModel');
+const listingModel = require('../Models/listingModel');
 
-async function getAllListings(req,res) {
-    res.send(data);
-}
-
-async function handleFilters(req,res) {
-    const { price, location, area } = req.body;
-            let filteredListings = data;
-            if (price) {
-                filteredListings = filteredListings.filter(listing => listing.price <= price);
-            }
-            if (location) {
-                filteredListings = filteredListings.filter(listing => listing.location.toLowerCase() == location.toLowerCase());
-            }
-            if (area) {
-                filteredListings = filteredListings.filter(listing => listing.area <= area);
-            }
-            return res.json(filteredListings);
-}
-
-async function removeListing(req, res) {
-    const { id } = req.params;
-
-    // Filter the listings to remove the one with the matching id
-    let updatedListings = data.filter((listing) => listing.id != id);
-
-    // Prepare the updated content for data.js
-    const updatedDataContent = `let data = ${JSON.stringify(updatedListings, null, 2)};\nmodule.exports = data;`;
-
+async function getAllListings(req, res) {
     try {
-        // Write the updated content back to data.js
-        await fs.writeFile(filePath, updatedDataContent, 'utf8');
-        res.json({ success: true, message: "Listing removed successfully" });
+        const listings = await listingModel.find();
+        res.status(200).json({ success: true, listings });
     } catch (error) {
-        console.error("Error writing file:", error);
-        res.json({ success: false, message: "Failed to remove listing" });
+        console.error('Error fetching all listings:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
     }
 }
 
-async function updateListing(req,res) {
-    const {id} = req.params;
-    const {url,location,bedrooms,bathrooms,price,area} = req.body;
-    if (!id || !url || !location || bedrooms === undefined || bathrooms === undefined || price ===          undefined || area === undefined) {
-        return res.status(400).json({ success: false, message: "All fields are required" });
+
+async function handleFilters(req, res) {
+    try {
+        const { price, location, area } = req.body;
+        let filter = {};
+        if (price) {
+            const { min, max } = price;
+            filter.price = { $lte: max };
+        }
+        if (location) {
+            filter.location = location.toLowerCase();
+        }
+        if (area) {
+            filter.area = { $lte: area };
+        }
+
+        const filteredListings = await listingModel.find(filter); // Corrected model usage
+
+        res.status(200).json({ success: true, message: "Listings filtered successfully", filteredListings });
+    } catch (error) {
+        console.error('Error fetching listings:', error);
+        return res.status(500).json({ success: false, error: 'Server error' });
     }
-    const idx = data.findIndex((listing) => listing.id == id);
-    if(idx == -1){
-        return res.status(404).json({ success: false, message: "Please enter a valid ID" });
-    }
-    data[idx] = {...data[idx],url,location,bedrooms,bathrooms,price,area};
-    res.status(200).json({
-        success: true,
-        message: `Listing with id ${id} modified`,
-        updated_listing: data[idx],
-    });
 }
 
-module.exports = {getAllListings,handleFilters,removeListing,updateListing};
+
+async function handleDeleteListing(req, res) {
+    try {
+        const { id } = req.params;
+        const deletedListing = await listingModel.findByIdAndDelete(id);
+
+        if (!deletedListing) {
+            return res.status(404).json({ success: false, message: 'Listing not found' });
+        }
+
+        return res.status(200).json({ success: true, message: 'Listing deleted successfully', deletedListing });
+    } catch (error) {
+        console.error('Error deleting listing:', error);
+        return res.status(500).json({ success: false, error: 'Server error' });
+    }
+}
+
+async function updateListing(req, res) {
+    try {
+        const { id } = req.params; 
+        const { url, location, bedrooms, bathrooms, price, area } = req.body; 
+        
+        // Check if all required fields are provided
+        if (!url || !location || bedrooms === undefined || bathrooms === undefined || price === undefined || area === undefined) {
+            return res.status(400).json({ success: false, message: "All fields are required" });
+        }
+
+        const updatedListing = await listingModel.findByIdAndUpdate(
+            id, 
+            { url, location, bedrooms, bathrooms, price, area },
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedListing) {
+            return res.status(404).json({ success: false, message: "Please enter a valid ID" });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: `Listing with id ${id} modified`,
+            updated_listing: updatedListing,
+        });
+    } catch (error) {
+        console.error('Error updating listing:', error);
+        return res.status(500).json({ success: false, message: 'Server error' });
+    }
+}
+
+module.exports = {getAllListings,handleFilters,handleDeleteListing,updateListing};

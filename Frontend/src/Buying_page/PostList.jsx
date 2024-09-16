@@ -20,8 +20,8 @@ const PostList = () => {
         <div className={styles.postlist}>
             {data.map((listing) => (
                 <Post
-                    key={listing.id}
-                    url={listing.url}
+                    key={listing._id}
+                    url={listing.images[0]}
                     location={listing.location}
                     bedrooms={listing.bedrooms}
                     bathrooms={listing.bathrooms}
