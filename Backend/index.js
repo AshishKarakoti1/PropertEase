@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 
-const PORT = 9090;
+const PORT = process.env.PORT || 9090;
+const URL = process.env.MONGO_URL || "mongodb+srv://dakshchawla2004:doctordaksh@cluster0.19je8.mongodb.net/PropertEase";
 
 // *** importing routes *** //
 const buyRoute = require('./Routes/buy_route');
@@ -12,7 +14,7 @@ const authRouter = require('./Routes/auth');
 const connectDB = require('./dbConnect');
 
 // *** connecting to mongoDb *** //
-connectDB("mongodb+srv://dakshchawla2004:doctordaksh@cluster0.19je8.mongodb.net/PropertEase")
+connectDB(URL)
     .then(() => {
         console.log('Connected to MongoDB');
     })
