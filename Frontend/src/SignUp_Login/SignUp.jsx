@@ -22,43 +22,52 @@ const SignUp = () => {
     };
 
     const handleSignUp = async (e) => {
-        e.preventDefault();
-        const { first_name, last_name, email, password, contactNumber } = signUpDetails;
-        if (!first_name || !last_name || !email || !password || !contactNumber) {
-            return handleError('All fields are required');
+    e.preventDefault();
+    const { first_name, last_name, email, password, contactNumber } = signUpDetails;
+
+    // Validate required fields
+    if (!first_name || !last_name || !email || !password || !contactNumber) {
+        return handleError('All fields are required');
+    }
+
+    // Generate the username
+    const username = `${first_name} ${last_name}`;
+
+    console.log('Payload being sent:', { username, email, password, contactNumber }); // Log the payload
+
+    try {
+        const url = "http://localhost:9090/auth/signup";
+        const response = await axios.post(url, {
+            username,
+            email,
+            password,
+            contactNumber
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const result = await response.data;
+        const { message, success } = result;
+
+        if (success) {
+            handleSuccess("Sign Up successful");
+            setTimeout(() => {
+                navigate('/login');
+            }, 1000);
+        } else {
+            handleError(message);
         }
-
-        // Generate the username by combining first and last name
-        const username = `${first_name.toLowerCase()}_${last_name.toLowerCase()}`;
-
-        try {
-            const url = "http://localhost:9090/auth/signup";
-            const response = await axios.post(url, {
-                username, // Pass the generated username
-                email,
-                password,
-                contactNumber // Pass the contact number
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            const result = await response.data;
-            const { message, success } = result;
-
-            if (success) {
-                handleSuccess("Sign Up successful");
-                setTimeout(() => {
-                    navigate('/login');
-                }, 1000);
-            } else {
-                handleError("Sign Up failed");
-            }
-        } catch (err) {
+    } catch (err) {
+        if (err.response) {
+            handleError(err.response.data.message || "Sign Up failed");
+        } else {
             handleError("Sign Up failed");
         }
-    };
+    }
+};
+
 
     return (
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 bg-white rounded-lg mt-12">
