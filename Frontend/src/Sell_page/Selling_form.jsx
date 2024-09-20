@@ -10,7 +10,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 
 const Selling_form = () => {
     const [formData, setFormData] = useState({
-        url: '',
+        images: [],
         location: '',
         bedrooms: '',
         bathrooms: '',
@@ -22,24 +22,45 @@ const Selling_form = () => {
     const { setData } = useContext(StoreContext);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        const { name, value, files } = e.target;
+        if (name === 'images') {
+            setFormData({ ...formData, [name]: files }); // For file input
+        } else {
+            setFormData({ ...formData, [name]: value }); // For text/number input
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { url, location, bedrooms, bathrooms, area, price } = formData;
+        const { location, bedrooms, bathrooms, area, price, images } = formData;
 
         // Retrieve token from local storage
         const token = localStorage.getItem('token');
         const user_email = localStorage.getItem('user_email');
 
+        // Create a FormData object
+        const formDataObj = new FormData();
+        formDataObj.append('location', location);
+        formDataObj.append('bedrooms', bedrooms);
+        formDataObj.append('bathrooms', bathrooms);
+        formDataObj.append('area', area);
+        formDataObj.append('price', price);
+        formDataObj.append('token', token);
+        formDataObj.append('user_email', user_email);
+        console.log(images);
+        // Append each image to the FormData object
+        if (images) {
+            for (let i = 0; i < images.length; i++) {
+                formDataObj.append('images', images[i]);
+            }
+        }
+
         try {
             const URL = "http://localhost:9090/sell";
-            const response = await axios.post(URL, { url, location, bedrooms, bathrooms, area, price, token, user_email }, {
+            const response = await axios.post(URL, formDataObj, {
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`,
                 },
             });
 
@@ -64,24 +85,13 @@ const Selling_form = () => {
         <div className={styles.bg}>
             <div className={styles.container}>
                 <div className={styles.heading_div}>
-                <Link className={styles.logo} to={'/home'}>
-                    <IoMdArrowRoundBack className={styles.logo_img} />
-                </Link>
-                <h1 className={styles.heading}>List your Property</h1>
+                    <Link className={styles.logo} to={'/home'}>
+                        <IoMdArrowRoundBack className={styles.logo_img} />
+                    </Link>
+                    <h1 className={styles.heading}>List your Property</h1>
                 </div>
                 <form className={styles.form} onSubmit={handleSubmit}>
-                    <div className={styles.formGroup}>
-                        <label className={styles.label} htmlFor="url">Property URL*</label>
-                        <input
-                            className={styles.input}
-                            type="text"
-                            id="url"
-                            placeholder="Enter property URL"
-                            name="url"
-                            value={formData.url}
-                            onChange={handleChange}
-                        />
-                    </div>
+                    {/* File input for multiple images */}
 
                     <div className={styles.formGroup}>
                         <label className={styles.label} htmlFor="location">Location*</label>
@@ -150,10 +160,23 @@ const Selling_form = () => {
                         </div>
                     </div>
 
+                    <div className={styles.formGroup}>
+                        <label className={styles.label} htmlFor="images">Property Images*</label>
+                        <input
+                            className={styles.input}
+                            type="file"
+                            id="images"
+                            name="images"
+                            multiple
+                            accept="image/*"
+                            onChange={handleChange}
+                        />
+                    </div>
+
                     <button type="submit" className={styles.button}>Submit</button>
                 </form>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };

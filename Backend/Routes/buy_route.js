@@ -1,13 +1,14 @@
 const express = require('express');
 const Router = express.Router();
-const {getAllListings,handleFilters,handleDeleteListing,updateListing} = require('../Controllers/buy_controllers');
+const {getAllListings,handleFilters,deleteListing,updateListing,getListingById} = require('../Controllers/buy_controllers');
 
 Router.route('/')
         .get(getAllListings)
-        .post(handleFilters);
+        .post(handleFilters)
+        .delete(deleteListing);
 
 Router.route('/:id')
+        .get(getListingById)
         .put(updateListing)
-        .delete(handleDeleteListing);
 
 module.exports = Router;
