@@ -3,6 +3,7 @@ import styles from './Middle.module.css';
 import Typed from 'typed.js';
 import { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const MiddleSection = () => {
 
@@ -33,16 +34,22 @@ const MiddleSection = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.textContainer}>
+            <motion.div className={styles.textContainer}
+                initial={{ x: '-100vw' }} 
+                animate={{ x: 0 }}        
+                transition={{ type: 'spring', stiffness: 50, damping: 20 }}>
                 <h1 className={styles.heading}>
                     <span ref={el}></span> <br /> properties made easy
                 </h1>
                 <p className={styles.subText}>
                     Now, everything you need to successfully buy or sell your home is on <br /> one platform.
                 </p>
-            </div>
+            </motion.div>
 
-            <div className={styles.actionContainer}>
+            <motion.div className={styles.actionContainer}
+                initial={{ x: '100vw' }}
+                animate={{ x: 0 }}
+                transition={{ type: 'spring', stiffness: 50, damping: 20 }}>
                 <h3 className={styles.helpText}>How can we help you?<br /> <span className='text-blue-500'>{user}</span></h3>
                 <div className={styles.buttonGroup}>
                     <button
@@ -66,7 +73,7 @@ const MiddleSection = () => {
                         Calculate Mortage
                     </button>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }
