@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {handleError , handleSuccess} from '../utils';
 import { ToastContainer } from 'react-toastify';
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const Login = () => {
 
@@ -42,7 +43,7 @@ const Login = () => {
                 localStorage.setItem('loggedInUser', user.username);
                 localStorage.setItem('user_email', user.email);
                 setTimeout(() => {
-                    navigate('/home');
+                    navigate('/');
                 }, 1000);
             } else {
                 handleError(message);
@@ -59,6 +60,11 @@ const Login = () => {
             <div className="relative max-w-lg mx-auto bg-white bg-opacity-80 rounded-lg">
                 <div className="absolute inset-0 bg-white rounded-lg"></div>
                 <div className="relative z-10 p-6">
+
+                    <Link className='' to={'/'}>
+                        <IoMdArrowRoundBack className='' />
+                    </Link>
+
                     <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">Welcome Back</h1>
 
                     <p className="mx-auto mt-4 max-w-md text-center text-gray-500">

@@ -8,7 +8,8 @@ const URL = process.env.MONGO_URL || "mongodb+srv://dakshchawla2004:doctordaksh@
 // *** importing routes *** //
 const buyRoute = require('./Routes/buy_route');
 const sellRoute = require('./Routes/sell_route');
-const authRouter = require('./Routes/auth');
+const authRouter = require('./Routes/authRoute');
+const userRouter = require('./Routes/userRoute');
 
 // *** importing connectDB function *** //
 const connectDB = require('./dbConnect');
@@ -30,6 +31,7 @@ app.use(express.json())
 app.use('/buy',buyRoute);
 app.use('/sell',sellRoute);
 app.use('/auth',authRouter);
+app.use('/user',userRouter);
 
 
 app.listen(PORT, (err) => {

@@ -8,7 +8,9 @@ const MiddleSection = () => {
 
     const el = useRef(null);
 
-    const user = localStorage.getItem('loggedInUser');
+    let user = localStorage.getItem('loggedInUser');
+
+    if(!user) user = "Guest User";
 
     const navigate = useNavigate();
 
@@ -53,6 +55,7 @@ const MiddleSection = () => {
                     <button
                         type="button"
                         className={`${styles.navBtns}`}
+                        onClick={() => navigate('/sell')}
                     >
                         I am Selling
                     </button>

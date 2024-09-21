@@ -3,16 +3,15 @@ import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import { useNavigate } from 'react-router-dom';
 
-
 const NavBar = () => {
+    const token = localStorage.getItem('token');
+    const navigate = useNavigate();
 
     const handleLogout = () => {
-        console.log(`User ${localStorage.getItem('loggedInUser')} successfully logged out `);
+        console.log(`User ${localStorage.getItem('loggedInUser')} successfully logged out`);
         localStorage.clear();
         navigate('/login');
-    }
-
-    const navigate = useNavigate();
+    };
 
     const backgroundClass = location.pathname === '/buy' ? styles.bgBlue : '';
 
@@ -23,7 +22,7 @@ const NavBar = () => {
                 {/* Image container */}
                 <div className={styles.logo_container}>
                     <div className={styles.logo}>
-                        <img src='logo.png' onClick={() => navigate('/home')}></img>
+                        <img src='logo.png' onClick={() => navigate('/')}></img>
                     </div>
                 </div>
 
@@ -36,7 +35,7 @@ const NavBar = () => {
                         <Link to='/sell' className={styles.navLink}>Sell</Link>
                     </li>
                     <li className={styles.navItem}>
-                        <Link to='/home' className={styles.navLink}>Calculate Mortage</Link>
+                        <Link to='/' className={styles.navLink}>Calculate Mortgage</Link>
                     </li>
                 </ul>
             </div>
@@ -44,12 +43,20 @@ const NavBar = () => {
             {/* Second inner div with About Us and button */}
             <div className={styles.rightContainer}>
                 <span className={styles.aboutUs}>About Us</span>
-                <button type="button" className={styles.LogOutBtn} onClick={handleLogout}>
-                    <Link to='/login' className={styles.LogOutLink}>Log out</Link>
-                </button>
+                {
+                    token ? (
+                        <button type="button" className={styles.LogOutBtn} onClick={handleLogout}>
+                            Log out
+                        </button>
+                    ) : (
+                        <button type="button" className={styles.LogOutBtn} onClick={() => navigate('/login')}>
+                            Log In
+                        </button>
+                    )
+                }
             </div>
         </div>
     );
-}
+};
 
 export default NavBar;

@@ -42,10 +42,8 @@ const createListing = async (req, res) => {
 
         const updatedListings = await listingModel.find({});
 
-        console.log({ success: true, message: "Listing added successfully", updatedListings });
         return res.json({ success: true, message: "Listing added successfully", updatedListings });
     } catch (err) {
-        console.error("Error adding listing:", err);
         return res.json({ success: false, message: "Listing not added" });
     }
 };
