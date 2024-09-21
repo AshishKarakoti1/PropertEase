@@ -77,6 +77,7 @@
 }
 
 .LogOutBtn {
+    color: #ffff;
     border: 2px solid white;
     padding: 0.5rem;
     width: 5.5rem; /* 22 */
@@ -87,9 +88,4 @@
 
 .LogOutBtn:hover{
     background-color: rgb(214, 5, 5);
-}
-
-.LogOutLink {
-    text-decoration: none;
-    color: white;
 }
