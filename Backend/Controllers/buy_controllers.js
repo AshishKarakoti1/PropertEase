@@ -16,21 +16,22 @@ async function getAllListings(req, res) {
 async function handleFilters(req, res) {
     try {
         const { price, location, area } = req.body;
-        console.log('Received filters:', req.body); // Log received filters
+        console.log('Received filters:', req.body);
         let filter = {};
         
-        // Handle the price filter as a single number
         if (price) {
-            filter.price = { $lte: price }; // Filter for listings with price less than or equal to the given price
-        }
-        if (location) {
-            filter.location = location.toLowerCase();
-        }
-        if (area) {
-            filter.area = { $lte: area };
+            filter.price = { $lte: parseInt(price) };
         }
 
-        console.log('Constructed filter:', filter); // Log constructed filter
+        if (location) {
+            filter.location = { $regex: new RegExp(location, 'i') };
+        }
+
+        if (area) {
+            filter.area = { $lte: parseInt(area) };
+        }
+
+        console.log('Constructed filter:', filter);
 
         const filteredListings = await listingModel.find(filter);
 
@@ -40,6 +41,7 @@ async function handleFilters(req, res) {
         return res.status(500).json({ success: false, error: 'Server error' });
     }
 }
+
 
 
 async function updateListing(req, res) {
