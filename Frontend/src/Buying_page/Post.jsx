@@ -1,8 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Post = ({ url, location, bedrooms, bathrooms, area, price }) => {
+const Post = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
+    const navigate = useNavigate();
+
+    const handlePostClick = () => {
+        navigate(`/details/${id}`); // Redirect to the details page based on the ID
+    };
+
     return (
-        <div className="w-[350px] h-76 rounded overflow-hidden shadow-lg hover:shadow-xl">
+        <div 
+            className="w-[350px] h-76 rounded overflow-hidden shadow-lg hover:shadow-xl cursor-pointer" 
+            onClick={handlePostClick}
+        >
             <img className="w-full h-40 object-cover" src={url} alt="Property Image" />
             <div className="px-4 py-2 bg-white">
                 <div className="mb-2">

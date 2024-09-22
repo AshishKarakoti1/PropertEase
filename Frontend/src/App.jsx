@@ -4,6 +4,7 @@ import SignUp_Login from './SignUp_Login/SignUp_Login';
 import Landing from './LandingPage/Landing';
 import Buy from './Buying_page/Buy';
 import Selling_form from './Sell_page/Selling_form';
+import Listing_Page from './Single_Listing/Listing_Page';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/signup" element={<SignUp_Login />} />
         <Route path="/buy" element={<Buy />} />
         <Route path='/sell' element={<Selling_form/>}/>
+        <Route path='/details/:id' element={<Listing_Page/>}/>
       </Routes>
     </div>
   );

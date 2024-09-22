@@ -21,6 +21,7 @@ const PostList = () => {
             {data.map((listing) => (
                 <Post
                     key={listing._id}
+                    id={listing._id}
                     url={listing.images[0]}
                     location={listing.location}
                     bedrooms={listing.bedrooms}

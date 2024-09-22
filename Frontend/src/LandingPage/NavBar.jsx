@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useLocation} from 'react-router-dom';
 
 const NavBar = () => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
+    const location = useLocation()
 
     const handleLogout = () => {
         console.log(`User ${localStorage.getItem('loggedInUser')} successfully logged out`);
@@ -13,7 +14,8 @@ const NavBar = () => {
         navigate('/login');
     };
 
-    const backgroundClass = location.pathname === '/buy' ? styles.bgBlue : '';
+    const isDetailsPage = location.pathname.startsWith('/details/');
+    const backgroundClass = location.pathname === '/buy' || isDetailsPage ? styles.bgBlue : '';
 
     return (
         <div className={`${styles.navbar} ${backgroundClass}`}>
@@ -22,7 +24,7 @@ const NavBar = () => {
                 {/* Image container */}
                 <div className={styles.logo_container}>
                     <div className={styles.logo}>
-                        <img src='logo.png' onClick={() => navigate('/')}></img>
+                        <img src='/logo.png' onClick={() => navigate('/')}></img>
                     </div>
                 </div>
 
