@@ -23,7 +23,7 @@ const Filters = () => {
             <input
                 type="number"
                 name="price"
-                value={filters.price}
+                value={filters.price || ''} // Ensure it works for falsy values
                 onChange={handleChange}
                 className="rounded-lg p-1"
             />
@@ -31,7 +31,7 @@ const Filters = () => {
             <input
                 type="text"
                 name="location"
-                value={filters.location}
+                value={filters.location || ''}
                 onChange={handleChange}
                 className="rounded-lg p-1"
             />
@@ -39,7 +39,7 @@ const Filters = () => {
             <input
                 type="number"
                 name="area"
-                value={filters.area}
+                value={filters.area || ''}
                 onChange={handleChange}
                 className="rounded-lg p-1"
             />

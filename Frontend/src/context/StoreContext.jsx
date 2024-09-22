@@ -14,27 +14,28 @@ const StoreContextProvider = ({ children }) => {
         area: '',
     });
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:9090/buy');
-                // Ensure the response contains an array
-                setData(response.data.listings || []);
-            } catch (err) {
-                setError('Failed to fetch data.');
-            } finally {
-                setLoading(false);
-            }
-        };
+    // Reusable fetch function
+    const fetchListings = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get('http://localhost:9090/buy');
+            setData(response.data.listings || []);
+        } catch (err) {
+            setError('Failed to fetch data.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-        fetchData();
+    useEffect(() => {
+        fetchListings();
     }, []);
 
     const applyFilters = async () => {
+        console.log(filters);   
         setLoading(true);
         try {
             const response = await axios.post('http://localhost:9090/buy', filters);
-            // Ensure the response contains an array
             setData(response.data.filteredListings || []);
             console.log('Filtered Data:', response.data.filteredListings);
         } catch (err) {
@@ -51,18 +52,7 @@ const StoreContextProvider = ({ children }) => {
             location: '',
             area: '',
         });
-        setLoading(true);
-        try {
-            const response = await axios.get('http://localhost:9090/buy');
-            // Ensure the response contains an array
-            setData(response.data.listings || []);
-            console.log('All Listings:', response.data.listings);
-        } catch (err) {
-            setError('Error fetching all listings.');
-            console.error('Error fetching all listings:', err);
-        } finally {
-            setLoading(false);
-        }
+        await fetchListings(); // Reuse fetch function
     };
 
     const contextValue = {
@@ -73,9 +63,6 @@ const StoreContextProvider = ({ children }) => {
         setFilters,
         applyFilters,
         clearFilters,
-        setData,
-        setError,
-        setLoading
     };
 
     return (
