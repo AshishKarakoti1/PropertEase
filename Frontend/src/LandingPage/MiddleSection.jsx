@@ -34,22 +34,16 @@ const MiddleSection = () => {
 
     return (
         <div className={styles.container}>
-            <motion.div className={styles.textContainer}
-                initial={{ x: '-100vw' }} 
-                animate={{ x: 0 }}        
-                transition={{ type: 'spring', stiffness: 50, damping: 20 }}>
+            <div className={styles.textContainer}>
                 <h1 className={styles.heading}>
                     <span ref={el}></span> <br /> properties made easy
                 </h1>
                 <p className={styles.subText}>
                     Now, everything you need to successfully buy or sell your home is on <br /> one platform.
                 </p>
-            </motion.div>
+            </div>
 
-            <motion.div className={styles.actionContainer}
-                initial={{ x: '100vw' }}
-                animate={{ x: 0 }}
-                transition={{ type: 'spring', stiffness: 50, damping: 20 }}>
+            <div className={styles.actionContainer}>
                 <h3 className={styles.helpText}>How can we help you?<br /> <span className='text-blue-500'>{user}</span></h3>
                 <div className={styles.buttonGroup}>
                     <button
@@ -73,7 +67,7 @@ const MiddleSection = () => {
                         Calculate Mortage
                     </button>
                 </div>
-            </motion.div>
+            </div>
         </div>
     );
 }
