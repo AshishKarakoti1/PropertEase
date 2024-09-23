@@ -190,7 +190,7 @@ const handleSubmit = async (e) => {
                         <div className={styles.formGroup}>
                             <label className={styles.label} htmlFor="images">Property Images*</label>
                             <input
-                                className={styles.input}
+                                className={`${styles.input} ${styles.anotherClass}`}
                                 type="file"
                                 id="images"
                                 name="images"
