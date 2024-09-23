@@ -5,7 +5,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = ({ children }) => {
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const [filters, setFilters] = useState({
@@ -63,6 +63,8 @@ const StoreContextProvider = ({ children }) => {
         setFilters,
         applyFilters,
         clearFilters,
+        setLoading,
+        setData
     };
 
     return (
