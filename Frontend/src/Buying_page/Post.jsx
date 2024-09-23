@@ -13,7 +13,7 @@ const Post = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
             className="w-[350px] h-76 rounded overflow-hidden shadow-lg hover:shadow-xl cursor-pointer" 
             onClick={handlePostClick}
         >
-            <img className="w-full h-40 object-cover" src={url} alt="Property Image" />
+            <img className="w-full h-40 object-cover" src={url} alt="Property Image" loading='lazy'/>
             <div className="px-4 py-2 bg-white">
                 <div className="mb-2">
                     <h2 className="text-lg font-bold text-blue-800">{location}</h2>

@@ -43,7 +43,7 @@ const Single_Listing = () => {
             <div className='w-[60%] h-[80%] border-2 border-red-600'>
                 {/* Conditional rendering to check if images exist */}
                 {images && images.length > 0 ? (
-                    <img src={images[0]} className='h-[100%] w-[100%]' alt="Property" />
+                    <img src={images[0]} className='h-[100%] w-[100%]' alt="Property" loading="lazy"/>
                 ) : (
                     <p>No image available</p>
                 )}
