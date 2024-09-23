@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Loading from '../Buying_page/Loading'
 
 const Single_Listing = () => {
     const { id } = useParams();
@@ -26,7 +27,11 @@ const Single_Listing = () => {
 
     // Display loading or error states
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="flex items-center justify-center h-screen">
+            <div className=''>
+                <Loading />
+            </div>
+        </div>
     }
 
     if (error) {
@@ -37,23 +42,24 @@ const Single_Listing = () => {
     const { location, price, bedrooms, bathrooms, area, images, createdBy } = listing || {};
 
     return (
-        <div className='w-[80vw] border-2 border-red-600 m-auto h-[75vh] flex p-2 justify-center items-center gap-2'>
+        <div className='w-[90vw] m-auto h-[75vh] flex justify-evenly items-center rounded-3xl bg-slate-200'>
 
             {/* Left section: Property Image */}
-            <div className='w-[60%] h-[80%] border-2 border-red-600'>
+            <div className='w-[45%] h-[90%]'>
                 {/* Conditional rendering to check if images exist */}
                 {images && images.length > 0 ? (
-                    <img src={images[0]} className='h-[100%] w-[100%]' alt="Property" />
+                    <img src={images[0]} className='h-[100%] w-[100%] rounded-3xl' alt="Property" />
                 ) : (
                     <p>No image available</p>
                 )}
             </div>
 
             {/* Right section: Property and Seller Details */}
-            <div className='w-[50%] h-[80%] border-2 border-red-600 flex flex-col gap-3 justify-center items-center p-3'>
+            <div className='w-[40%] h-[90%] flex flex-col items-center rounded-3xl bg-white text-xl justify-evenly gap-3'>
 
                 {/* Property details */}
-                <div className='border-2 border-red-600 w-[100%] h-[50%] p-2 flex flex-col'>
+                <div className='w-[100%] h-[40%] px-4 flex flex-col'>
+                    <h3 className="text-decoration-line: underline">Property Details</h3>
                     <p><strong>Location:</strong> {location || 'N/A'}</p>
                     <p><strong>Price:</strong> ${price || 'N/A'}</p>
                     <p><strong>Bedrooms:</strong> {bedrooms || 'N/A'}</p>
@@ -62,7 +68,8 @@ const Single_Listing = () => {
                 </div>
 
                 {/* Seller details */}
-                <div className='border-2 border-red-600 w-[100%] h-[40%] p-2 flex flex-col justify-start'>
+                <div className='w-[100%] h-[40%] px-4 py-4 flex flex-col justify-start'>
+                    <h3 className="text-decoration-line: underline">Seller Details</h3>
                     <p><strong>Seller Name:</strong> {createdBy?.username || 'N/A'}</p>
                     <p><strong>Contact Number:</strong> {createdBy?.contactNumber || 'N/A'}</p>
                     <p><strong>Email:</strong> {createdBy?.email || 'N/A'}</p>
