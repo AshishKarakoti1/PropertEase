@@ -63,7 +63,8 @@ const StoreContextProvider = ({ children }) => {
         setFilters,
         applyFilters,
         clearFilters,
-        setLoading
+        setLoading,
+        setData
     };
 
     return (
