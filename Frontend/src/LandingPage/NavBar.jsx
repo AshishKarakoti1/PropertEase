@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
-import { useNavigate , useLocation} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
-    const location = useLocation()
+    const location = useLocation();
 
     const handleLogout = () => {
         console.log(`User ${localStorage.getItem('loggedInUser')} successfully logged out`);
@@ -14,8 +14,15 @@ const NavBar = () => {
         navigate('/login');
     };
 
+    // Check if current path is /buy, /details/*, /myListings, or /favourites
     const isDetailsPage = location.pathname.startsWith('/details/');
-    const backgroundClass = location.pathname === '/buy' || isDetailsPage ? styles.bgBlue : '';
+    const backgroundClass = 
+        location.pathname === '/buy' || 
+        location.pathname === '/myListings' || 
+        location.pathname === '/favourites' || 
+        isDetailsPage 
+        ? styles.bgBlue 
+        : '';
 
     return (
         <div className={`${styles.navbar} ${backgroundClass}`}>
@@ -44,7 +51,7 @@ const NavBar = () => {
 
             {/* Second inner div with About Us and button */}
             <div className={styles.rightContainer}>
-                <span className={styles.aboutUs}>About Us</span>
+                <span className={styles.aboutUs} onClick={()=>navigate('/myListings')}>My Listings</span>
                 {
                     token ? (
                         <button type="button" className={styles.LogOutBtn} onClick={handleLogout}>

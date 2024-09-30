@@ -93,7 +93,8 @@ async function getListingById(req, res) {
 
 async function deleteListing(req, res) {
     try {
-        const { id, email } = req.body;
+        const { email } = req.body;
+        const id = req.params.id;
 
         if (!id || !email) {
             return res.status(400).json({ success: false, message: "Invalid details" });
