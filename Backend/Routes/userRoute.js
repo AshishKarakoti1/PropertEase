@@ -3,7 +3,7 @@ const Router = express.Router();
 const {getMyListings,getFavourites} = require('../Controllers/userControllers');
 
 Router.route('/listings')
-        .post(getMyListings);
+        .get(getMyListings);
 Router.route('/favourites')
         .post(getFavourites);
 

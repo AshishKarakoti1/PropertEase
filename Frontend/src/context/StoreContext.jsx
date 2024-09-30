@@ -14,7 +14,22 @@ const StoreContextProvider = ({ children }) => {
         area: '',
     });
 
-    // Reusable fetch function
+    const [myListings, setMyListings] = useState([]);
+
+    const fetchMyListings = async (email) => {
+        setLoading(true);
+        try {
+            const response = await axios.get(`http://localhost:9090/user/listings?email=${email}`);
+            setMyListings(response.data.listings || []);
+        } catch (err) {
+            setError('Failed to fetch listings.');
+            console.error('Error fetching my listings:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // General fetch function for other listings
     const fetchListings = async () => {
         setLoading(true);
         try {
@@ -27,12 +42,9 @@ const StoreContextProvider = ({ children }) => {
         }
     };
 
-    useEffect(() => {
-        fetchListings();
-    }, []);
 
     const applyFilters = async () => {
-        console.log(filters);   
+        console.log(filters);
         setLoading(true);
         try {
             const response = await axios.post('http://localhost:9090/buy', filters);
@@ -64,7 +76,11 @@ const StoreContextProvider = ({ children }) => {
         applyFilters,
         clearFilters,
         setLoading,
-        setData
+        setData,
+        myListings,
+        fetchMyListings,
+        setMyListings,
+        fetchListings
     };
 
     return (

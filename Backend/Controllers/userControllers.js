@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 async function getMyListings(req, res) {
     try {
-        const { email } = req.body;
+        const { email } = req.query;
         const user = await userModel.findOne({ email }).populate('listings');
 
         if (!user) {
