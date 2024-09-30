@@ -30,10 +30,10 @@ const Listing = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
         >
             <img className="w-full h-[60%] object-cover" src={url}alt="Property Image" loading='lazy'/>
             <div className="px-6 py-4 bg-white">
-                <div className="mb-2">
+                <div className="">
                     <h2 className="text-3xl font-bold text-blue-800">{location}</h2>
                 </div>
-                <div className="flex justify-between gap-10 mb-6">
+                <div className="flex justify-between gap-10">
                     <div className="flex items-center">
                         <img src="https://img.icons8.com/windows/24/null/bedroom.png" />
                         <p className="ml-2 text-lg font-medium text-gray-800">{`${bedrooms} bedrooms`}</p>

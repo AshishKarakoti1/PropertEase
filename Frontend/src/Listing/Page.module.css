@@ -14,3 +14,8 @@
     padding-bottom: 5rem; /* Optional: Adds some padding around the content */
     max-width: 1200px; /* Optional: Limits the width of the container */
 }
+
+.heading{
+    margin-bottom: 3rem;
+    font-weight: 800;
+}
