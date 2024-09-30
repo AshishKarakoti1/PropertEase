@@ -112,18 +112,22 @@ async function deleteListing(req, res) {
             return res.status(404).json({ success: false, message: "Listing not found in user's listings" });
         }
 
+        // Delete the listing from the listings collection
+        await listingModel.deleteOne({ _id: id });
+
         // Update the user's listings by removing the listing
         const updatedListings = user.listings.filter(listingId => listingId.toString() !== id);
         user.listings = updatedListings;
         await user.save();
 
-        // Delete the listing from the listings collection
-        await listingModel.deleteOne({ _id: id });
+        // Fetch the full details of all remaining listings
+        const fullUpdatedListings = await listingModel.find({ _id: { $in: updatedListings } });
 
-        return res.status(200).json({ success: true, updatedListings });
+        return res.status(200).json({ success: true, updatedListings: fullUpdatedListings });
     } catch (err) {
         return res.status(500).json({ success: false, message: 'Server error', error: err.message });
     }
 }
+
 
 module.exports = {getAllListings,handleFilters,updateListing,getListingById,deleteListing};
