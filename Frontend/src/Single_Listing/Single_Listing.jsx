@@ -2,6 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Loading from '../Buying_page/Loading'
+import { FaRegBookmark } from "react-icons/fa";
+import { SlTag } from "react-icons/sl";
+import { IoMdContact } from "react-icons/io";
+import { CiPhone } from "react-icons/ci";
+import { GoMail } from "react-icons/go";
+import { IoBedOutline } from "react-icons/io5";
+import { TbBath } from "react-icons/tb";
+import { SlSizeFullscreen } from "react-icons/sl";
 
 const Single_Listing = () => {
     const { id } = useParams();
@@ -42,38 +50,59 @@ const Single_Listing = () => {
     const { location, price, bedrooms, bathrooms, area, images, createdBy } = listing || {};
 
     return (
-        <div className='w-[90vw] m-auto h-[75vh] flex justify-evenly items-center rounded-3xl bg-slate-200'>
+        <div className='w-[90vw] m-auto h-[75vh] flex justify-center items-center bg-slate-200'>
 
             {/* Left section: Property Image */}
-            <div className='w-[45%] h-[90%]'>
+            <div className='w-[45%] h-[100%]'>
                 {/* Conditional rendering to check if images exist */}
                 {images && images.length > 0 ? (
-                    <img src={images[0]} className='h-[100%] w-[100%] rounded-3xl' alt="Property" />
+                    <img src={images[0]} className='h-[100%] w-[100%]' alt="Property" />
                 ) : (
                     <p>No image available</p>
                 )}
             </div>
 
             {/* Right section: Property and Seller Details */}
-            <div className='w-[40%] h-[90%] flex flex-col items-center rounded-3xl bg-white text-xl justify-evenly gap-3'>
+            <div className='w-[40%] h-[100%] flex flex-col px-8 bg-white text-xl gap-6 justify-evenly'>
 
-                {/* Property details */}
-                <div className='w-[100%] h-[40%] px-4 flex flex-col'>
-                    <h3 className="text-decoration-line: underline">Property Details</h3>
-                    <p><strong>Location:</strong> {location || 'N/A'}</p>
-                    <p><strong>Price:</strong> ${price || 'N/A'}</p>
-                    <p><strong>Bedrooms:</strong> {bedrooms || 'N/A'}</p>
-                    <p><strong>Bathrooms:</strong> {bathrooms || 'N/A'}</p>
-                    <p><strong>Area:</strong> {area || 'N/A'} sq ft</p>
+                {/* div-1 */}
+                <div className="flex flex-col gap-2">
+                    <FaRegBookmark size={40} />
+                    <h1 className="text-[80px]">{location || 'N/A'}</h1>
+                    <span className="flex w-[115px] ml-2 px-1 rounded-sm bg-slate-200 gap-2 items-center justify-start"><SlTag /><span>${price || 'N/A'}</span></span>
                 </div>
 
-                {/* Seller details */}
-                <div className='w-[100%] h-[40%] px-4 py-4 flex flex-col justify-start'>
-                    <h3 className="text-decoration-line: underline">Seller Details</h3>
-                    <p><strong>Seller Name:</strong> {createdBy?.username || 'N/A'}</p>
-                    <p><strong>Contact Number:</strong> {createdBy?.contactNumber || 'N/A'}</p>
-                    <p><strong>Email:</strong> {createdBy?.email || 'N/A'}</p>
+                {/* div-2 */}
+                <div className="flex flex-col ml-2 gap-8">
+                    <div className="flex items-center gap-16">
+                        <div className="flex flex-col items-start">
+                            <p className="m-0">BEDROOM</p>
+                            <div className="flex gap-2 items-center justify-start"><IoBedOutline /><span>{bedrooms || 'N/A'}</span></div>
+                        </div>
+                        <div className="flex flex-col items-start">
+                            <p className="m-0">BATHROOM</p>
+                            <div className="flex gap-2 items-center justify-start"><TbBath /><span>{bathrooms || 'N/A'}</span></div>
+                        </div>
+                        <div className="flex flex-col items-start">
+                            <p className="m-0">AREA</p>
+                            <div className="flex gap-2 items-center justify-start"><SlSizeFullscreen /><span>{area || 'N/A'} sq m</span></div>
+                        </div>
+                    </div>
+                    <div>
+                        <p className="font-bold">SELLER DETAILS</p>
+                        <div className="flex flex-col gap-2">
+                            <div className="flex w-[200px] gap-2 items-center justify-start"><IoMdContact />{createdBy?.username || 'N/A'}</div>
+                            <div className="flex w-[200px] gap-2 items-center justify-start"><CiPhone />{createdBy?.contactNumber || 'N/A'}</div>
+                            <div className="flex w-[200px] gap-2 items-center justify-start"><img className="h-[20px]" src="/mail-icon.png" /> {createdBy?.email || 'N/A'}</div>
+                        </div>
+                    </div>
+
                 </div>
+
+                <div className="ml-2">
+                    <button className="bg-slate-300 px-5 py-2 rounded-sm active:bg-slate-400">CONTACT OWNER</button>
+                </div>
+
             </div>
         </div>
     );
