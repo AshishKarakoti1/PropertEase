@@ -1,32 +1,15 @@
 import React, { useContext } from 'react';
 import { StoreContext } from '../context/StoreContext';
 import axios from 'axios';
-import { handleSuccess,handleError } from '../utils';
 
 const Listing = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
-    const { setMyListings } = useContext(StoreContext);
 
-    const handleDeleteListing = async () => {
-        try {
-            const email = localStorage.getItem('user_email');
-            const URL = `http://localhost:9090/buy/${id}`;
-            const response = await axios.delete(URL, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                data: {
-                    email: email  // Send email in the request body
-                }
-            });
-            console.log(response.data.updatedListings);
-            // Update listings in the context
-            setMyListings(response.data.updatedListings);
-            handleSuccess('listing successfully deleted');
-        } catch (err) {
-            handleError('failed to delete listing');
-            console.log("Error deleting listing", err);
-        }
-    };
+    const email = localStorage.getItem('user_email');
+    const {deleteFromFavorites} = useContext(StoreContext);
+
+    const handleDeleteFromFavorites = () => {
+        deleteFromFavorites(email,id);
+    }
 
     return (
         <div className="flex w-[90%] h-[250px] rounded overflow-hidden shadow-lg hover:shadow-xl cursor-pointer justify-between">
@@ -57,7 +40,7 @@ const Listing = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
             </div>
 
             <div className="flex px-14 border-l-2 border-gray-200 h-[80%] justify-center items-center self-center">
-                <img className='h-15 hover:scale-110 duration-200' src='delete-button.png' onClick={handleDeleteListing} alt="Delete Listing" />
+                <img className='h-15 hover:scale-110 duration-200' src='delete-button.png' alt="Delete Listing" onClick={()=>handleDeleteFromFavorites()}/>
             </div>
 
         </div>

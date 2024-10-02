@@ -1,10 +1,12 @@
 const express = require('express');
 const Router = express.Router();
-const {getMyListings,getFavourites} = require('../Controllers/userControllers');
+const {getMyListings,getFavorites,addToFavorites,deleteFromFavorites} = require('../Controllers/userControllers');
 
 Router.route('/listings')
         .get(getMyListings);
-Router.route('/favourites')
-        .post(getFavourites);
+Router.route('/favorites')
+        .get(getFavorites)
+        .post(addToFavorites)
+        .delete(deleteFromFavorites);
 
 module.exports = Router;

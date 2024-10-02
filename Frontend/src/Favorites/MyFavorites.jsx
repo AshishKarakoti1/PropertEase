@@ -1,23 +1,23 @@
-import React, { useContext, useEffect } from 'react';
-import Listing from './Listing';
-import styles from './My_listings.module.css';
+import React, { useEffect, useContext } from 'react';
 import { StoreContext } from '../context/StoreContext';
+import Listing from './Listing';
+import styles from './MyFavorites.module.css';
 
-const My_listings = () => {
-    const { myListings, fetchMyListings } = useContext(StoreContext);
+const MyFavorites = () => {
+    const { myFavorites, fetchMyFavorites } = useContext(StoreContext);
     const email = localStorage.getItem('user_email');
     const token = localStorage.getItem('token'); // Check for token in localStorage
 
     useEffect(() => {
-        if (token) { // Only fetch listings if the token is present
-            fetchMyListings(email);
+        if (token) { // Only fetch favorites if the token is present
+            fetchMyFavorites(email);
         }
-    }, [myListings, token]); // Include 'token' in the dependencies array
+    }, [token]); // Include 'token' in the dependencies array
 
     return (
         <div className={styles.container}>
-            {myListings.length > 0 ? (
-                myListings.map((listing) => (
+            {myFavorites.length > 0 ? (
+                myFavorites.map((listing) => (
                     <Listing
                         key={listing._id}
                         id={listing._id}
@@ -30,10 +30,10 @@ const My_listings = () => {
                     />
                 ))
             ) : (
-                <p>No listings available</p>
+                <p>No favorites available</p> // Optional: show a message when no favorites are found
             )}
         </div>
     );
-}
+};
 
-export default My_listings;
+export default MyFavorites;

@@ -18,15 +18,50 @@ async function getMyListings(req, res) {
     }
 }
 
-async function getFavourites(req, res) {
+async function addToFavorites(req, res) {
     try {
-        const { email } = req.body;
-        const user = await userModel.findOne({ email }).populate('favorites');
-        
+        const { email, id } = req.body;
+        const user = await userModel.findOne({ email });
+
         if (!user) {
             return res.status(404).json({ success: false, message: 'User not found' });
         }
-        return res.status(200).json({ success: true, favorites: user.favorites });
+
+        if (!user.favorites.includes(id)) {
+            user.favorites.push(id);
+            await user.save();
+        }
+
+        await user.populate('favorites');
+
+        return res.status(200).json({ 
+            success: true, 
+            favorites: user.favorites
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ success: false, message: 'Server error' });
+    }
+}
+
+async function deleteFromFavorites(req, res) {
+    try {
+        const { email, id } = req.query; 
+        const user = await userModel.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        const updated_favorites = user.favorites.filter(ID => ID != id);
+        user.favorites = updated_favorites;
+        await user.save();
+        await user.populate('favorites');
+
+        return res.status(200).json({ 
+            success: true, 
+            favorites: user.favorites
+        });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ success: false, message: 'Server error' });
@@ -34,4 +69,24 @@ async function getFavourites(req, res) {
 }
 
 
-module.exports = { getMyListings , getFavourites };
+
+async function getFavorites(req, res) {
+    try {
+        const { email } = req.query;
+        const user = await userModel.findOne({ email }).populate('favorites');
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+        return res.status(200).json({
+            success: true,
+            favorites: user.favorites
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ success: false, message: 'Server error' });
+    }
+}
+
+
+
+module.exports = { getMyListings , getFavorites , addToFavorites , deleteFromFavorites };
