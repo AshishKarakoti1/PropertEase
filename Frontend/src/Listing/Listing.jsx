@@ -21,7 +21,7 @@ const Listing = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
             console.log(response.data.updatedListings);
             // Update listings in the context
             setMyListings(response.data.updatedListings);
-            handleSuccess('listing successfully deleted');
+            handleSuccess('listing deleted successfully');
         } catch (err) {
             handleError('failed to delete listing');
             console.log("Error deleting listing", err);

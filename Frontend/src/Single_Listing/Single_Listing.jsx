@@ -75,7 +75,7 @@ const Single_Listing = () => {
 
                 {/* div-1 */}
                 <div className="flex flex-col gap-2">
-                    <FaRegBookmark size={40} onClick={()=>handleAddToFavorites()}   className="cursor-pointer"/>
+                    <FaRegBookmark size={40} onClick={()=>handleAddToFavorites()}   className="cursor-pointer active:scale-75 transition duration-100"/>
                     <h1 className="text-[80px]">{location || 'N/A'}</h1>
                     <span className="flex w-[115px] ml-2 px-1 rounded-sm bg-slate-200 gap-2 items-center justify-start"><SlTag /><span>${price || 'N/A'}</span></span>
                 </div>
