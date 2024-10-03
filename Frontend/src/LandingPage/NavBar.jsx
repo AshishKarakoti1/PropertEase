@@ -30,8 +30,9 @@ const NavBar = () => {
             <div className={styles.container}>
                 {/* Image container */}
                 <div className={styles.logo_container}>
-                    <div className={styles.logo}>
-                        <img src='/logo.png' onClick={() => navigate('/')}></img>
+                    <div className={styles.logo} onClick={()=>navigate('/')}>
+                        {/* <img src='/logo.png' onClick={() => navigate('/')}></img> */}
+                        <p>PropertEase</p>
                     </div>
                 </div>
 
