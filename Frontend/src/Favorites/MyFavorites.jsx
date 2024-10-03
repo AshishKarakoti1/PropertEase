@@ -15,23 +15,26 @@ const MyFavorites = () => {
     }, [token]); // Include 'token' in the dependencies array
 
     return (
-        <div className={styles.container}>
-            {myFavorites.length > 0 ? (
-                myFavorites.map((listing) => (
-                    <Listing
-                        key={listing._id}
-                        id={listing._id}
-                        url={listing.images[0]}
-                        location={listing.location}
-                        bedrooms={listing.bedrooms}
-                        bathrooms={listing.bathrooms}
-                        area={listing.area}
-                        price={listing.price}
-                    />
-                ))
-            ) : (
-                <p>No favorites available</p> // Optional: show a message when no favorites are found
-            )}
+        <div className='flex flex-col w-[82%] gap-5'>
+            <h1 className='ml-20 text-5xl mt-5'>My Favorites</h1>
+            <div className={styles.container}>
+                {myFavorites.length > 0 ? (
+                    myFavorites.map((listing) => (
+                        <Listing
+                            key={listing._id}
+                            id={listing._id}
+                            url={listing.images[0]}
+                            location={listing.location}
+                            bedrooms={listing.bedrooms}
+                            bathrooms={listing.bathrooms}
+                            area={listing.area}
+                            price={listing.price}
+                        />
+                    ))
+                ) : (
+                    <p>No favorites available</p> // Optional: show a message when no favorites are found
+                )}
+            </div>
         </div>
     );
 };

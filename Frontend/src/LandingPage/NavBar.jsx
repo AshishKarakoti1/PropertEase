@@ -4,7 +4,7 @@ import styles from './NavBar.module.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token'); // Check for token in localStorage
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -18,9 +18,9 @@ const NavBar = () => {
     const isDetailsPage = location.pathname.startsWith('/details/');
     const backgroundClass =
         location.pathname === '/buy' ||
-            location.pathname === '/myListings' ||
-            location.pathname === '/myFavorites' ||
-            isDetailsPage
+        location.pathname === '/myListings' ||
+        location.pathname === '/myFavorites' ||
+        isDetailsPage
             ? styles.bgBlue
             : '';
 
@@ -50,14 +50,17 @@ const NavBar = () => {
                 </ul>
             </div>
 
-            {/* Second inner div with About Us and button */}
+            {/* Second inner div with Profile/Log In button */}
             <div className={styles.rightContainer}>
-                <span className={styles.aboutUs} onClick={() => navigate('/profile')}>Profile</span>
-                {
+                {token ? (
+                    <>
+                        <span className={styles.aboutUs} onClick={() => navigate('/profile')}>Hi, {localStorage.getItem('loggedInUser')}</span>
+                    </>
+                ) : (
                     <button type="button" className={styles.LogOutBtn} onClick={() => navigate('/login')}>
                         Log In
                     </button>
-                }
+                )}
             </div>
         </div>
     );
