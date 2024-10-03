@@ -6,7 +6,6 @@ import { ToastContainer } from 'react-toastify'
 const Page = () => {
   return (
     <div className='flex w-full h-full'>
-      <Side_Bar/>
       <My_listings/>
       <ToastContainer/>
     </div>

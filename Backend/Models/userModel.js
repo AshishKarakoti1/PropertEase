@@ -18,6 +18,7 @@ const userSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    URL: { type: String, default: '' },
     favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'listings' }],
     listings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'listings' }],
 });

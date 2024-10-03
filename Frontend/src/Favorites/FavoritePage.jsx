@@ -7,7 +7,6 @@ import { ToastContainer } from 'react-toastify'
 const FavoritePage = () => {
     return (
         <div className='flex w-full h-full'>
-            <Side_Bar />
             <MyFavorites />
             <ToastContainer />
         </div>

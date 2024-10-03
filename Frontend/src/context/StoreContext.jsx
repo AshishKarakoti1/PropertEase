@@ -16,7 +16,17 @@ const StoreContextProvider = ({ children }) => {
     });
 
     const [myListings, setMyListings] = useState([]);
-    const[myFavorites, setMyFavorites] = useState([]);
+    const [myFavorites, setMyFavorites] = useState([]);
+    const [user, setUser] = useState({});
+
+    const getUserData = async (email) => {
+        try{
+            const response = await axios.get(`http://localhost:9090/user/?email=${email}`);
+            setUser(response.data.userData);
+        } catch(err){
+            console.error(err);
+        }
+    }
 
     const fetchMyListings = async (email) => {
         setLoading(true);
@@ -113,6 +123,8 @@ const StoreContextProvider = ({ children }) => {
         filters,
         myListings,
         myFavorites,
+        user,
+        setUser,
         setFilters,
         applyFilters,
         clearFilters,
@@ -124,7 +136,8 @@ const StoreContextProvider = ({ children }) => {
         fetchMyFavorites,
         setMyFavorites,
         addToFavorites,
-        deleteFromFavorites
+        deleteFromFavorites,
+        getUserData
     };
 
     return (

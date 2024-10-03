@@ -12,7 +12,7 @@ const Side_Bar = () => {
     };
 
 
-  return (
+    return (
     <div className='bg-[#212121] h-[100vh] w-[18%] flex flex-col pt-10 justify-between'>
 
         <div className='flex flex-col h-[40%] gap-4 pl-4 text-2xl text-white'>
