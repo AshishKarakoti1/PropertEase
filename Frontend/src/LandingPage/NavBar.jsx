@@ -16,13 +16,13 @@ const NavBar = () => {
 
     // Check if current path is /buy, /details/*, /myListings, or /favourites
     const isDetailsPage = location.pathname.startsWith('/details/');
-    const backgroundClass = 
-        location.pathname === '/buy' || 
-        location.pathname === '/myListings' || 
-        location.pathname === '/myFavorites' || 
-        isDetailsPage 
-        ? styles.bgBlue 
-        : '';
+    const backgroundClass =
+        location.pathname === '/buy' ||
+            location.pathname === '/myListings' ||
+            location.pathname === '/myFavorites' ||
+            isDetailsPage
+            ? styles.bgBlue
+            : '';
 
     return (
         <div className={`${styles.navbar} ${backgroundClass}`}>
@@ -30,7 +30,7 @@ const NavBar = () => {
             <div className={styles.container}>
                 {/* Image container */}
                 <div className={styles.logo_container}>
-                    <div className={styles.logo} onClick={()=>navigate('/')}>
+                    <div className={styles.logo} onClick={() => navigate('/')}>
                         {/* <img src='/logo.png' onClick={() => navigate('/')}></img> */}
                         <p>PropertEase</p>
                     </div>
@@ -52,18 +52,11 @@ const NavBar = () => {
 
             {/* Second inner div with About Us and button */}
             <div className={styles.rightContainer}>
-                <span className={styles.aboutUs} onClick={()=>navigate('/myListings')}>My Listings</span>
-                <span className={styles.aboutUs} onClick={()=>navigate('/myFavorites')}>My Favorites</span>
+                <span className={styles.aboutUs} onClick={() => navigate('/profile')}>Profile</span>
                 {
-                    token ? (
-                        <button type="button" className={styles.LogOutBtn} onClick={handleLogout}>
-                            Log out
-                        </button>
-                    ) : (
-                        <button type="button" className={styles.LogOutBtn} onClick={() => navigate('/login')}>
-                            Log In
-                        </button>
-                    )
+                    <button type="button" className={styles.LogOutBtn} onClick={() => navigate('/login')}>
+                        Log In
+                    </button>
                 }
             </div>
         </div>

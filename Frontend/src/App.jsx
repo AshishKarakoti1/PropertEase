@@ -7,6 +7,7 @@ import Selling_form from './Sell_page/Selling_form';
 import Listing_Page from './Single_Listing/Listing_Page';
 import MyListingsPage from './Listing/MyListingsPage';
 import FavoritePage from './Favorites/FavoritePage';
+import Profile_Page from './Profile_Page/Profile_Page';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path='/details/:id' element={<Listing_Page/>}/>
         <Route path='/myListings' element={<MyListingsPage/>}/>
         <Route path='/myFavorites' element={<FavoritePage/>}/>
+        <Route path='/profile' element={<Profile_Page/>}/>
       </Routes>
     </div>
   );
