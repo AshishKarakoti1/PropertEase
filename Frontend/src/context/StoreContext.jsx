@@ -48,7 +48,7 @@ const StoreContextProvider = ({ children }) => {
         try{
             const response = await axios.post('http://localhost:9090/user/favorites',{email,id});
             setMyFavorites(response.data.favorites || []);
-            handleSuccess('listing successfully added to favorites');
+            handleSuccess('Added to favorites');
         } catch (err) {
             handleError('failed to add listing to favorites');
             setError('Failed to fetch listings.');
@@ -60,7 +60,7 @@ const StoreContextProvider = ({ children }) => {
         try{
             const response = await axios.delete(`http://localhost:9090/user/favorites?email=${email}&id=${id}`);
             setMyFavorites(response.data.favorites || []);
-            handleSuccess('listing successfully deleted from favorites');
+            handleSuccess('Removed from favorites');
         } catch (err) {
             handleError('failed to delete listing from favorites');
             setError('Failed to fetch listings.');
