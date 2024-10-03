@@ -15,7 +15,7 @@ const MyFavorites = () => {
     }, [token]); // Include 'token' in the dependencies array
 
     return (
-        <div className='flex flex-col w-[82%] gap-5'>
+        <div className='flex flex-col flex-grow gap-5'>
             <h1 className='ml-20 text-5xl mt-5'>My Favorites</h1>
             <div className={styles.container}>
                 {myFavorites.length > 0 ? (

@@ -5,7 +5,7 @@ const generateToken = require('../utils');
 async function signUp(req, res) {
     try {
         const { username, email, password, contactNumber } = req.body;
-        
+
         if (!username || !email || !password || !contactNumber) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
@@ -18,11 +18,13 @@ async function signUp(req, res) {
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
+        // Include the URL field when creating the new user
         const newUser = new userModel({
             username,
             email,
             password: hashedPassword,
             contactNumber,
+            URL: '' // Initialize URL field here
         });
 
         await newUser.save();
@@ -35,6 +37,7 @@ async function signUp(req, res) {
                 username: newUser.username,
                 email: newUser.email,
                 contactNumber: newUser.contactNumber,
+                URL: newUser.URL // Include the URL in the response
             }
         });
     } catch (error) {
@@ -42,6 +45,7 @@ async function signUp(req, res) {
         res.status(500).json({ success: false, message: 'Server error' });
     }
 }
+
 
 async function login(req, res) {
     try {
