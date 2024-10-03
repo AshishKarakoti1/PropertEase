@@ -1,17 +1,13 @@
 import React from 'react'
 import My_listings from './My_listings'
-import NavBar from '../LandingPage/NavBar'
-import styles from './Page.module.css'
+import Side_Bar from '../Profile_Page/Side_Bar'
 import { ToastContainer } from 'react-toastify'
 
 const Page = () => {
   return (
-    <div className={styles.background}>
-      <NavBar />
-      <div className={styles.container}>
-        <h1 className={styles.heading}>Your Listings</h1>
-        <My_listings />
-      </div>
+    <div className='flex w-full h-full'>
+      <Side_Bar/>
+      <My_listings/>
       <ToastContainer/>
     </div>
   )
