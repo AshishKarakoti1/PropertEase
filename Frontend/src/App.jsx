@@ -6,6 +6,7 @@ import Buy from './Buying_page/Buy';
 import Selling_form from './Sell_page/Selling_form';
 import Listing_Page from './Single_Listing/Listing_Page';
 import MyListingsPage from './Listing/MyListingsPage';
+import FavoritePage from './Favorites/FavoritePage';
 
 const App = () => {
   return (
@@ -17,7 +18,8 @@ const App = () => {
         <Route path="/buy" element={<Buy />} />
         <Route path='/sell' element={<Selling_form/>}/>
         <Route path='/details/:id' element={<Listing_Page/>}/>
-        <Route path='myListings' element={<MyListingsPage/>}></Route>
+        <Route path='/myListings' element={<MyListingsPage/>}/>
+        <Route path='/myFavorites' element={<FavoritePage/>}/>
       </Routes>
     </div>
   );

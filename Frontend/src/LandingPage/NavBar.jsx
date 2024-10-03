@@ -19,7 +19,7 @@ const NavBar = () => {
     const backgroundClass = 
         location.pathname === '/buy' || 
         location.pathname === '/myListings' || 
-        location.pathname === '/favourites' || 
+        location.pathname === '/myFavorites' || 
         isDetailsPage 
         ? styles.bgBlue 
         : '';
@@ -52,6 +52,7 @@ const NavBar = () => {
             {/* Second inner div with About Us and button */}
             <div className={styles.rightContainer}>
                 <span className={styles.aboutUs} onClick={()=>navigate('/myListings')}>My Listings</span>
+                <span className={styles.aboutUs} onClick={()=>navigate('/myFavorites')}>My Favorites</span>
                 {
                     token ? (
                         <button type="button" className={styles.LogOutBtn} onClick={handleLogout}>

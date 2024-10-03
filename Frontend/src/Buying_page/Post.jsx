@@ -1,10 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import {handleError} from '../utils';
+import { ToastContainer } from 'react-toastify';
 
 const Post = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
     const navigate = useNavigate();
 
     const handlePostClick = () => {
+        if(!localStorage.getItem('token')){
+            console.log("error");
+            handleError("please login to view full details");
+            return;
+        }
         navigate(`/details/${id}`); // Redirect to the details page based on the ID
     };
 
@@ -36,6 +43,7 @@ const Post = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
                     <p className="text-2xl font-extrabold text-blue-800">{`${price} $ `}</p>
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     );
 }

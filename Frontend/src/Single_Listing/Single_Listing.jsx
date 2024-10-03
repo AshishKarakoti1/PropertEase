@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Loading from '../Buying_page/Loading'
@@ -10,18 +10,28 @@ import { GoMail } from "react-icons/go";
 import { IoBedOutline } from "react-icons/io5";
 import { TbBath } from "react-icons/tb";
 import { SlSizeFullscreen } from "react-icons/sl";
+import { StoreContext } from "../context/StoreContext";
 
 const Single_Listing = () => {
     const { id } = useParams();
-    const [listing, setListing] = useState(null); // State to hold listing data
-    const [loading, setLoading] = useState(true); // State for loading
-    const [error, setError] = useState(null); // State for errors
+    const [listing, setListing] = useState(null); 
+    const [loading, setLoading] = useState(true); 
+    const [error, setError] = useState(null);
+
+    const email = localStorage.getItem('user_email');
+
+    const {addToFavorites} = useContext(StoreContext);
+
+    const handleAddToFavorites = () => {
+        console.log(`function called`,email,id);
+        addToFavorites(email,id);
+    }
 
     // Fetch listing details
     const fetchDetails = async () => {
         try {
             const response = await axios.get(`http://localhost:9090/buy/${id}`);
-            setListing(response.data.listing); // Store the listing details
+            setListing(response.data.listing); 
         } catch (err) {
             setError('Failed to fetch data.');
         } finally {
@@ -33,7 +43,6 @@ const Single_Listing = () => {
         fetchDetails();
     }, [id]);
 
-    // Display loading or error states
     if (loading) {
         return <div className="flex items-center justify-center h-screen">
             <div className=''>
@@ -46,7 +55,6 @@ const Single_Listing = () => {
         return <div>{error}</div>;
     }
 
-    // Destructure the listing data
     const { location, price, bedrooms, bathrooms, area, images, createdBy } = listing || {};
 
     return (
@@ -67,7 +75,7 @@ const Single_Listing = () => {
 
                 {/* div-1 */}
                 <div className="flex flex-col gap-2">
-                    <FaRegBookmark size={40} />
+                    <FaRegBookmark size={40} onClick={()=>handleAddToFavorites()}   className="cursor-pointer"/>
                     <h1 className="text-[80px]">{location || 'N/A'}</h1>
                     <span className="flex w-[115px] ml-2 px-1 rounded-sm bg-slate-200 gap-2 items-center justify-start"><SlTag /><span>${price || 'N/A'}</span></span>
                 </div>
