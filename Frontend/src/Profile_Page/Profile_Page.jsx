@@ -1,5 +1,4 @@
 import React from 'react'
-import Side_Bar from './Side_Bar'
 import Profile from './Profile'
 
 const Profile_Page = () => {
