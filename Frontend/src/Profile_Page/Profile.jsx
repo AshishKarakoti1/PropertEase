@@ -56,8 +56,8 @@ const Profile = () => {
             <div className='h-[50%] flex items-center pl-24'>
                 <img className='h-[300px] w-[300px] rounded-full' src={user?.URL || '/no_photo.webp'} />
                 <div className='flex flex-col'>
-                    <input type="file" className='ml-5' onChange={handleFileChange} />
-                    <button className='bg-orange-400 w-36 ml-5 mt-3' onClick={() => handleUpload()}>change photo</button>
+                    <input type="file" className='ml-5 w-[60%] hover:cursor-pointer' onChange={handleFileChange} />
+                    <button className='bg-orange-400 w-36 ml-5 mt-3' onClick={() => handleUpload()}>Change photo</button>
                 </div>
             </div>
 
@@ -87,7 +87,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };

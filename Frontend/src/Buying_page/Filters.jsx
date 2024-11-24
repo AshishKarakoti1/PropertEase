@@ -45,14 +45,14 @@ const Filters = () => {
             />
             <button
                 type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded"
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 duration-200"
             >
                 Filter
             </button>
             <button
                 type="button"
                 onClick={clearFilters}
-                className="bg-gray-500 text-white px-2 py-2 rounded"
+                className="bg-gray-500 text-white px-2 py-2 rounded  hover:bg-gray-600 duration-200"
             >
                 Clear Filters
             </button>
