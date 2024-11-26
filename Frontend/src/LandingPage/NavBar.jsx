@@ -45,7 +45,7 @@ const NavBar = () => {
                         <Link to='/sell' className={styles.navLink}>Sell</Link>
                     </li>
                     <li className={styles.navItem}>
-                        <Link to='/' className={styles.navLink}>Calculate Mortgage</Link>
+                        <Link to='/' className={styles.navLink}>Calculate Mortage</Link>
                     </li>
                 </ul>
             </div>
@@ -54,7 +54,7 @@ const NavBar = () => {
             <div className={styles.rightContainer}>
                 {token ? (
                     <>
-                        <span className={styles.aboutUs} onClick={() => navigate('/profile')}>Hi, {localStorage.getItem('loggedInUser')}</span>
+                        <span className={styles.aboutUs} onClick={() => navigate('/profile')}>Hi , {localStorage.getItem('loggedInUser')}</span>
                     </>
                 ) : (
                     <button type="button" className={styles.LogOutBtn} onClick={() => navigate('/login')}>
