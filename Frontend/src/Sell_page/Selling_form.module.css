@@ -1,9 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-
-* {
-    font-family: 'SUSE';
-}
 
 :root {
   --primary-color: #1e88e5;
@@ -15,19 +9,17 @@
 }
 
 .bg {
-  background-image: url('sell_bg.jpg');
+  background-image: url('bg-buy.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 100vh;
-  /* font-family: 'Poppins', sans-serif; */
+  height: 86.8vh;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .container {
@@ -176,6 +168,11 @@
   background-color: var(--primary-dark);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(30, 136, 229, 0.4);
+}
+
+.heading_div{
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {

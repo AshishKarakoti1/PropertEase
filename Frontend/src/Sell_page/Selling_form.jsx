@@ -114,9 +114,6 @@ const handleSubmit = async (e) => {
             <div className={styles.bg}>
                 <div className={styles.container}>
                     <div className={styles.heading_div}>
-                        <Link className={styles.logo} to={'/'}>
-                            <IoMdArrowRoundBack className={styles.logo_img} />
-                        </Link>
                         <h1 className={styles.heading}>List your Property</h1>
                     </div>
                     <form className={styles.form} onSubmit={handleSubmit}>
