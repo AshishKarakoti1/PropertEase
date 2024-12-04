@@ -1,4 +1,4 @@
-import React , {useState}from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -7,7 +7,7 @@ const NavBar = () => {
     const token = localStorage.getItem('token'); // Check for token in localStorage
     const navigate = useNavigate();
     const location = useLocation();
-    const [isProfilePopupOpen,setIsProfilePopupOpen] = useState(false);
+    const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
 
     const handleRoutes = (path) => {
         navigate(path);
@@ -23,16 +23,8 @@ const NavBar = () => {
         setIsProfilePopupOpen(!isProfilePopupOpen);
     }
 
-    // Check if current path is /buy, /details/*, /myListings, or /favourites
-    const isDetailsPage = location.pathname.startsWith('/details/');
-    const backgroundClass =
-        location.pathname === '/buy' ||
-        location.pathname === '/sell' || // Added condition for Sell route
-        location.pathname === '/myListings' ||
-        location.pathname === '/myFavorites' ||
-        isDetailsPage
-            ? styles.bgBlue
-            : '';
+    // Check if current path is not '/'
+    const backgroundClass = location.pathname === '/' ? '' : styles.bgBlue;
 
     return (
         <div className={`${styles.navbar} ${backgroundClass}`}>
@@ -73,16 +65,15 @@ const NavBar = () => {
                 )}
             </div>
             {isProfilePopupOpen && (
-                            <div className="absolute top-[80%] right-10 w-[230px] bg-[#FFFFFF] opacity-95 shadow-lg rounded-lg p-4 z-50 text-black">
-                                <div className="flex flex-col space-y-3 text-[1.1rem]">
-                                    <span className="text-center cursor-pointer rounded-md pl-2 p-2 hover:bg-gray-300" onClick={() => { handleRoutes('/profile') }}>Profile</span>
-                                    <span className="text-center cursor-pointer rounded-md pl-2 p-2 hover:bg-gray-300" onClick={() => { handleRoutes('/myListings') }}>My Listings</span>
-                                    <span className="text-center cursor-pointer rounded-md pl-2 p-2 hover:bg-gray-300" onClick={() => { handleRoutes('/myFavorites') }}>My Favourites</span>
-                                    <span className="text-center cursor-pointer rounded-md pl-2 p-2 hover:bg-gray-300 hover:text-red-600" onClick={handleLogout}>Logout</span>
-                                </div>
-                            </div>
-                        )}
-
+                <div className="absolute top-[80%] right-10 w-[230px] bg-[#FFFFFF] opacity-95 shadow-lg rounded-lg p-4 z-50 text-black">
+                    <div className="flex flex-col space-y-3 text-[1.1rem]">
+                        <span className="text-center cursor-pointer rounded-md pl-2 p-2 hover:bg-gray-300" onClick={() => { handleRoutes('/profile') }}>Profile</span>
+                        <span className="text-center cursor-pointer rounded-md pl-2 p-2 hover:bg-gray-300" onClick={() => { handleRoutes('/myListings') }}>My Listings</span>
+                        <span className="text-center cursor-pointer rounded-md pl-2 p-2 hover:bg-gray-300" onClick={() => { handleRoutes('/myFavorites') }}>My Favourites</span>
+                        <span className="text-center cursor-pointer rounded-md pl-2 p-2 hover:bg-gray-300 hover:text-red-600" onClick={handleLogout}>Logout</span>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

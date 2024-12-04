@@ -10,6 +10,7 @@ const buyRoute = require('./Routes/buy_route');
 const sellRoute = require('./Routes/sell_route');
 const authRouter = require('./Routes/authRoute');
 const userRouter = require('./Routes/userRoute');
+const emailRouter = require('./Routes/emailRoutes');
 
 // *** importing connectDB function *** //
 const connectDB = require('./dbConnect');
@@ -32,7 +33,7 @@ app.use('/buy',buyRoute);
 app.use('/sell',sellRoute);
 app.use('/auth',authRouter);
 app.use('/user',userRouter);
-
+app.use('/contact',emailRouter);
 
 app.listen(PORT, (err) => {
     if (err) {

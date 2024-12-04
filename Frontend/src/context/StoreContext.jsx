@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import axios from 'axios';
-import {handleSuccess,handleError} from '../utils'
+import { handleSuccess, handleError } from '../utils'
 
 export const StoreContext = createContext(null);
 
@@ -15,15 +15,16 @@ const StoreContextProvider = ({ children }) => {
         area: '',
     });
 
+    const [userEmail, setUserEmail] = useState('');
     const [myListings, setMyListings] = useState([]);
     const [myFavorites, setMyFavorites] = useState([]);
     const [user, setUser] = useState({});
 
     const getUserData = async (email) => {
-        try{
+        try {
             const response = await axios.get(`http://localhost:9090/user/?email=${email}`);
             setUser(response.data.userData);
-        } catch(err){
+        } catch (err) {
             console.error(err);
         }
     }
@@ -54,9 +55,9 @@ const StoreContextProvider = ({ children }) => {
         }
     }
 
-    const addToFavorites = async (email,id) => {
-        try{
-            const response = await axios.post('http://localhost:9090/user/favorites',{email,id});
+    const addToFavorites = async (email, id) => {
+        try {
+            const response = await axios.post('http://localhost:9090/user/favorites', { email, id });
             setMyFavorites(response.data.favorites || []);
             handleSuccess('Added to favorites');
         } catch (err) {
@@ -66,8 +67,8 @@ const StoreContextProvider = ({ children }) => {
         }
     }
 
-    const deleteFromFavorites = async (email,id) => {
-        try{
+    const deleteFromFavorites = async (email, id) => {
+        try {
             const response = await axios.delete(`http://localhost:9090/user/favorites?email=${email}&id=${id}`);
             setMyFavorites(response.data.favorites || []);
             handleSuccess('Removed from favorites');
@@ -124,6 +125,7 @@ const StoreContextProvider = ({ children }) => {
         myListings,
         myFavorites,
         user,
+        userEmail,
         setUser,
         setFilters,
         applyFilters,
@@ -137,7 +139,8 @@ const StoreContextProvider = ({ children }) => {
         setMyFavorites,
         addToFavorites,
         deleteFromFavorites,
-        getUserData
+        getUserData,
+        setUserEmail
     };
 
     return (

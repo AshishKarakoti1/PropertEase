@@ -9,6 +9,7 @@ import MyListingsPage from './Listing/MyListingsPage';
 import FavoritePage from './Favorites/FavoritePage';
 import Profile_Page from './Profile_Page/Profile_Page';
 import Side_Bar from './Profile_Page/Side_Bar';
+import Email_Page from './EmailPage/Email_Page';
 
 const App = () => {
   const location = useLocation();
@@ -33,6 +34,7 @@ const App = () => {
           <Route path='/myListings' element={<MyListingsPage />} />
           <Route path='/myFavorites' element={<FavoritePage />} />
           <Route path='/profile' element={<Profile_Page />} />
+          <Route path='/contact' element={<Email_Page />} />
         </Routes>
       </div>
     </div>
