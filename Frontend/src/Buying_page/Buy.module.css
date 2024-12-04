@@ -3,14 +3,16 @@
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
 }
 
 .container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    padding-bottom: 5rem; /* Optional: Adds some padding around the content */
-    max-width: 1200px; /* Optional: Limits the width of the container */
+    gap: 2.5rem;
+    margin-top: 3rem;
+    padding-bottom: 8rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }

@@ -17,30 +17,31 @@ const Post = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
 
     return (
         <div 
-            className="w-[350px] h-76 rounded overflow-hidden shadow-lg hover:shadow-xl cursor-pointer" 
+            className="w-[350px] h-[300px] rounded overflow-hidden shadow-lg hover:shadow-xl cursor-pointer" 
             onClick={handlePostClick}
         >
             <img className="w-full h-40 object-cover" src={url} alt="Property Image" loading='lazy'/>
-            <div className="px-4 py-2 bg-white">
-                <div className="mb-2">
-                    <h2 className="text-lg font-bold text-blue-800">{location}</h2>
+            <div className="px-4 py-4 bg-white">
+                <div className="flex justify-between">
+                    <h2 className="text-xl font-bold text-blue-800">{location}</h2>
+                    <p className="text-lg opacity-70 font-extrabold text-blue-800">{`$ ${price}`}</p>
                 </div>
                 <div className="flex justify-between">
-                    <div className="flex items-center">
+                    <div className="flex flex-col items-center">
                         <img src="https://img.icons8.com/windows/24/null/bedroom.png" />
-                        <p className="ml-2 text-xs font-medium text-gray-800">{`${bedrooms} bedrooms`}</p>
+                        <p className="pt-1 text-xs font-medium text-gray-800">{`${bedrooms} bedrooms`}</p>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex flex-col items-center">
                         <img src="https://img.icons8.com/pastel-glyph/24/null/bath--v2.png" />
-                        <p className="ml-2 text-xs font-medium text-gray-800">{`${bathrooms} bathrooms`}</p>
+                        <p className="pt-1 text-xs font-medium text-gray-800">{`${bathrooms} bathrooms`}</p>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex flex-col items-center">
                         <img src="https://img.icons8.com/ios-glyphs/24/null/expand--v1.png" />
-                        <p className="ml-2 text-xs font-medium text-gray-800">{`${area} sq m`}</p>
+                        <p className="pt-1 text-xs font-medium text-gray-800">{`${area} sq m`}</p>
                     </div>
                 </div>
-                <div className="mt-2">
-                    <p className="text-2xl font-extrabold text-blue-800">{`${price} $ `}</p>
+                <div className="">
+                    
                 </div>
             </div>
             <ToastContainer/>

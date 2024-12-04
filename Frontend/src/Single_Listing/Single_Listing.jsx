@@ -6,7 +6,6 @@ import { FaRegBookmark } from "react-icons/fa";
 import { SlTag } from "react-icons/sl";
 import { IoMdContact } from "react-icons/io";
 import { CiPhone } from "react-icons/ci";
-import { GoMail } from "react-icons/go";
 import { IoBedOutline } from "react-icons/io5";
 import { TbBath } from "react-icons/tb";
 import { SlSizeFullscreen } from "react-icons/sl";
@@ -17,6 +16,7 @@ const Single_Listing = () => {
     const [listing, setListing] = useState(null); 
     const [loading, setLoading] = useState(true); 
     const [error, setError] = useState(null);
+    const [index,setIndex] = useState(0);
 
     const email = localStorage.getItem('user_email');
 
@@ -39,6 +39,10 @@ const Single_Listing = () => {
         }
     };
 
+    const changeIndex = (idx) => {
+        setIndex(idx);
+    }
+
     useEffect(() => {
         fetchDetails();
     }, [id]);
@@ -58,16 +62,20 @@ const Single_Listing = () => {
     const { location, price, bedrooms, bathrooms, area, images, createdBy } = listing || {};
 
     return (
-        <div className='w-[90vw] m-auto h-[75vh] flex justify-center items-center bg-slate-200'>
+        <div className='w-[90vw] mx-auto mt-[2.8rem] h-[75vh] flex justify-center items-center bg-slate-200'>
 
             {/* Left section: Property Image */}
-            <div className='w-[45%] h-[100%]'>
-                {/* Conditional rendering to check if images exist */}
-                {images && images.length > 0 ? (
-                    <img src={images[0]} className='h-[100%] w-[100%]' alt="Property" />
-                ) : (
-                    <p>No image available</p>
-                )}
+            <div className='w-[45%] h-[100%] flex flex-col gap-2'>
+                    <div className="h-[75%]">
+                        <img src={images[0]} className='h-[100%] w-[100%]' alt="Property" />
+                    </div>
+                    <div className="h-[30%] border-2 border-red-500 flex justify-between bg-white">
+                        <div className={`w-[20%] h-[100%] border-2 border-green-500 ${index==0 && 'bg-gray-100'}`} onClick={()=>changeIndex(0)}>0</div>
+                        <div className={`w-[20%] h-[100%] border-2 border-green-500 ${index==1 && 'bg-gray-100'}`} onClick={()=>changeIndex(1)}>1</div>
+                        <div className={`w-[20%] h-[100%] border-2 border-green-500 ${index==2 && 'bg-gray-100'}`} onClick={()=>changeIndex(2)}>2</div>
+                        <div className={`w-[20%] h-[100%] border-2 border-green-500 ${index==3 && 'bg-gray-100'}`} onClick={()=>changeIndex(3)}>3</div>
+                        <div className={`w-[20%] h-[100%] border-2 border-green-500 ${index==4 && 'bg-gray-100'}`} onClick={()=>changeIndex(4)}>4</div>
+                    </div>
             </div>
 
             {/* Right section: Property and Seller Details */}

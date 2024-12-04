@@ -18,31 +18,37 @@ const Filters = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-gray-700 h-20 w-full flex gap-7 items-center justify-center rounded-xl mb-14 p-6">
-            <label className='text-white' htmlFor="price">Price</label>
-            <input
-                type="number"
-                name="price"
-                value={filters.price || ''} // Ensure it works for falsy values
-                onChange={handleChange}
-                className="rounded-lg p-1"
-            />
-            <label className='text-white' htmlFor="location">Location</label>
-            <input
-                type="text"
-                name="location"
-                value={filters.location || ''}
-                onChange={handleChange}
-                className="rounded-lg p-1"
-            />
-            <label className='text-white' htmlFor="area">Area</label>
-            <input
-                type="number"
-                name="area"
-                value={filters.area || ''}
-                onChange={handleChange}
-                className="rounded-lg p-1"
-            />
+        <form onSubmit={handleSubmit} className="sticky top-10 bg-gray-700 h-[75vh] flex flex-col gap-4 w-[18vw] rounded p-4">
+            <div>
+                <label className='text-white' htmlFor="price">Price</label>
+                <input
+                    type="number"
+                    name="price"
+                    value={filters.price || ''} // Ensure it works for falsy values
+                    onChange={handleChange}
+                    className="rounded p-1"
+                />
+            </div>
+            <div>
+                <label className='text-white' htmlFor="location">Location</label>
+                <input
+                    type="text"
+                    name="location"
+                    value={filters.location || ''}
+                    onChange={handleChange}
+                    className="rounded p-1"
+                />
+            </div>
+            <div>
+                <label className='text-white' htmlFor="area">Area</label>
+                <input
+                    type="number"
+                    name="area"
+                    value={filters.area || ''}
+                    onChange={handleChange}
+                    className="rounded p-1"
+                />
+            </div>
             <button
                 type="submit"
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 duration-200"
