@@ -21,17 +21,22 @@ const listingSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    category: {
+        type: String,
+        enum: ['selling', 'renting'],
+        required: true 
+    },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users',
         required: true
     },
     images: {
-        type: [String], // Array of image URLs
-        required: true // Ensure images are provided
+        type: [String],
+        required: true 
     }
 });
 
-const listingModel = mongoose.model('listings',listingSchema);
+const listingModel = mongoose.model('listings', listingSchema);
 
 module.exports = listingModel;

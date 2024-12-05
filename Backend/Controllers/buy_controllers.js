@@ -1,6 +1,6 @@
 const userModel = require('../Models/userModel');
 const listingModel = require('../Models/listingModel');
-const mongoose = require('mongoose');
+
 
 async function getAllListings(req, res) {
     try {
@@ -15,12 +15,20 @@ async function getAllListings(req, res) {
 
 async function handleFilters(req, res) {
     try {
-        const { price, location, area } = req.body;
+        const { price, location, area, bedrooms, bathrooms, category } = req.body;
         console.log('Received filters:', req.body);
         let filter = {};
         
         if (price) {
             filter.price = { $lte: parseInt(price) };
+        }
+
+        if(bedrooms){
+            filter.bedrooms = {$lte: parseInt(bedrooms)};
+        }
+
+        if(bathrooms){
+            filter.bathrooms = {$lte: parseInt(bathrooms)};
         }
 
         if (location) {
@@ -29,6 +37,14 @@ async function handleFilters(req, res) {
 
         if (area) {
             filter.area = { $lte: parseInt(area) };
+        }
+
+        if(category){
+            if(category == 'buying'){
+                filter.category = 'selling';
+            }else {
+                filter.category = category;
+            }
         }
 
         console.log('Constructed filter:', filter);

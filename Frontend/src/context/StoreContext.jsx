@@ -13,6 +13,9 @@ const StoreContextProvider = ({ children }) => {
         price: '',
         location: '',
         area: '',
+        bedrooms: '',
+        bathrooms: '',
+        category: ''
     });
 
     const [userEmail, setUserEmail] = useState('');

@@ -66,7 +66,7 @@ const Single_Listing = () => {
         return <div>{error}</div>;
     }
 
-    const { location, price, bedrooms, bathrooms, area, images, createdBy } = listing || {};
+    const { location, price, bedrooms, bathrooms, area, images, createdBy, category } = listing || {};
 
     return (
         <div className='w-[90vw] mx-auto mt-[2.8rem] h-[75vh] flex justify-center items-center bg-slate-200'>
@@ -74,14 +74,24 @@ const Single_Listing = () => {
             {/* Left section: Property Image */}
             <div className='w-[45%] h-[100%] flex flex-col gap-2'>
                 <div className="h-[75%]">
-                    <img src={images[0]} className='h-[100%] w-[100%]' alt="Property" />
+                    <img src={images[index]} className='h-[100%] w-[100%]' alt="Property" />
                 </div>
-                <div className="h-[30%] border-2 border-red-500 flex justify-between bg-white">
-                    <div className={`w-[20%] h-[100%] border-2 border-green-500 ${index == 0 && 'bg-gray-100'}`} onClick={() => changeIndex(0)}>0</div>
-                    <div className={`w-[20%] h-[100%] border-2 border-green-500 ${index == 1 && 'bg-gray-100'}`} onClick={() => changeIndex(1)}>1</div>
-                    <div className={`w-[20%] h-[100%] border-2 border-green-500 ${index == 2 && 'bg-gray-100'}`} onClick={() => changeIndex(2)}>2</div>
-                    <div className={`w-[20%] h-[100%] border-2 border-green-500 ${index == 3 && 'bg-gray-100'}`} onClick={() => changeIndex(3)}>3</div>
-                    <div className={`w-[20%] h-[100%] border-2 border-green-500 ${index == 4 && 'bg-gray-100'}`} onClick={() => changeIndex(4)}>4</div>
+                <div className="h-[23.6%] flex justify-between bg-white">
+                    <div className={`w-[19%] h-[100%] ${index == 0 && 'bg-gray-100'}`} onClick={() => changeIndex(0)}>
+                        <img src={images[0]} alt="" className="h-[100%] w-[100%]" />
+                    </div>
+                    <div className={`w-[19%] h-[100%] ${index == 1 && 'bg-gray-100'}`} onClick={() => changeIndex(1)}>
+                        <img src={images[1]} alt="" className="h-[100%] w-[100%]" />
+                    </div>
+                    <div className={`w-[19%] h-[100%] ${index == 2 && 'bg-gray-100'}`} onClick={() => changeIndex(2)}>
+                        <img src={images[2]} alt="" className="h-[100%] w-[100%]" />
+                    </div>
+                    <div className={`w-[19%] h-[100%] ${index == 3 && 'bg-gray-100'}`} onClick={() => changeIndex(3)}>
+                        <img src={images[3]} alt="" className="h-[100%] w-[100%]" />
+                    </div>
+                    <div className={`w-[19%] h-[100%] ${index == 4 && 'bg-gray-100'}`} onClick={() => changeIndex(4)}>
+                        <img src={images[4]} alt="" className="h-[100%] w-[100%]" />
+                    </div>
                 </div>
             </div>
 
@@ -92,7 +102,10 @@ const Single_Listing = () => {
                 <div className="flex flex-col gap-2">
                     <FaRegBookmark size={40} onClick={() => handleAddToFavorites()} className="cursor-pointer active:scale-75 transition duration-100" />
                     <h1 className="text-[80px]">{location || 'N/A'}</h1>
-                    <span className="flex w-[115px] ml-2 px-1 rounded-sm bg-slate-200 gap-2 items-center justify-start"><SlTag /><span>${price || 'N/A'}</span></span>
+                    <div className="flex gap-5">
+                        <span className="flex w-[115px] ml-2 px-1 rounded-sm bg-slate-200 gap-2 items-center justify-start"><SlTag /><span>${price || 'N/A'}</span></span>
+                        <span>category: {category || 'N/A'}</span>
+                    </div>
                 </div>
 
                 {/* div-2 */}
