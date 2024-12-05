@@ -62,34 +62,46 @@ async function handleFilters(req, res) {
 
 async function updateListing(req, res) {
     try {
-        const { id } = req.params; 
-        const { url, location, bedrooms, bathrooms, price, area } = req.body; 
-        
-        // Check if all required fields are provided
-        if (!url || !location || bedrooms === undefined || bathrooms === undefined || price === undefined || area === undefined) {
-            return res.status(400).json({ success: false, message: "All fields are required" });
+        const { id } = req.params;
+        const { location, bedrooms, bathrooms, price, area, category } = req.body;
+        console.log(req.body);
+        // Find the listing by ID
+        const listing = await listingModel.findById(id);
+        if (!listing) {
+            return res.status(404).json({ 
+                success: false, 
+                message: "Listing not found. Please provide a valid ID." 
+            });
         }
 
-        const updatedListing = await listingModel.findByIdAndUpdate(
-            id, 
-            { url, location, bedrooms, bathrooms, price, area },
-            { new: true, runValidators: true }
-        );
+        if (location) listing.location = location;
+        if (bedrooms) listing.bedrooms = bedrooms;
+        if (bathrooms) listing.bathrooms = bathrooms;
+        if (price) listing.price = parseInt(price, 10);
+        if (area) listing.area = area;
+        if (category) listing.category = category;
 
-        if (!updatedListing) {
-            return res.status(404).json({ success: false, message: "Please enter a valid ID" });
+        const isUpdated = location || bedrooms || bathrooms || price || area || category;
+        if (isUpdated) {
+            await listing.save();
+        } else {
+            return res.status(400).json({ 
+                success: false, 
+                message: "No fields to update. Please provide valid fields." 
+            });
         }
 
         return res.status(200).json({
             success: true,
-            message: `Listing with id ${id} modified`,
-            updated_listing: updatedListing,
+            message: `Listing with id ${id} successfully updated.`,
+            updated_listing: listing,
         });
     } catch (error) {
         console.error('Error updating listing:', error);
         return res.status(500).json({ success: false, message: 'Server error' });
     }
 }
+
 
 async function getListingById(req, res) {
     try {

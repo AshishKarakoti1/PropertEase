@@ -1,10 +1,26 @@
 import React, { useContext } from 'react';
 import { StoreContext } from '../context/StoreContext';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { handleSuccess,handleError } from '../utils';
+import { handleSuccess, handleError } from '../utils';
+import { MdModeEdit } from "react-icons/md";
 
-const Listing = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
-    const { setMyListings } = useContext(StoreContext);
+const Listing = ({ id, url, location, bedrooms, bathrooms, area, price, category }) => {
+    const { setMyListings, currentListing, setCurrentListing } = useContext(StoreContext);
+    const navigate = useNavigate();
+    const handleOnEditClick = () => {
+        setCurrentListing({
+            id,
+            url,
+            location,
+            bedrooms,
+            bathrooms,
+            area,
+            price,
+            category
+        });
+        navigate(`/update/${id}`)
+    };
 
     const handleDeleteListing = async () => {
         try {
@@ -29,9 +45,11 @@ const Listing = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
     };
 
     return (
-        <div className="flex w-[90%] h-[250px] rounded overflow-hidden shadow-lg hover:shadow-xl cursor-pointer justify-between">
-
-            <img className="h-[250px] w-auto  object-cover" src={url} alt="Property Image" loading='lazy' />
+        <div className="flex w-[90%] h-[250px] rounded overflow-hidden shadow-lg hover:shadow-xl cursor-pointer justify-between relative">
+            <MdModeEdit
+                className='absolute top-0 right-0 z-10 h-[2.5rem] w-[2.5rem] rounded-full bg-blue-400 text-white shadow-md hover:scale-110 transition-transform duration-200 text-[0.3rem] p-2' onClick={handleOnEditClick}
+            />
+            <img className="h-[250px] w-auto object-cover" src={url} alt="Property Image" loading='lazy' />
 
             <div className="px-6 py-4 bg-white flex flex-col justify-evenly w-[50%]">
                 <div className='flex justify-between items-center'>
@@ -53,14 +71,13 @@ const Listing = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
                         <p className="mt-3 ml-2 text-lg font-medium text-gray-800">{`${area} sq m`}</p>
                     </div>
                 </div>
-                
             </div>
 
-            <div className="flex px-14 border-l-2 border-gray-200 h-[80%] justify-center items-center self-center">
+            <div className="flex flex-col px-14 border-l-2 border-gray-200 h-[80%] justify-center items-center self-center">
                 <img className='h-15 hover:scale-110 duration-200' src='delete-button.png' onClick={handleDeleteListing} alt="Delete Listing" />
             </div>
-
         </div>
+
     );
 };
 
