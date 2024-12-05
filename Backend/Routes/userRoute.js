@@ -1,11 +1,12 @@
 const express = require('express');
 const Router = express.Router();
-const { getMyListings, getFavorites, addToFavorites, deleteFromFavorites, getUserData, setProfilePhoto } = require('../Controllers/userControllers');
+const { getMyListings, getFavorites, addToFavorites, deleteFromFavorites, getUserData, setProfilePhoto, editUserData } = require('../Controllers/userControllers');
 const upload = require('../multerConfig');
 
 // Route to get user data
 Router.route('/')
-        .get(getUserData);
+        .get(getUserData)
+        .post(editUserData);
 
 // Route to set profile photo with middleware for file upload
 Router.route('/setPhoto')
