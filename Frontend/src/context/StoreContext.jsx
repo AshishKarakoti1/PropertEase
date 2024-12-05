@@ -22,6 +22,16 @@ const StoreContextProvider = ({ children }) => {
     const [myListings, setMyListings] = useState([]);
     const [myFavorites, setMyFavorites] = useState([]);
     const [user, setUser] = useState({});
+    const [currentListing, setCurrentListing] = useState({
+        id: '',
+        url: '',
+        location: '',
+        bedrooms: '',
+        bathrooms: '',
+        area: '',
+        price: '',
+        category: ''
+    })
 
     const getUserData = async (email) => {
         try {
@@ -129,6 +139,7 @@ const StoreContextProvider = ({ children }) => {
         myFavorites,
         user,
         userEmail,
+        currentListing,
         setUser,
         setFilters,
         applyFilters,
@@ -143,7 +154,8 @@ const StoreContextProvider = ({ children }) => {
         addToFavorites,
         deleteFromFavorites,
         getUserData,
-        setUserEmail
+        setUserEmail,
+        setCurrentListing
     };
 
     return (

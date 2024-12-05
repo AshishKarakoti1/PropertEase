@@ -23,7 +23,7 @@ const MyFavorites = () => {
                         <Listing
                             key={listing._id}
                             id={listing._id}
-                            url={listing.images[0]}
+                            url={listing.images[4]}
                             location={listing.location}
                             bedrooms={listing.bedrooms}
                             bathrooms={listing.bathrooms}

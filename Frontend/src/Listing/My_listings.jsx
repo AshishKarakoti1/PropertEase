@@ -16,25 +16,26 @@ const My_listings = () => {
 
     return (
         <div className='flex flex-col flex-grow gap-5'>
-        <h1 className='ml-20 text-5xl mt-5'>My Listings</h1>
-        <div className={styles.container}>
-            {myListings.length > 0 ? (
-                myListings.map((listing) => (
-                    <Listing
-                        key={listing._id}
-                        id={listing._id}
-                        url={listing.images[0]}
-                        location={listing.location}
-                        bedrooms={listing.bedrooms}
-                        bathrooms={listing.bathrooms}
-                        area={listing.area}
-                        price={listing.price}
-                    />
-                ))
-            ) : (
-                <p>No listings available</p>
-            )}
-        </div>
+            <h1 className='ml-20 text-5xl mt-5'>My Listings</h1>
+            <div className={styles.container}>
+                {myListings.length > 0 ? (
+                    myListings.map((listing) => (
+                        <Listing
+                            key={listing._id}
+                            id={listing._id}
+                            url={listing.images[4]}
+                            location={listing.location}
+                            bedrooms={listing.bedrooms}
+                            bathrooms={listing.bathrooms}
+                            area={listing.area}
+                            price={listing.price}
+                            category={listing.category}
+                        />
+                    ))
+                ) : (
+                    <p>No listings available</p>
+                )}
+            </div>
         </div>
     );
 }
