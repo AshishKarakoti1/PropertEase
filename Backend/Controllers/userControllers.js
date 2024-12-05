@@ -16,6 +16,40 @@ async function getUserData(req,res) {
     }
 }
 
+async function editUserData(req, res) {
+    try {
+        const { email } = req.query;
+        const { username, contactNumber } = req.body;
+
+        console.log(email);
+        console.log(req.body);
+
+        // Find the user with the provided email
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        if (username) {
+            user.username = username;
+        }
+        if (contactNumber) {
+            user.contactNumber = contactNumber;
+        }
+
+        if (username || contactNumber) {
+            await user.save();
+            return res.status(200).json({ success: true, message: "User details updated", user });
+        } else {
+            return res.status(400).json({ success: false, message: "No valid fields to update" });
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ success: false, message: 'Server error' });
+    }
+}
+
+
 async function getMyListings(req, res) {
     try {
         const { email } = req.query;
@@ -133,4 +167,4 @@ async function setProfilePhoto(req,res) {
 
 
 
-module.exports = { getMyListings , getFavorites , addToFavorites , deleteFromFavorites , getUserData ,setProfilePhoto};
+module.exports = { getMyListings , getFavorites , addToFavorites , deleteFromFavorites , getUserData ,setProfilePhoto , editUserData};

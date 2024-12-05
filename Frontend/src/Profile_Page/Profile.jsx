@@ -10,10 +10,19 @@ const Profile = () => {
     const token = localStorage.getItem('token');
 
     const [selectedFile, setSelectedFile] = useState(null);
+    const [userDetails, setUserDetails] = useState({
+        username: '',
+        contactNumber: ''
+    })
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
         console.log(selectedFile);
     };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUserDetails({ ...userDetails, [name]: value });
+        console.log(userDetails)
+    }
 
     useEffect(() => {
         if (token) {
@@ -50,6 +59,35 @@ const Profile = () => {
         }
     };
 
+    const handleUpdate = async () => {
+        try {
+            const response = await axios.post(
+                `http://localhost:9090/user/?email=${email}`,
+                {
+                    username: userDetails.username,
+                    contactNumber: userDetails.contactNumber,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+            if (response.data.success) {
+                setUser(response.data.user);
+                handleSuccess(response.data.message || 'User details updated successfully');
+            } else {
+                handleError(response.data.message || 'Failed to update user details');
+            }
+        } catch (error) {
+            console.error(error);
+            const errorMessage = error.response?.data?.message || 'Error updating details';
+            handleError(errorMessage);
+        }
+    };
+
+
+
 
     return (
         <div className='h-[100vh] flex-grow bg-[#D9D9D9]'>
@@ -64,14 +102,15 @@ const Profile = () => {
             <div className='h-[50%] w-[100%] flex items-center text-2xl pl-24 font-semibold'>
                 <div className='w-[50%] h-[80%] flex flex-col items-start justify-center'>
                     <div className='h-[25%] w-[40%]'>
-                        <p className='w-[100%] border-b-2 border-black pb-3'>{user?.username || "Username not available"}</p>
+                        <input className='w-[100%] border border-black h-[3.5rem] rounded-sm pt- pl-2 bg-gray-300 placeholder:text-gray-400 outline-none' placeholder={user?.username || "Username not available"} name='username' onChange={handleChange}></input>
                     </div>
                     <div className='h-[25%] w-[40%]'>
-                        <p className='w-[100%] border-b-2 border-black pb-3'>{user?.contactNumber || "Contact not available"}</p>
+                        <input className='w-[100%] border border-black h-[3.5rem] rounded-sm pt- pl-2 bg-gray-300 placeholder:text-gray-400 outline-none' placeholder={user?.contactNumber || "Contact not available"} name='contactNumber' onChange={handleChange}></input>
                     </div>
                     <div className='h-[25%] w-[40%]'>
                         <p className='w-[100%] border-b-2 border-black pb-3'>{user?.email || "Email not available"}</p>
                     </div>
+                    <button className='h-[3rem] w-[10rem] text-white rounded-md bg-orange-500' onClick={handleUpdate}>Save</button>
                 </div>
 
                 <div className='w-[50%] h-[80%] flex flex-col items-start mt-[70px]'>
