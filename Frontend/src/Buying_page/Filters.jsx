@@ -10,6 +10,7 @@ const Filters = () => {
             ...filters,
             [name]: value,
         });
+        console.log(filters);
     };
 
     const handleSubmit = (e) => {
@@ -18,11 +19,11 @@ const Filters = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="sticky top-10 bg-gray-700 h-[75vh] flex flex-col gap-4 w-[18vw] rounded p-4">
+        <form onSubmit={handleSubmit} className="sticky top-10 bg-gray-700 h-[80vh] flex flex-col gap-4 w-[18vw] rounded p-4">
             <div>
-                <label className='text-white' htmlFor="price">Price</label>
+                <label className='text-white' htmlFor="price">Max Price</label>
                 <input
-                    type="number"
+                    type="text"
                     name="price"
                     value={filters.price || ''} // Ensure it works for falsy values
                     onChange={handleChange}
@@ -40,7 +41,7 @@ const Filters = () => {
                 />
             </div>
             <div>
-                <label className='text-white' htmlFor="area">Area</label>
+                <label className='text-white' htmlFor="area">Max Area</label>
                 <input
                     type="number"
                     name="area"
@@ -49,6 +50,41 @@ const Filters = () => {
                     className="rounded p-1"
                 />
             </div>
+            <div>
+                <label className='text-white' htmlFor="area">Bedrooms</label>
+                <input
+                    type="number"
+                    name="bedrooms"
+                    value={filters.bedrooms || ''}
+                    onChange={handleChange}
+                    className="rounded p-1"
+                />
+            </div>
+            <div>
+                <label className='text-white' htmlFor="area">Bathrooms</label>
+                <input
+                    type="number"
+                    name="bathrooms"
+                    value={filters.bathrooms || ''}
+                    onChange={handleChange}
+                    className="rounded p-1"
+                />
+            </div>
+            <div className='flex items-center gap-4'>
+                <label htmlFor="category" className='text-white'>Category :</label>
+                <select
+                    id="category"
+                    name="category" // Bind the name to match the filters state property
+                    value={filters.category || ''} // Bind the value to filters.category
+                    onChange={handleChange} // Use the shared handleChange function
+                    className="border border-gray-300 rounded-md p-2"
+                >
+                    <option value="">All</option> {/* Empty value for 'All' */}
+                    <option value="buying">Buying</option>
+                    <option value="renting">Renting</option>
+                </select>
+            </div>
+
             <button
                 type="submit"
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 duration-200"

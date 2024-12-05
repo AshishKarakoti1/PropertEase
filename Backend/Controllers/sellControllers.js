@@ -3,10 +3,10 @@ const listingModel = require('../Models/listingModel');
 const userModel = require('../Models/userModel'); // Assuming you have a User model
 
 const createListing = async (req, res) => {
-    const { location, bedrooms, bathrooms, area, price, user_email } = req.body;
+    const { location, bedrooms, bathrooms, area, price, user_email, category } = req.body;
 
     // Check if required fields are provided
-    if (!location || !bedrooms || !bathrooms || !area || !price || !user_email) {
+    if (!location || !bedrooms || !bathrooms || !area || !price || !user_email || !category) {
         return res.json({ success: false, message: "Incomplete details" });
     }
 
@@ -32,6 +32,7 @@ const createListing = async (req, res) => {
             bathrooms,
             area,
             price,
+            category,
             images: imageUrls, // Store all image URLs in the images array
             createdBy: user._id // Use the user's ObjectId
         });

@@ -16,8 +16,10 @@ const Selling_form = () => {
         bedrooms: '',
         bathrooms: '',
         area: '',
-        price: ''
+        price: '',
+        category: 'selling'
     });
+
 
     const navigate = useNavigate();
     const { setData, setLoading, loading } = useContext(StoreContext);
@@ -29,72 +31,74 @@ const Selling_form = () => {
         } else {
             setFormData({ ...formData, [name]: value }); // For text/number input
         }
+        console.log(formData);
     };
 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { location, bedrooms, bathrooms, area, price, images } = formData;
-    setLoading(true);
-    const token = localStorage.getItem('token');
-    const user_email = localStorage.getItem('user_email');
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const { location, bedrooms, bathrooms, area, price, images, category } = formData;
+        setLoading(true);
+        const token = localStorage.getItem('token');
+        const user_email = localStorage.getItem('user_email');
 
-    if (!token) {
-        handleError("Please login to sell your estate");
-        setTimeout(() => {
-            navigate('/login');
-        }, 1500);
-        setLoading(false);
-        return;
-    }
-
-    if (location === '' || bedrooms === '' || bathrooms === '' || area === '' || price === '' || images.length === 0) {
-        handleError("Please fill out all required fields."); // Trigger toast
-        setLoading(false);
-        return; // Exit early
-    }
-
-    const formDataObj = new FormData();
-    formDataObj.append('location', location);
-    formDataObj.append('bedrooms', parseInt(bedrooms, 10)); // Convert to integer
-    formDataObj.append('bathrooms', parseInt(bathrooms, 10)); // Convert to integer
-    formDataObj.append('area', parseInt(area, 10)); // Convert to integer
-    formDataObj.append('price', parseInt(price, 10)); // Convert to integer
-    formDataObj.append('token', token);
-    formDataObj.append('user_email', user_email);
-
-    if (images) {
-        for (let i = 0; i < images.length; i++) {
-            formDataObj.append('images', images[i]);
+        if (!token) {
+            handleError("Please login to sell your estate");
+            setTimeout(() => {
+                navigate('/login');
+            }, 1500);
+            setLoading(false);
+            return;
         }
-    }
 
-    try {
-        const URL = "http://localhost:9090/sell";
-        const response = await axios.post(URL, formDataObj, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${token}`,
-            },
-        });
+        if (location === '' || bedrooms === '' || bathrooms === '' || area === '' || price === '' || images.length === 0) {
+            handleError("Please fill out all required fields."); // Trigger toast
+            setLoading(false);
+            return; // Exit early
+        }
 
-        console.log("API response:", response.data); // Debugging line
+        const formDataObj = new FormData();
+        formDataObj.append('location', location);
+        formDataObj.append('bedrooms', parseInt(bedrooms, 10)); // Convert to integer
+        formDataObj.append('bathrooms', parseInt(bathrooms, 10)); // Convert to integer
+        formDataObj.append('area', parseInt(area, 10)); // Convert to integer
+        formDataObj.append('price', parseInt(price, 10)); // Convert to integer
+        formDataObj.append('token', token);
+        formDataObj.append('user_email', user_email);
+        formDataObj.append('category', category);
 
-        const { success, updatedListings } = response.data;
+        if (images) {
+            for (let i = 0; i < images.length; i++) {
+                formDataObj.append('images', images[i]);
+            }
+        }
 
-        if (success) {
-            setData(updatedListings);
-            handleSuccess("Your property has been listed"); // Show success toast
-            navigate('/buy');
-        } else {
+        try {
+            const URL = "http://localhost:9090/sell";
+            const response = await axios.post(URL, formDataObj, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            console.log("API response:", response.data); // Debugging line
+
+            const { success, updatedListings } = response.data;
+
+            if (success) {
+                setData(updatedListings);
+                handleSuccess("Your property has been listed"); // Show success toast
+                navigate('/buy');
+            } else {
+                handleError("Failed to add listing"); // Show error toast
+            }
+        } catch (err) {
+            console.error("Submit error:", err.response || err); // More detailed error log
             handleError("Failed to add listing"); // Show error toast
+        } finally {
+            setLoading(false); // Ensure loading state is reset
         }
-    } catch (err) {
-        console.error("Submit error:", err.response || err); // More detailed error log
-        handleError("Failed to add listing"); // Show error toast
-    } finally {
-        setLoading(false); // Ensure loading state is reset
-    }
-};
+    };
 
 
 
@@ -174,7 +178,7 @@ const handleSubmit = async (e) => {
                                 <label className={styles.label} htmlFor="price">Price*</label>
                                 <input
                                     className={styles.input}
-                                    type="number"
+                                    type="text"
                                     id="price"
                                     placeholder="Enter price"
                                     name="price"
@@ -183,6 +187,21 @@ const handleSubmit = async (e) => {
                                 />
                             </div>
                         </div>
+
+                        <div className='flex items-center gap-4'>
+                            <label htmlFor="category">Category :</label>
+                            <select
+                                id="category"
+                                name="category"
+                                value={formData.category}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded-md p-2"
+                            >
+                                <option value="selling">Selling</option>
+                                <option value="renting">Renting</option>
+                            </select>
+                        </div>
+
 
                         <div className={styles.formGroup}>
                             <label className={styles.label} htmlFor="images">Property Images*</label>
@@ -197,10 +216,11 @@ const handleSubmit = async (e) => {
                             />
                         </div>
 
+
                         <button type="submit" className={styles.button}>Submit</button>
                     </form>
-                </div>
-            </div>
+                </div >
+            </div >
             <ToastContainer /> {/* Toast container to display toasts */}
         </>
     );
