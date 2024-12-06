@@ -54,7 +54,7 @@ const Listing = ({ id, url, location, bedrooms, bathrooms, area, price, category
             <div className="px-6 py-4 bg-white flex flex-col justify-evenly w-[50%]">
                 <div className='flex justify-between items-center'>
                     <h2 className="text-[50px] font-bold text-blue-800">{location}</h2>
-                    <p className="text-[35px] font-extrabold text-blue-800">{`${price} $ `}</p>
+                    {category == 'selling' ? <p className="text-[35px] font-extrabold text-blue-800">{`${price} $ `}</p> : <p className="text-[35px] font-extrabold text-blue-800">{`${price} $ P/M`}</p>}
                 </div>
 
                 <div className="flex justify-between gap-10 ">

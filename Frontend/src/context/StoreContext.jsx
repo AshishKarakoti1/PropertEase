@@ -8,6 +8,8 @@ const StoreContextProvider = ({ children }) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1); // Current page
+    const [totalPages, setTotalPages] = useState(0);
 
     const [filters, setFilters] = useState({
         price: '',
@@ -92,18 +94,24 @@ const StoreContextProvider = ({ children }) => {
         }
     }
 
-    // General fetch function for other listings
-    const fetchListings = async () => {
+    const fetchListings = async (page = 1) => {
         setLoading(true);
+        setError(null);
+
         try {
-            const response = await axios.get('http://localhost:9090/buy');
-            setData(response.data.listings || []);
+            const response = await axios.get(`http://localhost:9090/buy?page=${page}`);
+            const { listings, totalPages: total, currentPage: current } = response.data;
+
+            setData(listings || []);
+            setTotalPages(total || 0);
+            setCurrentPage(current || 1);
         } catch (err) {
-            setError('Failed to fetch data.');
+            setError("Failed to fetch data.");
         } finally {
             setLoading(false);
         }
     };
+
 
 
     const applyFilters = async () => {
@@ -140,6 +148,8 @@ const StoreContextProvider = ({ children }) => {
         user,
         userEmail,
         currentListing,
+        currentPage,
+        totalPages,
         setUser,
         setFilters,
         applyFilters,
@@ -155,7 +165,8 @@ const StoreContextProvider = ({ children }) => {
         deleteFromFavorites,
         getUserData,
         setUserEmail,
-        setCurrentListing
+        setCurrentListing,
+        setCurrentPage
     };
 
     return (

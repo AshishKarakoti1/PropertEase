@@ -10,7 +10,7 @@ const sendEmail = (req, res) => {
     const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
     sendSmtpEmail.subject = subject;
     sendSmtpEmail.htmlContent = text;
-    sendSmtpEmail.sender = { email: 'sk8rdaksh@gmail.com' };
+    sendSmtpEmail.sender = { email: process.env.BREVO_EMAIL };
     sendSmtpEmail.to = [{ email: to }];
 
     apiInstance.sendTransacEmail(sendSmtpEmail)

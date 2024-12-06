@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleSuccess, handleError } from '../utils';
 import axios from 'axios';
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa6";
 import { ToastContainer } from 'react-toastify';
 
 const SignUp = () => {
 
     const navigate = useNavigate();
 
+    const [hidden, setHidden] = useState(true);
     const [signUpDetails, setSignUpDetails] = useState({
         first_name: '',
         last_name: '',
@@ -22,51 +25,51 @@ const SignUp = () => {
     };
 
     const handleSignUp = async (e) => {
-    e.preventDefault();
-    const { first_name, last_name, email, password, contactNumber } = signUpDetails;
+        e.preventDefault();
+        const { first_name, last_name, email, password, contactNumber } = signUpDetails;
 
-    // Validate required fields
-    if (!first_name || !last_name || !email || !password || !contactNumber) {
-        return handleError('All fields are required');
-    }
-
-    // Generate the username
-    const username = `${first_name} ${last_name}`;
-
-    console.log('Payload being sent:', { username, email, password, contactNumber }); // Log the payload
-
-    try {
-        const url = "http://localhost:9090/auth/signup";
-        const response = await axios.post(url, {
-            username,
-            email,
-            password,
-            contactNumber
-        }, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        const result = await response.data;
-        const { message, success } = result;
-
-        if (success) {
-            handleSuccess("Sign Up successful");
-            setTimeout(() => {
-                navigate('/login');
-            }, 1000);
-        } else {
-            handleError(message);
+        // Validate required fields
+        if (!first_name || !last_name || !email || !password || !contactNumber) {
+            return handleError('All fields are required');
         }
-    } catch (err) {
-        if (err.response) {
-            handleError(err.response.data.message || "Sign Up failed");
-        } else {
-            handleError("Sign Up failed");
+
+        // Generate the username
+        const username = `${first_name} ${last_name}`;
+
+        console.log('Payload being sent:', { username, email, password, contactNumber }); // Log the payload
+
+        try {
+            const url = "http://localhost:9090/auth/signup";
+            const response = await axios.post(url, {
+                username,
+                email,
+                password,
+                contactNumber
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const result = await response.data;
+            const { message, success } = result;
+
+            if (success) {
+                handleSuccess("Sign Up successful");
+                setTimeout(() => {
+                    navigate('/login');
+                }, 1000);
+            } else {
+                handleError(message);
+            }
+        } catch (err) {
+            if (err.response) {
+                handleError(err.response.data.message || "Sign Up failed");
+            } else {
+                handleError("Sign Up failed");
+            }
         }
-    }
-};
+    };
 
 
     return (
@@ -87,7 +90,7 @@ const SignUp = () => {
                             <input
                                 type="text"
                                 id="first-name"
-                                className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md"
+                                className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md outline-gray-300"
                                 placeholder="First Name"
                                 name='first_name'
                                 onChange={handleChange}
@@ -98,7 +101,7 @@ const SignUp = () => {
                             <input
                                 type="text"
                                 id="last-name"
-                                className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md"
+                                className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md outline-gray-300"
                                 placeholder="Last Name"
                                 name='last_name'
                                 onChange={handleChange}
@@ -111,7 +114,7 @@ const SignUp = () => {
                         <input
                             type="email"
                             id="email"
-                            className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md"
+                            className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md outline-gray-300"
                             placeholder="Enter email"
                             name='email'
                             onChange={handleChange}
@@ -123,7 +126,7 @@ const SignUp = () => {
                         <input
                             type="text"
                             id="contact-number"
-                            className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md"
+                            className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md outline-gray-300"
                             placeholder="Enter contact number"
                             name='contactNumber'
                             onChange={handleChange}
@@ -132,14 +135,17 @@ const SignUp = () => {
 
                     <div>
                         <label htmlFor="password" className="sr-only">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md"
-                            placeholder="Enter password"
-                            name='password'
-                            onChange={handleChange}
-                        />
+                        <div className='flex items-center relative'>
+                            <input
+                                type={hidden ? 'password' : 'text'}
+                                id="password"
+                                className="w-full rounded-lg border-2 border-gray-200 p-2 text-sm shadow-md outline-gray-300"
+                                placeholder="Enter password"
+                                name='password'
+                                onChange={handleChange}
+                            />
+                            {hidden ? <FaEye className='absolute right-3 cursor-pointer' onClick={() => setHidden(false)} /> : <FaEyeSlash className='absolute right-3 cursor-pointer' onClick={() => setHidden(true)} />}
+                        </div>
                     </div>
 
                     <button

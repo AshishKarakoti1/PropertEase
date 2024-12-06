@@ -76,20 +76,20 @@ const Single_Listing = () => {
                 <div className="h-[75%]">
                     <img src={images[index]} className='h-[100%] w-[100%]' alt="Property" />
                 </div>
-                <div className="h-[23.6%] flex justify-between bg-white">
-                    <div className={`w-[19%] h-[100%] ${index == 0 && 'bg-gray-100'}`} onClick={() => changeIndex(0)}>
+                <div className="h-[23.6%] flex justify-between">
+                    <div className={`w-[19%] h-[100%] ${index == 0 && 'bg-gray-100 border-2 border-black'} cursor-pointer`} onClick={() => changeIndex(0)}>
                         <img src={images[0]} alt="" className="h-[100%] w-[100%]" />
                     </div>
-                    <div className={`w-[19%] h-[100%] ${index == 1 && 'bg-gray-100'}`} onClick={() => changeIndex(1)}>
+                    <div className={`w-[19%] h-[100%] ${index == 1 && 'bg-gray-100 border-2 border-black'} cursor-pointer`} onClick={() => changeIndex(1)}>
                         <img src={images[1]} alt="" className="h-[100%] w-[100%]" />
                     </div>
-                    <div className={`w-[19%] h-[100%] ${index == 2 && 'bg-gray-100'}`} onClick={() => changeIndex(2)}>
+                    <div className={`w-[19%] h-[100%] ${index == 2 && 'bg-gray-100 border-2 border-black'} cursor-pointer`} onClick={() => changeIndex(2)}>
                         <img src={images[2]} alt="" className="h-[100%] w-[100%]" />
                     </div>
-                    <div className={`w-[19%] h-[100%] ${index == 3 && 'bg-gray-100'}`} onClick={() => changeIndex(3)}>
+                    <div className={`w-[19%] h-[100%] ${index == 3 && 'bg-gray-100 border-2 border-black'} cursor-pointer`} onClick={() => changeIndex(3)}>
                         <img src={images[3]} alt="" className="h-[100%] w-[100%]" />
                     </div>
-                    <div className={`w-[19%] h-[100%] ${index == 4 && 'bg-gray-100'}`} onClick={() => changeIndex(4)}>
+                    <div className={`w-[19%] h-[100%] ${index == 4 && 'bg-gray-100 border-2 border-black'} cursor-pointer`} onClick={() => changeIndex(4)}>
                         <img src={images[4]} alt="" className="h-[100%] w-[100%]" />
                     </div>
                 </div>
@@ -103,7 +103,7 @@ const Single_Listing = () => {
                     <FaRegBookmark size={40} onClick={() => handleAddToFavorites()} className="cursor-pointer active:scale-75 transition duration-100" />
                     <h1 className="text-[80px]">{location || 'N/A'}</h1>
                     <div className="flex gap-5">
-                        <span className="flex w-[115px] ml-2 px-1 rounded-sm bg-slate-200 gap-2 items-center justify-start"><SlTag /><span>${price || 'N/A'}</span></span>
+                        {category == 'selling' ? <span className="flex w-[135px] ml-2 px-1 rounded-sm bg-slate-200 gap-2 items-center justify-start"><SlTag /><span>${price || 'N/A'}</span></span> : <span className="flex w-[165px] ml-2 px-1 rounded-sm bg-slate-200 gap-2 items-center justify-start"><SlTag /><span>${price || 'N/A'} P/M</span></span>}
                         <span>category: {category || 'N/A'}</span>
                     </div>
                 </div>
