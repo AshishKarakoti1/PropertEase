@@ -34,6 +34,10 @@ const Single_Listing = () => {
         navigate('/contact');
     }
 
+    const handleMortgage = (amount) => {
+        navigate(`/mortgage-calculator?id=${id}&price=${amount}`)
+    }
+
     // Fetch listing details
     const fetchDetails = async () => {
         try {
@@ -135,8 +139,9 @@ const Single_Listing = () => {
 
                 </div>
 
-                <div className="ml-2">
-                    <button className="bg-slate-300 px-5 py-2 rounded-sm active:bg-slate-400" onClick={handleContact}>CONTACT OWNER</button>
+                <div className="flex gap-2 w-[100%]">
+                    <button className="bg-slate-300 px-4 py-2 rounded-sm active:bg-slate-400" onClick={handleContact}>CONTACT OWNER</button>
+                    <button className="bg-slate-300 px-4 py-2 rounded-sm active:bg-slate-400" onClick={() => { handleMortgage(price) }}>CALCULATE MORTAGE</button>
                 </div>
 
             </div>

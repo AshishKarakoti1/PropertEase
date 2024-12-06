@@ -11,8 +11,10 @@ import Profile_Page from './Profile_Page/Profile_Page';
 import Side_Bar from './Profile_Page/Side_Bar';
 import Email_Page from './EmailPage/Email_Page';
 import Edit_Page from './EditListing/Edit_Page';
+import MortgagePage from './MortgagePage/MortgagePage';
 
 const App = () => {
+
   const location = useLocation();
 
   // Define the routes where the sidebar should be shown
@@ -37,6 +39,7 @@ const App = () => {
           <Route path='/profile' element={<Profile_Page />} />
           <Route path='/contact' element={<Email_Page />} />
           <Route path='/update/:id' element={<Edit_Page />} />
+          <Route path='/mortgage-calculator' element={<MortgagePage />} />
         </Routes>
       </div>
     </div>

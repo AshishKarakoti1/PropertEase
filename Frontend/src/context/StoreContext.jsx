@@ -114,13 +114,17 @@ const StoreContextProvider = ({ children }) => {
 
 
 
-    const applyFilters = async () => {
+    const applyFilters = async (page = 1) => {
         console.log(filters);
         setLoading(true);
+
         try {
-            const response = await axios.post('http://localhost:9090/buy', filters);
-            setData(response.data.filteredListings || []);
-            console.log('Filtered Data:', response.data.filteredListings);
+            const response = await axios.post(`http://localhost:9090/buy?page=${page}`, filters);
+            const { filteredListings, totalPages: total, currentPage: current } = response.data;
+
+            setData(filteredListings || []);
+            setTotalPages(total || 0);
+            setCurrentPage(current || 1);
         } catch (err) {
             setError('Error filtering data.');
             console.error('Error filtering data:', err);
@@ -129,14 +133,19 @@ const StoreContextProvider = ({ children }) => {
         }
     };
 
+
     const clearFilters = async () => {
         setFilters({
             price: '',
             location: '',
             area: '',
+            bedrooms: '',
+            bathrooms: '',
+            category: ''
         });
         await fetchListings(); // Reuse fetch function
     };
+
 
     const contextValue = {
         data,
