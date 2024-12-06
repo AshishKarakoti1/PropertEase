@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { StoreContext } from '../context/StoreContext';
 import axios from 'axios';
 
-const Listing = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
+const Listing = ({ id, url, location, bedrooms, bathrooms, area, price, category }) => {
 
     const email = localStorage.getItem('user_email');
-    const {deleteFromFavorites} = useContext(StoreContext);
+    const { deleteFromFavorites } = useContext(StoreContext);
 
     const handleDeleteFromFavorites = () => {
-        deleteFromFavorites(email,id);
+        deleteFromFavorites(email, id);
     }
 
     return (
@@ -19,7 +19,7 @@ const Listing = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
             <div className="px-6 py-4 bg-white flex flex-col justify-evenly w-[50%]">
                 <div className='flex justify-between items-center'>
                     <h2 className="text-[50px] font-bold text-blue-800">{location}</h2>
-                    <p className="text-[35px] font-extrabold text-blue-800">{`${price} $ `}</p>
+                    {category == 'selling' ? <p className="text-[35px] font-extrabold text-blue-800">{`${price} $ `}</p> : <p className="text-[35px] font-extrabold text-blue-800">{`${price} $ P/M`}</p>}
                 </div>
 
                 <div className="flex justify-between gap-10 ">
@@ -36,11 +36,11 @@ const Listing = ({ id, url, location, bedrooms, bathrooms, area, price }) => {
                         <p className="mt-3 ml-2 text-lg font-medium text-gray-800">{`${area} sq m`}</p>
                     </div>
                 </div>
-                
+
             </div>
 
             <div className="flex px-14 border-l-2 border-gray-200 h-[80%] justify-center items-center self-center">
-                <img className='h-15 hover:scale-110 duration-200' src='delete-button.png' alt="Delete Listing" onClick={()=>handleDeleteFromFavorites()}/>
+                <img className='h-15 hover:scale-110 duration-200' src='delete-button.png' alt="Delete Listing" onClick={() => handleDeleteFromFavorites()} />
             </div>
 
         </div>

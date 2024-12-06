@@ -4,8 +4,11 @@ const listingModel = require('../Models/listingModel');
 
 async function getAllListings(req, res) {
     try {
-        const listings = await listingModel.find();
-        res.status(200).json({ success: true, listings });
+        const page = parseInt(req.query.page) || 1;
+        const limit = 6;
+        const listings = await listingModel.find().skip((page - 1) * limit).limit(limit);
+        const totalListings = await listingModel.countDocuments();
+        res.status(200).json({ success: true, listings, totalListings, totalPages: Math.ceil(totalListings / limit),  currentPage: page});
     } catch (error) {
         console.error('Error fetching all listings:', error);
         res.status(500).json({ success: false, message: 'Server error' });

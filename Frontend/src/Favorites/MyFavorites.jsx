@@ -29,6 +29,7 @@ const MyFavorites = () => {
                             bathrooms={listing.bathrooms}
                             area={listing.area}
                             price={listing.price}
+                            category={listing.category}
                         />
                     ))
                 ) : (

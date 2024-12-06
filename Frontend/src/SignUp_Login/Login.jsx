@@ -2,29 +2,31 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import {handleError , handleSuccess} from '../utils';
+import { handleError, handleSuccess } from '../utils';
 import { ToastContainer } from 'react-toastify';
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa6";
 
 const Login = () => {
 
     const navigate = useNavigate();
-
-    const [loginDetails , setLoginDetails] = useState({
-        email:'',password:''
+    const [hidden, setHidden] = useState(true);
+    const [loginDetails, setLoginDetails] = useState({
+        email: '', password: ''
     });
 
-    const handleChange =(e) => {
-        const {name,value} = e.target;
-        setLoginDetails({...loginDetails,[name]:value});
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setLoginDetails({ ...loginDetails, [name]: value });
     }
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        
+
         const { email, password } = loginDetails;
 
-        if (!email || !password) return handleError('All fields are required');    
+        if (!email || !password) return handleError('All fields are required');
         try {
             const url = "http://localhost:9090/auth/login";
             const response = await axios.post(url, { email, password }, {
@@ -80,7 +82,7 @@ const Login = () => {
                             <div className="relative">
                                 <input
                                     type="email"
-                                    className="w-full rounded-lg border-2 border-gray-200 p-3 pe-12 text-sm shadow-md"
+                                    className="w-full rounded-lg border-2 border-gray-200 p-3 pe-12 text-sm shadow-md outline-gray-300"
                                     placeholder="Enter email"
                                     name='email'
                                     onChange={handleChange}
@@ -90,15 +92,16 @@ const Login = () => {
 
                         <div>
                             <label htmlFor="password" className="sr-only">Password</label>
-
-                            <div className="relative">
+                            <div className='flex items-center relative'>
                                 <input
-                                    type="password"
-                                    className="w-full rounded-lg border-2 border-gray-200 p-3 pe-12 text-sm shadow-md"
+                                    type={hidden ? 'password' : 'text'}
+                                    id="password"
+                                    className="w-full rounded-lg border-2 border-gray-200 p-3 pe-12 outline-gray-300 text-sm shadow-md"
                                     placeholder="Enter password"
                                     name='password'
                                     onChange={handleChange}
                                 />
+                                {hidden ? <FaEye className='absolute right-3 cursor-pointer' onClick={() => setHidden(false)} /> : <FaEyeSlash className='absolute right-3 cursor-pointer' onClick={() => setHidden(true)} />}
                             </div>
                         </div>
 
@@ -114,7 +117,7 @@ const Login = () => {
                             <Link to={'/signup'} className='no-underline'> Sign up</Link>
                         </p>
                     </form>
-                    <ToastContainer /> 
+                    <ToastContainer />
                 </div>
             </div>
         </div>

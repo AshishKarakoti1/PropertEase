@@ -6,10 +6,10 @@ import Error from './Error';
 import styles from './postlist.module.css';
 
 const PostList = () => {
-    const { data, loading, error, fetchListings } = useContext(StoreContext);
+    const { data, loading, error, fetchListings, totalPages, currentPage, setCurrentPage } = useContext(StoreContext);
     useEffect(() => {
-        fetchListings();
-    }, []);
+        fetchListings(currentPage);
+    }, [currentPage]);
 
     if (loading) {
         return <div className='flex items-center justify-center'><Loading /></div>;
@@ -23,20 +23,48 @@ const PostList = () => {
         return <div className='h-[40rem] w-[70rem] flex items-center justify-center'><p className='font-bold text-[3rem] text-blue-400'>No listings Found</p></div>
     }
 
+    const handlePreviousPage = () => {
+        if (currentPage > 1) setCurrentPage((prevPage) => prevPage - 1);
+    };
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) setCurrentPage((prevPage) => prevPage + 1);
+    };
+
     return (
-        <div className={styles.postlist}>
-            {data.map((listing) => (
-                <Post
-                    key={listing._id}
-                    id={listing._id}
-                    url={listing.images[4]}
-                    location={listing.location}
-                    bedrooms={listing.bedrooms}
-                    bathrooms={listing.bathrooms}
-                    area={listing.area}
-                    price={listing.price}
-                />
-            ))}
+        <div className='flex flex-col'>
+            <div className={styles.postlist}>
+                {data.map((listing) => (
+                    <Post
+                        key={listing._id}
+                        id={listing._id}
+                        url={listing.images[4]}
+                        location={listing.location}
+                        bedrooms={listing.bedrooms}
+                        bathrooms={listing.bathrooms}
+                        area={listing.area}
+                        price={listing.price}
+                        category={listing.category}
+                    />
+                ))}
+            </div>
+            <div className='w-[40%] h-[3rem] flex justify-between items-center mt-4 mx-auto'>
+                <button
+                    disabled={currentPage === 1}
+                    onClick={handlePreviousPage}
+                    className='px-4 py-2 text-white bg-blue-400 rounded-sm disabled:opacity-50'
+                >
+                    Previous
+                </button>
+                <span>Page {currentPage} of {totalPages}</span>
+                <button
+                    disabled={currentPage === totalPages}
+                    onClick={handleNextPage}
+                    className='px-4 py-2 text-white bg-blue-400 rounded-sm disabled:opacity-50'
+                >
+                    Next
+                </button>
+            </div>
         </div>
     );
 }
