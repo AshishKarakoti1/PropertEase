@@ -19,45 +19,33 @@ async function getAllListings(req, res) {
 async function handleFilters(req, res) {
     try {
         const { price, location, area, bedrooms, bathrooms, category } = req.body;
-        console.log('Received filters:', req.body);
+        const page = parseInt(req.query.page) || 1;
+        const limit = 6;
+
         let filter = {};
-        
-        if (price) {
-            filter.price = { $lte: parseInt(price) };
+        if (price) filter.price = { $lte: parseInt(price) };
+        if (bedrooms) filter.bedrooms = { $lte: parseInt(bedrooms) };
+        if (bathrooms) filter.bathrooms = { $lte: parseInt(bathrooms) };
+        if (location) filter.location = { $regex: new RegExp(location, 'i') };
+        if (area) filter.area = { $lte: parseInt(area) };
+        if (category) {
+            filter.category = category === 'buying' ? 'selling' : category;
         }
 
-        if(bedrooms){
-            filter.bedrooms = {$lte: parseInt(bedrooms)};
-        }
+        const totalListings = await listingModel.countDocuments(filter);
+        const filteredListings = await listingModel.find(filter).skip((page - 1) * limit).limit(limit);
 
-        if(bathrooms){
-            filter.bathrooms = {$lte: parseInt(bathrooms)};
-        }
-
-        if (location) {
-            filter.location = { $regex: new RegExp(location, 'i') };
-        }
-
-        if (area) {
-            filter.area = { $lte: parseInt(area) };
-        }
-
-        if(category){
-            if(category == 'buying'){
-                filter.category = 'selling';
-            }else {
-                filter.category = category;
-            }
-        }
-
-        console.log('Constructed filter:', filter);
-
-        const filteredListings = await listingModel.find(filter);
-
-        res.status(200).json({ success: true, message: "Listings filtered successfully", filteredListings });
+        res.status(200).json({
+            success: true,
+            message: "Listings filtered successfully",
+            filteredListings,
+            totalListings,
+            totalPages: Math.ceil(totalListings / limit),
+            currentPage: page
+        });
     } catch (error) {
         console.error('Error fetching listings:', error);
-        return res.status(500).json({ success: false, error: 'Server error' });
+        res.status(500).json({ success: false, error: 'Server error' });
     }
 }
 

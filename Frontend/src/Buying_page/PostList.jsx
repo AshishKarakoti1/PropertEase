@@ -6,29 +6,46 @@ import Error from './Error';
 import styles from './postlist.module.css';
 
 const PostList = () => {
-    const { data, loading, error, fetchListings, totalPages, currentPage, setCurrentPage } = useContext(StoreContext);
+    const { data, loading, error, fetchListings, totalPages, currentPage, setCurrentPage, filters, applyFilters } = useContext(StoreContext);
+
     useEffect(() => {
-        fetchListings(currentPage);
-    }, [currentPage]);
+        if (filters.price || filters.location || filters.area || filters.bedrooms || filters.bathrooms || filters.category) {
+            applyFilters(currentPage);
+        } else {
+            fetchListings(currentPage);
+        }
+    }, [currentPage, filters]);
 
     if (loading) {
-        return <div className='flex items-center justify-center'><Loading /></div>;
+        return <div className='flex items-center justify-center w-[69.5%]'><Loading /></div>;
     }
 
     if (error) {
         return <Error />;
     }
 
-    if (data.length == 0) {
-        return <div className='h-[40rem] w-[70rem] flex items-center justify-center'><p className='font-bold text-[3rem] text-blue-400'>No listings Found</p></div>
+    if (data.length === 0) {
+        return <div className='h-[40rem] w-[70rem] flex items-center justify-center'><p className='font-bold text-[3rem] text-blue-400'>No listings Found</p></div>;
     }
 
     const handlePreviousPage = () => {
-        if (currentPage > 1) setCurrentPage((prevPage) => prevPage - 1);
+        if (currentPage > 1) {
+            setCurrentPage((prevPage) => {
+                const newPage = prevPage - 1;
+                filters ? applyFilters(newPage) : fetchListings(newPage);
+                return newPage;
+            });
+        }
     };
 
     const handleNextPage = () => {
-        if (currentPage < totalPages) setCurrentPage((prevPage) => prevPage + 1);
+        if (currentPage < totalPages) {
+            setCurrentPage((prevPage) => {
+                const newPage = prevPage + 1;
+                filters ? applyFilters(newPage) : fetchListings(newPage);
+                return newPage;
+            });
+        }
     };
 
     return (
