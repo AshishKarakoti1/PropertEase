@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { StoreContext } from '../context/StoreContext';
 
 const Filters = () => {
-    const { filters, setFilters, clearFilters } = useContext(StoreContext);
+    const { filters, setFilters, clearFilters, applyFilters, currentPage } = useContext(StoreContext);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -79,7 +79,12 @@ const Filters = () => {
                     <option value="renting">Renting</option>
                 </select>
             </div>
-
+            <button
+                type="button"
+                onClick={() => applyFilters(currentPage)}
+                className="bg-blue-500 text-white px-2 py-2 rounded  hover:bg-gray-600 duration-200"
+            > Filter
+            </button>
             <button
                 type="button"
                 onClick={clearFilters}

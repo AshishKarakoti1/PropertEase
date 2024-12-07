@@ -11,13 +11,13 @@ const MiddleSection = () => {
 
     let user = localStorage.getItem('loggedInUser');
 
-    if(!user) user = "Guest User";
+    if (!user) user = "Guest User";
 
     const navigate = useNavigate();
 
     useEffect(() => {
         const typed = new Typed(el.current, {
-            strings: ['Buying', 'Selling'],  // Text strings to be typed
+            strings: ['Buying', 'Selling', 'Renting'],  // Text strings to be typed
             typeSpeed: 100,            // Speed of typing in milliseconds
             backSpeed: 100,            // Speed of backspacing
             loop: true,               // Loop the typing effect
@@ -63,6 +63,7 @@ const MiddleSection = () => {
                     <button
                         type="button"
                         className={`${styles.navBtns}`}
+                        onClick={() => navigate('/mortgage-calculator')}
                     >
                         Calculate Mortage
                     </button>
