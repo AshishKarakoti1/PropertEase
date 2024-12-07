@@ -14,7 +14,7 @@ const PostList = () => {
         } else {
             fetchListings(currentPage);
         }
-    }, [currentPage, filters]);
+    }, [currentPage, filters.location, filters.bedrooms, filters.bathrooms, filters.category]);
 
     if (loading) {
         return <div className='flex items-center justify-center w-[69.5%]'><Loading /></div>;

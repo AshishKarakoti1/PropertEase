@@ -47,7 +47,7 @@ const NavBar = () => {
                         <Link to='/sell' className={styles.navLink}>Sell</Link>
                     </li>
                     <li className={styles.navItem}>
-                        <Link to='/mortgage-calculator' className={styles.navLink}>Calculate Mortage</Link>
+                        <Link to='/mortgage-calculator' className={styles.navLink}>Calculate Mortgage</Link>
                     </li>
                 </ul>
             </div>
