@@ -143,7 +143,7 @@ const Single_Listing = () => {
 
                 <div className="flex gap-2 w-[100%]">
                     <button className="bg-slate-300 w-[15rem] py-2 rounded-lg hover:bg-[#4a73a1b1] ease-in-out duration-300 active:bg-slate-400" onClick={handleContact}>CONTACT OWNER</button>
-                    <button className="bg-slate-300 w-[15rem] py-2 rounded-lg hover:bg-[#4a73a1b1] ease-in-out duration-300 active:bg-slate-400" onClick={() => { handleMortgage(price) }}>CALCULATE MORTAGE</button>
+                    {category == 'selling' && <button className="bg-slate-300 w-[15rem] py-2 rounded-lg hover:bg-[#4a73a1b1] ease-in-out duration-300 active:bg-slate-400" onClick={() => { handleMortgage(price) }}>CALCULATE MORTGAGE</button>}
                 </div>
 
             </div>

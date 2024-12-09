@@ -14,7 +14,7 @@ const Listing = ({ id, url, location, bedrooms, bathrooms, area, price, category
     return (
         <div className="flex w-[90%] h-[250px] rounded overflow-hidden shadow-lg hover:shadow-xl cursor-pointer justify-between">
 
-            <img className="h-[250px] w-auto  object-cover" src={url} alt="Property Image" loading='lazy' />
+            <img className="h-[250px] w-[450px]  object-cover" src={url} alt="Property Image" loading='lazy' />
 
             <div className="px-6 py-4 bg-white flex flex-col justify-evenly w-[50%]">
                 <div className='flex justify-between items-center'>
