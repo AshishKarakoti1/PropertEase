@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CgProfile } from "react-icons/cg"; 
-import { CiViewList } from "react-icons/ci";  
-import { FaRegStar } from "react-icons/fa";   
+import { CgProfile } from "react-icons/cg";
+import { CiViewList } from "react-icons/ci";
+import { FaRegStar } from "react-icons/fa";
+import { IoHomeOutline } from "react-icons/io5";
 
 const Side_Bar = () => {
     const navigate = useNavigate();
@@ -20,23 +21,24 @@ const Side_Bar = () => {
     };
 
     return (
-        <div className='bg-[#26282B] h-[100vh] w-[18%] flex flex-col pt-10 justify-between sticky'>
+        <div className='bg-[#26282B] h-[100vh] w-[18%] flex flex-col pt-10 justify-between sticky top-0'>
             <div className='flex flex-col h-[40%] gap-4 pl-4 text-2xl text-white'>
                 <div
-                    className={`h-[25%] w-[80%] border-b-2 pl-2 cursor-pointer `}
+                    className={`h-[25%] w-[80%] border-b-2 pl-2 cursor-pointer flex`}
                     onClick={() => handleTabChange('/')}
-                >
-                    <p className={`h-[100%] w-[100%] hover:ml-4 transition-all ease-in-out duration-200`}>
+                >   
+                    <IoHomeOutline className='mt-2'/>
+                    <p className={`h-[100%] w-[100%] ml-4 mt-1`}>
                         Home
                     </p>
                 </div>
 
                 <div
-                    className={`h-[25%] w-[80%] border-b-2 pl-2 cursor-pointer flex `}
+                    className={`h-[20%] w-[80%] border-b-2 pl-2 cursor-pointer flex ${currTab === '/profile' ? 'bg-slate-200' : ''}`}
                     onClick={() => handleTabChange('/profile')}
                 >
-                    {currTab == '/profile' && <CgProfile className='mt-1'/>}
-                    <p className={`h-[100%] w-[100%] hover:ml-4 transition-all ease-in-out duration-200 ${currTab === '/profile' ? 'ml-4' : ''}`}>
+                    <CgProfile className='mt-1' />
+                    <p className={`h-[100%] w-[100%]  ml-4 `}>
                         Profile
                     </p>
                 </div>
@@ -45,8 +47,8 @@ const Side_Bar = () => {
                     className={`h-[25%] w-[80%] border-b-2 pl-2 cursor-pointer flex`}
                     onClick={() => handleTabChange('/myListings')}
                 >
-                    {currTab == '/myListings' && <CiViewList  className='mt-1'/>}
-                    <p className={`h-[100%] w-[100%] hover:ml-4 transition-all ease-in-out duration-200 ${currTab === '/myListings' ? 'ml-4' : ''}`}>
+                    <CiViewList className='mt-1' />
+                    <p className={`h-[100%] w-[100%] transition-all ease-in-out duration-200 ml-4 ${currTab === '/myListings' ? '' : ''}`}>
                         My Listings
                     </p>
                 </div>
@@ -55,8 +57,8 @@ const Side_Bar = () => {
                     className={`h-[25%] w-[80%] pl-2 cursor-pointer flex`}
                     onClick={() => handleTabChange('/myFavorites')}
                 >
-                    {currTab == '/myFavorites' && <FaRegStar  className='mt-1' />}
-                    <p className={`h-[100%] w-[100%] hover:ml-4 transition-all ease-in-out duration-200 ${currTab === '/myFavorites' ? 'ml-4' : ''}`}>
+                    <FaRegStar className='mt-1' />
+                    <p className={`h-[100%] w-[100%] ml-4 ${currTab === '/myFavorites' ? '' : ''}`}>
                         My Favorites
                     </p>
                 </div>
