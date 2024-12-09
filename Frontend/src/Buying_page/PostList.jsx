@@ -65,13 +65,13 @@ const PostList = () => {
                     />
                 ))}
             </div>
-            <div className='w-[40%] h-[3rem] flex justify-between items-center mt-4 mx-auto'>
+            <div className='w-[31%] h-[3rem] flex justify-between items-center mt-8 mx-auto'>
                 <button
                     disabled={currentPage === 1}
                     onClick={handlePreviousPage}
                     className='px-4 py-2 text-white bg-blue-400 rounded-sm disabled:opacity-50'
                 >
-                    Previous
+                    Prev
                 </button>
                 <span>Page {currentPage} of {totalPages}</span>
                 <button

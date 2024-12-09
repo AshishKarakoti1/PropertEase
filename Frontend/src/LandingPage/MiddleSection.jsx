@@ -44,7 +44,7 @@ const MiddleSection = () => {
             </div>
 
             <div className={styles.actionContainer}>
-                <h3 className={styles.helpText}>How can we help you?<br /> <span className='text-blue-500'>{user}</span></h3>
+                <h3 className={styles.helpText}>How can we help you?<br /> <span className='text-[#4A73A1]'>{user}</span></h3>
                 <div className={styles.buttonGroup}>
                     <button
                         type="button"

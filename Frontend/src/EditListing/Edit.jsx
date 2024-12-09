@@ -87,10 +87,10 @@ const Edit = () => {
     }
 
     return (
-        <div className="mt-[4rem] mx-auto w-[80%] h-[37rem] border-2 border-red-400 flex justify-between">
-            <div className="h-[100%] w-[45%] border-2 border-green-500">
+        <div className="mt-[4rem] mx-auto w-[80%] h-[32rem] bg-white rounded-xl overflow-hidden shadow-2xl flex justify-between">
+            <div className="h-[100%] w-[50%] p-4">
                 {listing?.images?.length > 0 ? (
-                    <img src={listing.images[4]} alt="Listing" className="h-[100%] w-[100%]" />
+                    <img src={listing.images[4]} alt="Listing" className="h-[100%] w-[100%] rounded-lg bg-cover" />
                 ) : (
                     <div className="flex items-center justify-center h-full">No Image Available</div>
                 )}
@@ -98,73 +98,79 @@ const Edit = () => {
 
             <form
                 onSubmit={handleSubmit}
-                className="h-[100%] w-[55%] border-2 border-purple-400 flex flex-col pl-[3rem] pt-3 gap-2"
+                className="h-[100%] w-[50%] flex flex-col pl-[3rem] pt-2 gap-2"
             >
-                <div className="flex flex-col h-[14%] w-[85%] justify-center gap-1">
-                    <label htmlFor="location">Location</label>
-                    <input
-                        name="location"
-                        type="text"
-                        className="h-[2.5rem] w-[80%] bg-gray-200 rounded-md pl-2 outline-none"
-                        value={currentListing.location}
-                        onChange={handleChange}
-                    />
+                <div className='flex h-[25%] items-center'>
+                    <div className="flex flex-col h-[90%] w-[85%] justify-center gap-3">
+                        <label htmlFor="location">Location</label>
+                        <input
+                            name="location"
+                            type="text"
+                            className="h-[2.5rem] w-[80%] bg-indigo-100 border-2 border-indigo-300 rounded-md pl-2 outline-none"
+                            value={currentListing.location}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="flex flex-col h-[90%] w-[85%] justify-center gap-3">
+                        <label htmlFor="price">Price</label>
+                        <input
+                            name="price"
+                            type="text"
+                            className="h-[2.5rem] w-[80%] bg-indigo-100 border-2 border-indigo-300 rounded-md pl-2 outline-none"
+                            value={currentListing.price}
+                            onChange={handleChange}
+                        />
+                    </div>
                 </div>
-                <div className="flex flex-col h-[14%] w-[85%] justify-center gap-1">
-                    <label htmlFor="price">Price</label>
-                    <input
-                        name="price"
-                        type="text"
-                        className="h-[2.5rem] w-[80%] bg-gray-200 rounded-md pl-2 outline-none"
-                        value={currentListing.price}
-                        onChange={handleChange}
-                    />
+                <div className='flex h-[25%] items-center'>
+                    <div className="flex flex-col h-[90%] w-[85%] justify-center gap-3">
+                        <label htmlFor="bedrooms">Bedrooms</label>
+                        <input
+                            name="bedrooms"
+                            type="number"
+                            className="h-[2.5rem] w-[80%] bg-indigo-100 border-2 border-indigo-300 rounded-md pl-2 outline-none"
+                            value={currentListing.bedrooms}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="flex flex-col h-[90%] w-[85%] justify-center gap-3">
+                        <label htmlFor="bathrooms">Bathrooms</label>
+                        <input
+                            name="bathrooms"
+                            type="number"
+                            className="h-[2.5rem] w-[80%] bg-indigo-100 border-2 border-indigo-300 rounded-md pl-2 outline-none"
+                            value={currentListing.bathrooms}
+                            onChange={handleChange}
+                        />
+                    </div>
                 </div>
-                <div className="flex flex-col h-[14%] w-[85%] justify-center gap-1">
-                    <label htmlFor="bedrooms">Bedrooms</label>
-                    <input
-                        name="bedrooms"
-                        type="number"
-                        className="h-[2.5rem] w-[80%] bg-gray-200 rounded-md pl-2 outline-none"
-                        value={currentListing.bedrooms}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="flex flex-col h-[14%] w-[85%] justify-center gap-1">
-                    <label htmlFor="bathrooms">Bathrooms</label>
-                    <input
-                        name="bathrooms"
-                        type="number"
-                        className="h-[2.5rem] w-[80%] bg-gray-200 rounded-md pl-2 outline-none"
-                        value={currentListing.bathrooms}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="flex flex-col h-[14%] w-[85%] justify-center gap-1">
-                    <label htmlFor="area">Area (in sqft)</label>
-                    <input
-                        name="area"
-                        type="text"
-                        className="h-[2.5rem] w-[80%] bg-gray-200 rounded-md pl-2 outline-none"
-                        value={currentListing.area}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="flex items-center gap-4">
-                    <label htmlFor="category">Category:</label>
-                    <select
-                        id="category"
-                        name="category"
-                        className="border border-gray-300 rounded-md p-2"
-                        value={currentListing.category}
-                        onChange={handleChange}
-                    >
-                        <option value="renting">Renting</option>
-                        <option value="selling">Selling</option>
-                    </select>
+                <div className='flex h-[25%] items-center'>
+                    <div className="flex flex-col h-[90%] w-[85%] justify-center gap-3">
+                        <label htmlFor="area">Area (in sqft)</label>
+                        <input
+                            name="area"
+                            type="text"
+                            className="h-[2.5rem] w-[80%] bg-indigo-100 border-2 border-indigo-300 rounded-md pl-2 outline-none"
+                            value={currentListing.area}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="flex flex-col h-[90%] w-[85%] justify-center gap-3">
+                        <label htmlFor="category">Category:</label>
+                        <select
+                            id="category"
+                            name="category"
+                            className="bg-indigo-100 border-2 border-indigo-300 w-[80%] outline-none rounded-md p-2"
+                            value={currentListing.category}
+                            onChange={handleChange}
+                        >
+                            <option value="renting">Renting</option>
+                            <option value="selling">Selling</option>
+                        </select>
+                    </div>
                 </div>
 
-                <button className="w-[10rem] h-[3rem] text-white rounded-sm bg-blue-400 mt-3" type="submit">
+                <button className="w-[10rem] h-[3rem] ml-[11rem] text-white rounded-lg bg-indigo-500 active:bg-indigo-700 mt-3" type="submit">
                     Save
                 </button>
             </form>

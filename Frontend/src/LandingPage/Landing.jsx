@@ -4,6 +4,7 @@ import NavBar from './NavBar'
 import Services from './Services'
 import styles from './Landing.module.css'
 import Footer from './Footer'
+import Reviews from './Reviews'
 
 const Landing = () => {
   return (
@@ -13,6 +14,7 @@ const Landing = () => {
         <MiddleSection />
       </div>
       <Services />
+      <Reviews />
       <Footer />
     </div>
   )

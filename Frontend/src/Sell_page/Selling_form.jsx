@@ -114,115 +114,116 @@ const Selling_form = () => {
     }
 
     return (
-        <>
-            <div className={styles.bg}>
-                <div className={styles.container}>
-                    <div className={styles.heading_div}>
-                        <h1 className={styles.heading}>List your Property</h1>
+        <div className='w-[80%] h-[75vh] bg-white flex mx-auto mt-[3rem] rounded-2xl shadow-2xl overflow-hidden items-center'>
+            <div className='h-[100%] w-[50%]'>
+                <img src="/buy.png" alt="buy" />
+            </div>
+            <div className='h-[100%] w-[50%] px-14 pt-4'>
+                <div className={styles.heading_div}>
+                    <h1 className={styles.heading}>List your Property</h1>
+                </div>
+                <form className={styles.form} onSubmit={handleSubmit}>
+                    <div className={styles.formGroup}>
+                        <label className={styles.label} htmlFor="location">Location*</label>
+                        <input
+                            className={styles.input}
+                            type="text"
+                            id="location"
+                            placeholder="Enter location"
+                            name="location"
+                            value={formData.location}
+                            onChange={handleChange}
+                        />
                     </div>
-                    <form className={styles.form} onSubmit={handleSubmit}>
-                        <div className={styles.formGroup}>
-                            <label className={styles.label} htmlFor="location">Location*</label>
+
+                    <div className={styles.inputRow}>
+                        <div className={styles.inputGroup}>
+                            <label className={styles.label} htmlFor="bedrooms">Bedrooms*</label>
+                            <input
+                                className={styles.input}
+                                type="number"
+                                id="bedrooms"
+                                placeholder="Enter number of bedrooms"
+                                name="bedrooms"
+                                value={formData.bedrooms}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className={styles.inputGroup}>
+                            <label className={styles.label} htmlFor="bathrooms">Bathrooms*</label>
+                            <input
+                                className={styles.input}
+                                type="number"
+                                id="bathrooms"
+                                placeholder="Enter number of bathrooms"
+                                name="bathrooms"
+                                value={formData.bathrooms}
+                                onChange={handleChange}
+                            />
+                        </div>
+                    </div>
+
+                    <div className={styles.inputRow}>
+                        <div className={styles.inputGroup}>
+                            <label className={styles.label} htmlFor="area">Area (sqft)*</label>
+                            <input
+                                className={styles.input}
+                                type="number"
+                                id="area"
+                                placeholder="Enter area"
+                                name="area"
+                                value={formData.area}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className={styles.inputGroup}>
+                            <label className={styles.label} htmlFor="price">Price*</label>
                             <input
                                 className={styles.input}
                                 type="text"
-                                id="location"
-                                placeholder="Enter location"
-                                name="location"
-                                value={formData.location}
+                                id="price"
+                                placeholder="Enter price"
+                                name="price"
+                                value={formData.price}
                                 onChange={handleChange}
                             />
                         </div>
+                    </div>
 
-                        <div className={styles.inputRow}>
-                            <div className={styles.inputGroup}>
-                                <label className={styles.label} htmlFor="bedrooms">Bedrooms*</label>
-                                <input
-                                    className={styles.input}
-                                    type="number"
-                                    id="bedrooms"
-                                    placeholder="Enter number of bedrooms"
-                                    name="bedrooms"
-                                    value={formData.bedrooms}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div className={styles.inputGroup}>
-                                <label className={styles.label} htmlFor="bathrooms">Bathrooms*</label>
-                                <input
-                                    className={styles.input}
-                                    type="number"
-                                    id="bathrooms"
-                                    placeholder="Enter number of bathrooms"
-                                    name="bathrooms"
-                                    value={formData.bathrooms}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
-
-                        <div className={styles.inputRow}>
-                            <div className={styles.inputGroup}>
-                                <label className={styles.label} htmlFor="area">Area (sqft)*</label>
-                                <input
-                                    className={styles.input}
-                                    type="number"
-                                    id="area"
-                                    placeholder="Enter area"
-                                    name="area"
-                                    value={formData.area}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div className={styles.inputGroup}>
-                                <label className={styles.label} htmlFor="price">Price*</label>
-                                <input
-                                    className={styles.input}
-                                    type="text"
-                                    id="price"
-                                    placeholder="Enter price"
-                                    name="price"
-                                    value={formData.price}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
-
-                        <div className='flex items-center gap-4'>
-                            <label htmlFor="category">Category :</label>
-                            <select
-                                id="category"
-                                name="category"
-                                value={formData.category}
-                                onChange={handleChange}
-                                className="border border-gray-300 rounded-md p-2"
-                            >
-                                <option value="selling">Selling</option>
-                                <option value="renting">Renting</option>
-                            </select>
-                        </div>
+                    <div className='flex items-center justify-between mb-[15px] text-[#4A73A1]'>
+                        <label htmlFor="category">Category :</label>
+                        <select
+                            id="category"
+                            name="category"
+                            value={formData.category}
+                            onChange={handleChange}
+                            className="bg-[#4a73a12d] border-2 border-[#4A73A1] w-[81.5%] px-[10px] py-[12px] outline-none rounded-lg"
+                        >
+                            <option value="selling">Selling</option>
+                            <option value="renting">Renting</option>
+                        </select>
+                    </div>
 
 
-                        <div className={styles.formGroup}>
-                            <label className={styles.label} htmlFor="images">Property Images*</label>
-                            <input
-                                className={`${styles.input} ${styles.anotherClass}`}
-                                type="file"
-                                id="images"
-                                name="images"
-                                multiple
-                                accept="image/*"
-                                onChange={handleChange}
-                            />
-                        </div>
+                    <div className={styles.formGroup}>
+                        <label className={styles.label} htmlFor="images">Property Images*</label>
+                        <input
+                            className={`${styles.input} ${styles.anotherClass}`}
+                            type="file"
+                            id="images"
+                            name="images"
+                            multiple
+                            accept="image/*"
+                            onChange={handleChange}
+                        />
+                    </div>
 
 
-                        <button type="submit" className={styles.button}>Submit</button>
-                    </form>
-                </div >
+                    <button type="submit" className={styles.button}>Submit</button>
+                </form>
             </div >
             <ToastContainer /> {/* Toast container to display toasts */}
-        </>
+        </div>
     );
 };
 
