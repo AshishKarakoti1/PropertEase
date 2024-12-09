@@ -15,6 +15,16 @@ async function getAllListings(req, res) {
     }
 }
 
+async function getTopThree(req,res) {
+    try {
+        const listings = await listingModel.find({category:'selling'}).sort({price:1}).limit(3);
+        res.status(200).json({ success: true, listings,message:"listings fetched successfully"});
+    } catch (error) {
+        console.error('Error fetching 3 listings:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+}
+
 
 async function handleFilters(req, res) {
     try {
@@ -149,4 +159,4 @@ async function deleteListing(req, res) {
 }
 
 
-module.exports = {getAllListings,handleFilters,updateListing,getListingById,deleteListing};
+module.exports = {getAllListings,handleFilters,updateListing,getListingById,deleteListing,getTopThree};

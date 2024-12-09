@@ -19,11 +19,11 @@ const Reviews = () => {
                     <span className='font-bold text-[1.5rem]'>Samantha Patel</span>
                     <p className='w-[70%]'>Finding my dream home was easy! Detailed listings and a supportive team made the process smooth.</p>
                     <div className='text-yellow-400'>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
                     </div>
                 </div>
                 <div className='flex flex-col w-[25%] h-[70%] bg-[#e2e2e2] text-center gap-3 hover:bg-[#4a73a1a3] hover:text-white items-center pt-[3rem] rounded-2xl border-2 hover:scale-[103%] ease-in-out duration-100'>
@@ -31,11 +31,11 @@ const Reviews = () => {
                     <span className='font-bold text-[1.5rem]'>Marcus Thompson</span>
                     <p className='w-[70%]'>Renting a property was quick and hassle-free. The filters helped me find the perfect place</p>
                     <div className='text-yellow-400'>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
                     </div>
                 </div>
                 <div className='flex flex-col w-[25%] h-[70%] bg-[#e2e2e2] text-center gap-3 hover:bg-[#4a73a1a3] hover:text-white items-center pt-[3rem] rounded-2xl border-2 hover:scale-[103%] ease-in-out duration-100'>
@@ -43,11 +43,11 @@ const Reviews = () => {
                     <span className='font-bold text-[1.5rem]'>Emily Rodriguez</span>
                     <p className='w-[70%]'>Selling my property was a breeze! Great advice and multiple offers came in quickly.</p>
                     <div className='text-yellow-400'>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star"></i>
                     </div>
                 </div>
             </div>
