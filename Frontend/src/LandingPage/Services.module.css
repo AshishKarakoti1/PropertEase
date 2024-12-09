@@ -1,6 +1,6 @@
 
 .background {
-    background-color: rgb(226, 226, 226);
+    background-color: #e2e2e2;
 }
 
 .heading {
@@ -17,10 +17,11 @@
 
 .container {
     cursor: pointer;
-    padding: 6rem;
+    padding-bottom: 6rem;
+    gap: 2rem;
     padding-top: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
@@ -41,7 +42,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #5F85DB;
+    background-color: #4A73A1;
     transform: scaleY(0);
     transform-origin: top;
     transition: transform 0.5s;

@@ -38,35 +38,40 @@ const Email = () => {
     }
 
     return (
-        <form className='w-[50rem] h-[33rem] mx-auto mt-[4rem] flex flex-col gap-3 border-2 border-red-500' onSubmit={handleSubmit}>
-
-            <p className='font-semibold text-[1.1rem]'>To: {userEmail}</p>
-            <div className='w-[95%] h-[20%] border-2 border-green-400 flex flex-col gap-3'>
-                <label htmlFor="">What its about</label>
-                <input
-                    type="text"
-                    className='w-[90%] h-[3rem] bg-gray-300 rounded-sm outline-none pl-2'
-                    name='subject'
-                    onChange={handleChange}
-                    placeholder='subject'
-                    value={emailDetails.subject} // Controlled input
-                />
+        <div className='flex w-[80%] mx-auto mt-[3.5rem]'>
+            <div className='w-[50%]'>
+                <img src="/mail.png" alt="" />
             </div>
-            <div className='w-[95%] h-[55%] border-2 mt-3 border-green-400 flex flex-col gap-3'>
-                <label htmlFor="">Enter Message</label>
-                <textarea
-                    id=""
-                    className='h-[85%] w-[90%] bg-gray-300 rounded-sm resize-none outline-none pl-2 pt-2'
-                    name='text'
-                    onChange={handleChange}
-                    placeholder='message'
-                    value={emailDetails.text} // Controlled input
-                ></textarea>
-            </div>
+            <form className='w-[50%] h-[33rem] flex flex-col' onSubmit={handleSubmit}>
 
-            <button type='submit' className='h-[3rem] w-[10rem] bg-blue-400'>Send</button>
+                <p className='font-semibold text-2xl'>To : {userEmail}</p>
+                <div className='w-[95%] h-[20%] flex flex-col gap-3'>
+                    <label htmlFor="">What it's about</label>
+                    <input
+                        type="text"
+                        className='w-[90%] h-[3rem] bg-[#4a73a12d] border-2 border-[#4A73A1] placeholder:text-[#4A73A1] rounded-lg outline-none pl-3'
+                        name='subject'
+                        onChange={handleChange}
+                        placeholder='subject'
+                        value={emailDetails.subject} // Controlled input
+                    />
+                </div>
+                <div className='w-[95%] h-[47%] mt-1 flex flex-col gap-3'>
+                    <label htmlFor="">Enter Message</label>
+                    <textarea
+                        id=""
+                        className='h-[75%] w-[90%] bg-[#4a73a12d] border-2 border-[#4A73A1] placeholder:text-[#4A73A1] rounded-lg resize-none outline-none pl-3 pt-2'
+                        name='text'
+                        onChange={handleChange}
+                        placeholder='message'
+                        value={emailDetails.text} // Controlled input
+                    ></textarea>
+                </div>
 
-        </form>
+                <button type='submit' className='h-[3rem] w-[10rem] rounded-md text-white bg-[#4A73A1] active:bg-[#2e4764] '>Send</button>
+
+            </form>
+        </div>
     )
 }
 

@@ -1,43 +1,20 @@
 
 :root {
-  --primary-color: #1e88e5;
-  --primary-light: #64b5f6;
-  --primary-dark: #0d47a1;
-  --secondary-color: #e3f2fd;
+  --primary-color: #4A73A1;
+  --primary-light: #4A73A1;
+  --primary-dark: #314d6d;
+  --secondary-color: #4a73a12d;
   --text-color: #333;
-  --background-color: #f5f9ff;
+  --background-color: #4a73a12d;
 }
 
-.bg {
-  background-image: url('bg-buy.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 86.8vh;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-y: hidden;
-}
-
-.container {
-  max-width: 500px;
-  /* Reduced overall size */
-  width: 100%;
-  background-color: whitesmoke;
-  padding: 30px;
-  /* Reduced padding */
-  border-radius: 15px;
-  /* Adjusted border radius */
-  box-shadow: 0 8px 25px rgba(30, 136, 229, 0.2);
+/* .container {
+  height: 100%;
+  width: 50%;
   text-align: center;
-  margin: 15px;
-  /* Adjusted margin */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 3rem;
   box-sizing: border-box;
-}
+} */
 
 .heading_div {
   display: flex;
@@ -49,11 +26,6 @@
 
 .logo_img {
   height: 2rem;
-}
-
-.container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(30, 136, 229, 0.3);
 }
 
 .heading {

@@ -14,7 +14,7 @@ const Filters = () => {
     };
 
     return (
-        <div className="sticky top-10 bg-gray-700 h-[80vh] flex flex-col gap-4 w-[18vw] rounded p-4">
+        <div className="bg-slate-600 h-[75vh] flex flex-col gap-3 w-[18vw] rounded p-4">
             <div>
                 <label className='text-white' htmlFor="price">Max Price</label>
                 <input
@@ -65,14 +65,14 @@ const Filters = () => {
                     className="rounded p-1"
                 />
             </div>
-            <div className='flex items-center gap-4'>
+            <div className='flex items-center justify-between'>
                 <label htmlFor="category" className='text-white'>Category :</label>
                 <select
                     id="category"
                     name="category" // Bind the name to match the filters state property
                     value={filters.category || ''} // Bind the value to filters.category
                     onChange={handleChange} // Use the shared handleChange function
-                    className="border border-gray-300 rounded-md p-2"
+                    className="w-28 border border-gray-300 rounded-md p-1"
                 >
                     <option value="">All</option> {/* Empty value for 'All' */}
                     <option value="buying">Buying</option>
@@ -82,7 +82,7 @@ const Filters = () => {
             <button
                 type="button"
                 onClick={() => applyFilters(currentPage)}
-                className="bg-blue-500 text-white px-2 py-2 rounded  hover:bg-gray-600 duration-200"
+                className="bg-blue-500 text-white px-2 py-2 rounded  hover:bg-blue-600 duration-200"
             > Filter
             </button>
             <button

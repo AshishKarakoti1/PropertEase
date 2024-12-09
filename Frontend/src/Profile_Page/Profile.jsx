@@ -90,7 +90,7 @@ const Profile = () => {
 
 
     return (
-        <div className='h-[100vh] flex-grow bg-[#D9D9D9]'>
+        <div className='h-[100vh] flex-grow bg-indigo-100'>
             <div className='h-[50%] flex items-center pl-24'>
                 <img className='h-[300px] w-[300px] rounded-full' src={user?.URL || '/no_photo.webp'} />
                 <div className='flex flex-col'>
