@@ -5,6 +5,7 @@ import Services from './Services'
 import styles from './Landing.module.css'
 import Footer from './Footer'
 import Reviews from './Reviews'
+import Featured from './Featured'
 
 const Landing = () => {
   return (
@@ -15,6 +16,7 @@ const Landing = () => {
       </div>
       <Services />
       <Reviews />
+      <Featured/>
       <Footer />
     </div>
   )
