@@ -24,17 +24,17 @@ const Side_Bar = () => {
         <div className='bg-[#26282B] h-[100vh] w-[18%] flex flex-col pt-10 justify-between sticky top-0'>
             <div className='flex flex-col h-[40%] gap-4 pl-4 text-2xl text-white'>
                 <div
-                    className={`h-[25%] w-[80%] border-b-2 pl-2 cursor-pointer flex`}
+                    className={`h-[25%] w-[90%] rounded-lg border-b-2 pl-2 cursor-pointer flex`}
                     onClick={() => handleTabChange('/')}
-                >   
-                    <IoHomeOutline className='mt-2'/>
+                >
+                    <IoHomeOutline className='mt-2' />
                     <p className={`h-[100%] w-[100%] ml-4 mt-1`}>
                         Home
                     </p>
                 </div>
 
                 <div
-                    className={`h-[20%] w-[80%] border-b-2 pl-2 cursor-pointer flex ${currTab === '/profile' ? 'bg-slate-200' : ''}`}
+                    className={`h-[25%] w-[90%] border-b-2 pl-2 pt-3 rounded-lg cursor-pointer flex ${currTab === '/profile' ? 'bg-[#3f6db1a5]' : ''}`}
                     onClick={() => handleTabChange('/profile')}
                 >
                     <CgProfile className='mt-1' />
@@ -44,7 +44,7 @@ const Side_Bar = () => {
                 </div>
 
                 <div
-                    className={`h-[25%] w-[80%] border-b-2 pl-2 cursor-pointer flex`}
+                    className={`h-[25%] w-[90%] border-b-2 pl-2 pt-3 rounded-lg cursor-pointer flex ${currTab === '/myListings' ? 'bg-[#3f6db1a5]' : ''}`}
                     onClick={() => handleTabChange('/myListings')}
                 >
                     <CiViewList className='mt-1' />
@@ -54,7 +54,7 @@ const Side_Bar = () => {
                 </div>
 
                 <div
-                    className={`h-[25%] w-[80%] pl-2 cursor-pointer flex`}
+                    className={`h-[25%] w-[90%] border-b-2 pl-2 pt-3 rounded-lg cursor-pointer flex ${currTab === '/myFavorites' ? 'bg-[#3f6db1a5]' : ''}`}
                     onClick={() => handleTabChange('/myFavorites')}
                 >
                     <FaRegStar className='mt-1' />

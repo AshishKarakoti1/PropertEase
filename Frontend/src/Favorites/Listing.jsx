@@ -12,7 +12,7 @@ const Listing = ({ id, url, location, bedrooms, bathrooms, area, price, category
     }
 
     return (
-        <div className="flex w-[90%] h-[250px] rounded overflow-hidden shadow-lg hover:shadow-xl cursor-pointer justify-between">
+        <div className="flex w-[90%] h-[250px] rounded overflow-hidden shadow-lg hover:shadow-xl cursor-pointer justify-between bg-white">
 
             <img className="h-[250px] w-[450px]  object-cover" src={url} alt="Property Image" loading='lazy' />
 

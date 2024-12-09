@@ -90,39 +90,52 @@ const Profile = () => {
 
 
     return (
-        <div className='h-[100vh] flex-grow bg-indigo-100'>
+        <div className='h-[100vh] flex-grow bg-gradient-to-t from-[#4a73a134] to-[#4a73a1d5]'>
             <div className='h-[50%] flex items-center pl-24'>
-                <img className='h-[300px] w-[300px] rounded-full' src={user?.URL || '/no_photo.webp'} />
-                <div className='flex flex-col'>
-                    <input type="file" className='ml-5 w-[60%] hover:cursor-pointer' onChange={handleFileChange} />
-                    <button className='bg-orange-400 w-36 ml-5 mt-3' onClick={() => handleUpload()}>Change photo</button>
+                <img className='h-[300px] w-[300px] rounded-full' src={user?.URL || '/profilePhoto.png'} />
+                <div className="flex flex-col">
+                    <label
+                        htmlFor="file-upload"
+                        className="bg-blue-500 text-white w-[10rem] h-[2rem] flex items-center justify-center rounded-lg ml-5 hover:bg-blue-600 cursor-pointer"
+                    >
+                        Choose File
+                    </label>
+                    <input
+                        id="file-upload"
+                        type="file"
+                        className="hidden"
+                        onChange={handleFileChange}
+                    />
+                    <button
+                        className="bg-[#4A73A1] text-white w-[10rem] h-[2rem] rounded-lg ml-5 mt-3 hover:bg-[#3b5a82]"
+                        onClick={() => handleUpload()}
+                    >
+                        Change photo
+                    </button>
                 </div>
+
             </div>
 
-            <div className='h-[50%] w-[100%] flex items-center text-2xl pl-24 font-semibold'>
+            <div className='h-[50%] w-[100%] flex items-center text-2xl pl-[7.5rem] font-semibold'>
                 <div className='w-[50%] h-[80%] flex flex-col items-start justify-center'>
                     <div className='h-[25%] w-[40%]'>
-                        <input className='w-[100%] border border-black h-[3.5rem] rounded-sm pt- pl-2 bg-gray-300 placeholder:text-gray-400 outline-none' placeholder={user?.username || "Username not available"} name='username' onChange={handleChange}></input>
+                        <input className='w-[100%] bg-[#4a73a12d] border-2 border-[#4A73A1] rounded-lg outline-none h-[3.5rem] pt- pl-2 placeholder:text-gray-500' placeholder={user?.username || "Username not available"} name='username' onChange={handleChange}></input>
                     </div>
                     <div className='h-[25%] w-[40%]'>
-                        <input className='w-[100%] border border-black h-[3.5rem] rounded-sm pt- pl-2 bg-gray-300 placeholder:text-gray-400 outline-none' placeholder={user?.contactNumber || "Contact not available"} name='contactNumber' onChange={handleChange}></input>
+                        <input className='w-[100%] bg-[#4a73a12d] border-2 border-[#4A73A1] outline-none h-[3.5rem] rounded-lg pt- pl-2  placeholder:text-gray-500' placeholder={user?.contactNumber || "Contact not available"} name='contactNumber' onChange={handleChange}></input>
                     </div>
-                    <div className='h-[25%] w-[40%]'>
-                        <p className='w-[100%] border-b-2 border-black pb-3'>{user?.email || "Email not available"}</p>
+                    <div className='h-[20%] w-[40%] flex items-center justify-center'>
+                        <input className='w-[100%] bg-[#4a73a12d] border-2 border-[#4A73A1] outline-none h-[3.5rem] rounded-lg pt- pl-2  placeholder:text-gray-500' placeholder={user?.email || 0} disabled></input>
                     </div>
-                    <button className='h-[3rem] w-[10rem] text-white rounded-md bg-orange-500' onClick={handleUpdate}>Save</button>
+                    <button className='h-[3rem] w-[10rem] text-white rounded-lg bg-[#4A73A1] mt-[1rem]' onClick={handleUpdate}>Save</button>
                 </div>
 
-                <div className='w-[50%] h-[80%] flex flex-col items-start mt-[70px]'>
-                    <div className='h-[25%] w-[40%]'>
-                        <p className='w-[100%] border-b-2 border-black pb-3'>
-                            My Listings: {user?.listings?.length || 0}
-                        </p>
+                <div className='w-[50%] h-[80%] flex flex-col items-start justify-start mt-3 gap-[1rem]'>
+                    <div className='h-[20%] w-[40%] flex items-center justify-center'>
+                        <input className='w-[100%] bg-[#4a73a12d] border-2 border-[#4A73A1] outline-none h-[3.5rem] rounded-lg pt- pl-2  placeholder:text-gray-500' placeholder={`My Listings : ${user?.listings?.length}` || 0} disabled></input>
                     </div>
-                    <div className='h-[25%] w-[40%]'>
-                        <p className='w-[100%] border-b-2 border-black pb-3'>
-                            My Favorites: {user?.favorites?.length || 0}
-                        </p>
+                    <div className='h-[20%] w-[40%] flex items-center justify-center'>
+                        <input className='w-[100%] bg-[#4a73a12d] border-2 border-[#4A73A1] outline-none h-[3.5rem] rounded-lg pt- pl-2  placeholder:text-gray-500' placeholder={`My favorites : ${user?.favorites?.length}` || 0} disabled></input>
                     </div>
                 </div>
             </div>
