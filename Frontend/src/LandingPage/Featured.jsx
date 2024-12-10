@@ -41,7 +41,7 @@ const Featured = () => {
                 <button className='w-[10rem] h-[3rem] bg-[#4A73A1] text-white rounded-lg' onClick={() => { navigate('/buy') }}>Show More</button>
             </div>
             <div className='w-[100%] h-[90%] flex justify-evenly items-center mx-auto'>
-                {featured.length > 0 &&
+                {featured.length > 0 ?
                     featured.map((listing) => {
                         return <Post
                             key={listing._id}
@@ -54,7 +54,7 @@ const Featured = () => {
                             price={listing.price}
                             category={listing.category}
                         />
-                    })
+                    }) : <div className='w-[100%] h-[90%] flex justify-evenly items-center mx-auto text-blue-500 font-bold text-[3rem]'>No featured Listings</div>
                 }
             </div>
         </div>

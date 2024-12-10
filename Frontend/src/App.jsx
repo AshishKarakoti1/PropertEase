@@ -12,6 +12,8 @@ import Side_Bar from './Profile_Page/Side_Bar';
 import Email_Page from './EmailPage/Email_Page';
 import Edit_Page from './EditListing/Edit_Page';
 import MortgagePage from './MortgagePage/MortgagePage';
+import ForgotPage from './ForgotPassword/ForgotPage';
+import ResetPage from './ResetPassword/ResetPage';
 
 const App = () => {
 
@@ -40,6 +42,8 @@ const App = () => {
           <Route path='/contact' element={<Email_Page />} />
           <Route path='/update/:id' element={<Edit_Page />} />
           <Route path='/mortgage-calculator' element={<MortgagePage />} />
+          <Route path='/forgot-password' element={<ForgotPage />} />
+          <Route path='/reset-password/:token' element={<ResetPage />} />
         </Routes>
       </div>
     </div>

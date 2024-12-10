@@ -6,7 +6,6 @@ SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = process.env.B
 
 const sendEmail = (req, res) => {
     const { to, subject, text } = req.body;
-
     const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
     sendSmtpEmail.subject = subject;
     sendSmtpEmail.htmlContent = text;

@@ -116,6 +116,9 @@ const Login = () => {
                             No account?
                             <Link to={'/signup'} className='no-underline'> Sign up</Link>
                         </p>
+                        <p className="text-center text-sm text-gray-500">
+                            <Link to={'/forgot-password'} className='no-underline'> Forgot Password</Link>
+                        </p>
                     </form>
                     <ToastContainer />
                 </div>
