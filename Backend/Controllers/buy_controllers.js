@@ -15,15 +15,26 @@ async function getAllListings(req, res) {
     }
 }
 
-async function getTopThree(req,res) {
+async function getTopThree(req, res) {
+    const { category = 'selling', order = 1 } = req.query; // Default values
+
     try {
-        const listings = await listingModel.find({category:'selling'}).sort({price:1}).limit(3);
-        res.status(200).json({ success: true, listings,message:"listings fetched successfully"});
+        const listings = await listingModel
+            .find({ category })
+            .sort({ price: parseInt(order) })
+            .limit(3);
+
+        res.status(200).json({
+            success: true,
+            listings,
+            message: 'Listings fetched successfully',
+        });
     } catch (error) {
-        console.error('Error fetching 3 listings:', error);
+        console.error('Error fetching listings:', error);
         res.status(500).json({ success: false, message: 'Server error' });
     }
 }
+
 
 
 async function handleFilters(req, res) {
