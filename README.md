@@ -2,8 +2,8 @@
 PropertEase is a modern real estate website that allows users to list, search, and manage properties with ease. Built using React.js on the front end and Node.js with Express on the back end, this project provides a seamless and responsive user experience for both property buyers and sellers.
 
 ## Team Members:
-  1) Daksh Chawla
-  2) Ashish Karakoti
+  1) Ashish Karakoti
+  2) Daksh Chawla
   3) Avikam Bir
   4) Chirag Bhatia
   5) Devesh Sharma
